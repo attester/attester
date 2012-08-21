@@ -1,0 +1,31 @@
+{
+    "author" : "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
+    "name" : "atjstestrunner",
+    "description" : "Aria Templates Javascript Test runner",
+    "version" : "1.0.0",
+    "homepage" : "http://github.com/ariatemplates/atjstestrunner-nodejs",
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/ariatemplates/atjstestrunner-nodejs.git"
+    },
+    "bin" : {
+        "atjstestrunner" : "atjstestrunner.js"
+    },
+    "private" : true,
+    "dependencies" : {
+        "js-yaml" : "1.0.1",
+        "socket.io" : "0.9.10",
+        "optimist" : "0.3.4",
+        "connect" : "2.4.3",
+        "minimatch" : "0.2.5",
+        "colors" : "0.6.0-1",
+        "send" : "0.0.3",
+        "node-coverage" : "git+https://github.com/piuccio/node-coverage.git#2ed0b47c3cea364e78eba5d76bbeb801baee8f2e"
+    },
+    "devDependencies" : {
+        "jasmine-node" : "1.0.26"
+    },
+    "scripts" : {
+        "test" : "node ./node_modules/jasmine-node/lib/jasmine-node/cli.js spec"
+    }
+}
