@@ -15,10 +15,16 @@
                 <exclude>.project</exclude>
                 <exclude>.settings/**</exclude>
                 <exclude>.gitignore</exclude>
-                <exclude>spec/**</exclude>
                 <exclude>pom.xml</exclude>
                 <exclude>assembly.xml</exclude>
                 <exclude>${project.build.directory}/**</exclude>
+                <exclude>hooks/**</exclude>
+
+                <!-- Excluding tests and their dependencies -->
+                <exclude>.travis.yml</exclude>
+                <exclude>spec/**</exclude>
+                <exclude>node_modules/ariatemplates/**</exclude>
+                <exclude>node_modules/jasmine-node/**</exclude>
             </excludes>
         </fileSet>
     </fileSets>
