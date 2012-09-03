@@ -16,7 +16,7 @@
                 <exclude>.settings/**</exclude>
                 <exclude>.gitignore</exclude>
                 <exclude>pom.xml</exclude>
-                <exclude>build/**</exclude>
+                <exclude>maven/**</exclude>
                 <exclude>hooks/**</exclude>
 
                 <!-- Excluding tests and their dependencies -->
