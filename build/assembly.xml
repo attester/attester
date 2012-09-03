@@ -8,7 +8,7 @@
     <baseDirectory>atjstestrunner</baseDirectory>
     <fileSets>
         <fileSet>
-            <directory>${project.basedir}</directory>
+            <directory>${rootdir}</directory>
             <outputDirectory>/</outputDirectory>
             <useDefaultExcludes>true</useDefaultExcludes>
             <excludes>
@@ -16,8 +16,7 @@
                 <exclude>.settings/**</exclude>
                 <exclude>.gitignore</exclude>
                 <exclude>pom.xml</exclude>
-                <exclude>assembly.xml</exclude>
-                <exclude>${project.build.directory}/**</exclude>
+                <exclude>build/**</exclude>
                 <exclude>hooks/**</exclude>
 
                 <!-- Excluding tests and their dependencies -->
