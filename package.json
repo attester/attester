@@ -1,7 +1,7 @@
 {
     "author" : "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
     "name" : "attester",
-    "description" : "Aria Templates Javascript Test runner",
+    "description" : "Command line tool to run Javascript tests in several web browsers.",
     "version" : "1.0.0",
     "homepage" : "http://github.com/ariatemplates/attester",
     "repository" : {

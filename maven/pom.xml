@@ -11,7 +11,7 @@
 		<rootdir>${basedir}/..</rootdir>
 		<builddir>${basedir}</builddir>
 	</properties>
-	<name>Aria Templates Javascript Test Runner</name>
+	<name>Attester</name>
 	<build>
 		<plugins>
 			<plugin>

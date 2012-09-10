@@ -1,7 +1,7 @@
-Aria Templates Javascript Test Runner
-=====================================
+Attester
+========
 
-*attester* is a command line tool allowing to run javascript tests in a web browser.
+*attester* is a command line tool allowing to run Javascript tests in several web browsers.
 
 It starts an internal web server, then starts a set of web browsers, makes them execute the
 tests, and finally writes test reports.
