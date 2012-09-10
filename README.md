@@ -1,7 +1,7 @@
 Aria Templates Javascript Test Runner
 =====================================
 
-*atjstestrunner* is a command line tool allowing to run javascript tests in a web browser.
+*attester* is a command line tool allowing to run javascript tests in a web browser.
 
 It starts an internal web server, then starts a set of web browsers, makes them execute the
 tests, and finally writes test reports.
@@ -24,12 +24,12 @@ Features
    * [lcov](http://ltp.sourceforge.net/coverage/lcov/geninfo.1.php) file, accepted by [Sonar](http://www.sonarsource.org/) *(currently only for line coverage)*
 * Supports [Aria Templates](http://ariatemplates.com/) unit tests.
 * Adding support for other test frameworks is as simple as adding an adapter for that test framework.
-* [![Build Status](https://secure.travis-ci.org/ariatemplates/atjstestrunner-nodejs.png)](http://travis-ci.org/ariatemplates/atjstestrunner-nodejs)
+* [![Build Status](https://secure.travis-ci.org/ariatemplates/attester.png)](http://travis-ci.org/ariatemplates/attester)
 
 Usage
 -----
 
-**atjstestrunner [&lt;options&gt;] [&lt;configuration file&gt;]**
+**attester [&lt;options&gt;] [&lt;configuration file&gt;]**
 
 **Configuration file**
 
@@ -112,7 +112,7 @@ run tests manually.
 **Advanced options**
 
 `--json-console` When enabled, JSON objects will be sent to stdout to provide information about tests.
-This is used by the [junit bridge](https://github.com/ariatemplates/atjstestrunner-junit).
+This is used by the [junit bridge](https://github.com/ariatemplates/attester-junit).
 
 `--heartbeats` Delay (in ms) for heartbeats messages sent when --json-console is enabled. Use 0 to disable them.
 
@@ -121,4 +121,4 @@ This is used by the [junit bridge](https://github.com/ariatemplates/atjstestrunn
 Any option configurable through the configuration file can also be specified from the command line with the `--config` prefix.
 For example, to configure resources, it is possible to use:
 
-    atjstestrunner --config.resources./ path1/root1 --config.resources./ path2/root2 --config.resources./aria path/to/aria
+    attester --config.resources./ path1/root1 --config.resources./ path2/root2 --config.resources./aria path/to/aria

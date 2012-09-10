@@ -19,7 +19,7 @@ describe('cli', function () {
     var child_process = require('../../lib/child-processes.js');
     var atFrameworkPath = path.dirname(path.dirname(require.resolve('ariatemplates')));
     var atTestsRoot = path.join(__dirname, 'at-root');
-    var execPath = path.join(__dirname, '../../bin/atjstestrunner.js');
+    var execPath = path.join(__dirname, '../../bin/attester.js');
 
     var itRuns = function (options) {
         it(options.testCase, function () {
@@ -49,7 +49,7 @@ describe('cli', function () {
             });
             waitsFor(function () {
                 return finished;
-            }, (options.timeout || defaultTimeout) + 100, 'atjstestrunner to complete');
+            }, (options.timeout || defaultTimeout) + 100, 'attester to complete');
             runs(function () {
                 expect(exitCode).toEqual(options.exitCode);
             });
@@ -60,7 +60,7 @@ describe('cli', function () {
         testCase : 'succeeds',
         exitCode : 0,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.atjstestrunner.ShouldSucceed',
+                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed',
                 '--phantomjs-instances', '1']
     });
 
@@ -68,7 +68,7 @@ describe('cli', function () {
         testCase : 'hasFailure',
         exitCode : 1,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.atjstestrunner.ShouldFail',
+                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail',
                 '--phantomjs-instances', '1']
     });
 
@@ -76,7 +76,7 @@ describe('cli', function () {
         testCase : 'ignoreFailure',
         exitCode : 0,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.atjstestrunner.ShouldFail',
+                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail',
                 '--phantomjs-instances', '1', '--ignore-failures']
     });
 
@@ -84,7 +84,7 @@ describe('cli', function () {
         testCase : 'hasError',
         exitCode : 1,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.atjstestrunner.ShouldRaiseError',
+                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError',
                 '--phantomjs-instances', '1']
     });
 
@@ -92,7 +92,7 @@ describe('cli', function () {
         testCase : 'ignoreError',
         exitCode : 0,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.atjstestrunner.ShouldRaiseError',
+                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError',
                 '--phantomjs-instances', '1', '--ignore-errors']
     });
 

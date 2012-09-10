@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>atjstestrunner-nodejs</artifactId>
+	<artifactId>attester</artifactId>
 	<packaging>pom</packaging>
-	<groupId>com.ariatemplates.atjstestrunner</groupId>
+	<groupId>com.ariatemplates.attester</groupId>
 	<version>1.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,7 +80,7 @@
 		</profile>
 	</profiles>
 	<scm>
-		<connection>scm:git:https://github.com/ariatemplates/atjstestrunner-nodejs.git</connection>
+		<connection>scm:git:https://github.com/ariatemplates/attester.git</connection>
 	</scm>
 	<licenses>
 		<license>
@@ -91,6 +91,6 @@
 	</licenses>
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/ariatemplates/atjstestrunner-nodejs/issues</url>
+		<url>https://github.com/ariatemplates/attester/issues</url>
 	</issueManagement>
 </project>

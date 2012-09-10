@@ -1,15 +1,15 @@
 {
     "author" : "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
-    "name" : "atjstestrunner",
+    "name" : "attester",
     "description" : "Aria Templates Javascript Test runner",
     "version" : "1.0.0",
-    "homepage" : "http://github.com/ariatemplates/atjstestrunner-nodejs",
+    "homepage" : "http://github.com/ariatemplates/attester",
     "repository" : {
         "type" : "git",
-        "url" : "git://github.com/ariatemplates/atjstestrunner-nodejs.git"
+        "url" : "git://github.com/ariatemplates/attester.git"
     },
     "bin" : {
-        "atjstestrunner" : "atjstestrunner.js"
+        "attester" : "attester.js"
     },
     "private" : true,
     "dependencies" : {

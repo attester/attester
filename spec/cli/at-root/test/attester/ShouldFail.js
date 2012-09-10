@@ -14,7 +14,7 @@
  */
 
 Aria.classDefinition({
-    $classpath : 'test.atjstestrunner.ShouldFail',
+    $classpath : 'test.attester.ShouldFail',
     $extends : 'aria.jsunit.TestCase',
     $prototype : {
         testMyFirstTest : function () {

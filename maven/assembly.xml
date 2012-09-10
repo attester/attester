@@ -5,7 +5,7 @@
     <formats>
         <format>zip</format>
     </formats>
-    <baseDirectory>atjstestrunner</baseDirectory>
+    <baseDirectory>attester</baseDirectory>
     <fileSets>
         <fileSet>
             <directory>${rootdir}</directory>
