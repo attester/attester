@@ -9,9 +9,8 @@
         "url" : "git://github.com/ariatemplates/attester.git"
     },
     "bin" : {
-        "attester" : "attester.js"
+        "attester" : "bin/attester.js"
     },
-    "private" : true,
     "dependencies" : {
         "js-yaml" : "1.0.1",
         "socket.io" : "0.9.10",
