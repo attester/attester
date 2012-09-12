@@ -80,6 +80,25 @@ test-reports: # Path for each test report type:
 coverage-reports: # Path for each coverage test report type:
   json-file: coverage.json
   lcov-file: coverage.lcov
+browsers:
+  # If the browsers section is not present, attester will not make any difference between browsers
+  # and run each test only once (in whatever browser is connected)
+  # However, if the browsers section is present, each test will be run once in each browser listed here.
+  # (and browsers not listed here will have nothing to do if they are connected)
+  - browserName: 'PhantomJS'
+  - browserName: 'Chrome'
+  - browserName: 'Firefox'
+  - browserName: 'Opera'
+  - browserName: 'Safari'
+  # It is also possible to distinguish several versions of the same browser:
+  - browserName: 'IE'
+    majorVersion: 7
+  - browserName: 'IE'
+    majorVersion: 8
+  - browserName: 'IE'
+    majorVersion: 9
+  # Note that 'minorVersion' and 'revision' are also available
+  # The 'name' property allows to change the display name of the browser in the reports.
 ```
 
 **Usual options:**
