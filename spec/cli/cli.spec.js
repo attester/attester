@@ -61,7 +61,8 @@ describe('cli', function () {
         exitCode : 0,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
                 '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed',
-                '--phantomjs-instances', '1']
+                '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot,
+                '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
@@ -69,7 +70,8 @@ describe('cli', function () {
         exitCode : 1,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
                 '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail',
-                '--phantomjs-instances', '1']
+                '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot,
+                '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
@@ -77,7 +79,8 @@ describe('cli', function () {
         exitCode : 0,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
                 '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail',
-                '--phantomjs-instances', '1', '--ignore-failures']
+                '--phantomjs-instances', '1', '--ignore-failures', '--config.coverage.files.rootDirectory',
+                atTestsRoot, '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
@@ -85,7 +88,8 @@ describe('cli', function () {
         exitCode : 1,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
                 '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError',
-                '--phantomjs-instances', '1']
+                '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot,
+                '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
@@ -93,7 +97,8 @@ describe('cli', function () {
         exitCode : 0,
         args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
                 '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError',
-                '--phantomjs-instances', '1', '--ignore-errors']
+                '--phantomjs-instances', '1', '--ignore-errors', '--config.coverage.files.rootDirectory', atTestsRoot,
+                '--config.coverage.files.includes', '**/*.js']
     });
 
 });

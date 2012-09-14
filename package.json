@@ -19,7 +19,7 @@
         "minimatch" : "0.2.5",
         "colors" : "0.6.0-1",
         "send" : "0.0.3",
-        "node-coverage" : "git+https://github.com/piuccio/node-coverage.git#2ed0b47c3cea364e78eba5d76bbeb801baee8f2e"
+        "node-coverage" : "1.0.0"
     },
     "devDependencies" : {
         "jasmine-node" : "1.0.26",
