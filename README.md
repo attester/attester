@@ -65,6 +65,8 @@ tests:
    excludes:
     - 'test/example/*SpecialTestCase.js'
   bootstrap : '/aria/bootstrap.js' # Path to the bootstrap file of Aria Templates. This is the default value.
+  extraScripts: # Path to extra scripts to be inserted in the test page just after the Aria Templates bootstrap file.
+   - '/test/testEnvConfig.js'
   rootFolderPath : '/' # Root folder path (Aria.rootFolderPath variable) This is the default value.
   debug : true # Enables or disables Aria Templates debug mode (Aria.debug variable). This is the default value.
   memCheckMode : true # Enables or disables memory check mode (Aria.memCheckMode variable). This is the default value.
