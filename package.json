@@ -23,7 +23,7 @@
     },
     "devDependencies" : {
         "jasmine-node" : "1.0.26",
-        "ariatemplates" : "git+https://github.com/ariatemplates/ariatemplates.git#v1.2.5"
+        "ariatemplates" : "1.2.6"
     },
     "scripts" : {
         "test" : "node ./node_modules/jasmine-node/lib/jasmine-node/cli.js spec"
