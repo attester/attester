@@ -107,6 +107,10 @@ browsers:
 
 `--phantomjs-path <path>` Path to the [PhantomJS](http://phantomjs.org/) executable (default: `phantomjs`).
 
+- *Important note: you have to install PhantomJS by yourself if you want to use it. Then, you must either
+pass `--phantomjs-path` argument, or add the folder containing `phantomjs.exe` to your system's `PATH`.
+Otherwise, you'll get runtime errors.*
+
 `--phantomjs-instances <number>` Number of instances of [PhantomJS](http://phantomjs.org/) to start (default: `0`).
 
 `--browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
