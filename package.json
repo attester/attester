@@ -23,9 +23,11 @@
     },
     "devDependencies" : {
         "jasmine-node" : "1.0.26",
-        "ariatemplates" : "1.2.6"
+        "ariatemplates" : "1.2.6",
+        "grunt" : "0.3.17",
+        "grunt-jasmine-node" : "0.0.2"
     },
     "scripts" : {
-        "test" : "node ./node_modules/jasmine-node/lib/jasmine-node/cli.js spec"
+        "test" : "node node_modules/grunt/bin/grunt test"
     }
 }

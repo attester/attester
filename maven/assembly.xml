@@ -24,6 +24,7 @@
                 <exclude>spec/**</exclude>
                 <exclude>node_modules/ariatemplates/**</exclude>
                 <exclude>node_modules/jasmine-node/**</exclude>
+                <exclude>node_modules/grunt*/**</exclude>
             </excludes>
         </fileSet>
     </fileSets>
