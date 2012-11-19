@@ -29,12 +29,23 @@ module.exports = function (grunt) {
         },
         jasmine_node : {
             forceExit : true
+        },
+        beautify : {
+            all : ['<config:lint.sources>']
+        },
+        beautifier : {
+            options : {
+                indentSize : 4,
+                indentChar : ' ',
+                endOfLineNormalization : true
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-jasmine-node");
+    grunt.loadNpmTasks('grunt-beautify');
     grunt.registerTask('test', 'lint jasmine_node');
-    grunt.registerTask('dev', 'lint');
+    grunt.registerTask('dev', 'beautify lint');
     grunt.registerTask('default', 'test');
 
 };
