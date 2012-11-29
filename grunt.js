@@ -15,29 +15,29 @@
 
 module.exports = function (grunt) {
     grunt.initConfig({
-        lint : {
-            sources : ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js']
+        lint: {
+            sources: ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js']
         },
-        jshint : {
-            options : {
-                eqnull : true
+        jshint: {
+            options: {
+                eqnull: true
             }
         },
-        watch : {
-            files : ['<config:lint.sources>'],
-            tasks : ['dev']
+        watch: {
+            files: ['<config:lint.sources>'],
+            tasks: ['dev']
         },
-        jasmine_node : {
-            forceExit : true
+        jasmine_node: {
+            forceExit: true
         },
-        beautify : {
-            all : ['<config:lint.sources>']
+        beautify: {
+            all: ['<config:lint.sources>']
         },
-        beautifier : {
-            options : {
-                indentSize : 4,
-                indentChar : ' ',
-                endOfLineNormalization : true
+        beautifier: {
+            options: {
+                indentSize: 4,
+                indentChar: ' ',
+                endOfLineNormalization: true
             }
         }
     });

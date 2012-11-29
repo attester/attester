@@ -39,22 +39,22 @@ describe('FileSet', function () {
 
     itShouldList({}, []);
     itShouldList({
-        includes : ['*']
+        includes: ['*']
     }, []);
     itShouldList({
-        includes : ['**/a.txt']
+        includes: ['**/a.txt']
     }, ['a/b/c/a.txt', 'a/a.txt']);
     itShouldList({
-        includes : ['**/a.txt']
+        includes: ['**/a.txt']
     }, ['a/b/c/a.txt', 'a/a.txt']);
     itShouldList({
-        includes : ['**/a.txt', '**/b.txt']
+        includes: ['**/a.txt', '**/b.txt']
     }, ['a/b/c/a.txt', 'a/a.txt', 'b/b.txt']);
     itShouldList({
-        includes : ['**/*.txt'],
-        excludes : ['**/a.txt', '**/b.txt']
+        includes: ['**/*.txt'],
+        excludes: ['**/a.txt', '**/b.txt']
     }, []);
     itShouldList({
-        includes : ['a/b/**']
+        includes: ['a/b/**']
     }, ['a/b/c/a.txt']);
 });

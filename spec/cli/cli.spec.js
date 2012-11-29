@@ -57,48 +57,33 @@ describe('cli', function () {
     };
 
     itRuns({
-        testCase : 'succeeds',
-        exitCode : 0,
-        args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed',
-                '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot,
-                '--config.coverage.files.includes', '**/*.js']
+        testCase: 'succeeds',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
-        testCase : 'hasFailure',
-        exitCode : 1,
-        args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail',
-                '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot,
-                '--config.coverage.files.includes', '**/*.js']
+        testCase: 'hasFailure',
+        exitCode: 1,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
-        testCase : 'ignoreFailure',
-        exitCode : 0,
-        args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail',
-                '--phantomjs-instances', '1', '--ignore-failures', '--config.coverage.files.rootDirectory',
-                atTestsRoot, '--config.coverage.files.includes', '**/*.js']
+        testCase: 'ignoreFailure',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--phantomjs-instances', '1', '--ignore-failures', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
-        testCase : 'hasError',
-        exitCode : 1,
-        args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError',
-                '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot,
-                '--config.coverage.files.includes', '**/*.js']
+        testCase: 'hasError',
+        exitCode: 1,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js']
     });
 
     itRuns({
-        testCase : 'ignoreError',
-        exitCode : 0,
-        args : ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath,
-                '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError',
-                '--phantomjs-instances', '1', '--ignore-errors', '--config.coverage.files.rootDirectory', atTestsRoot,
-                '--config.coverage.files.includes', '**/*.js']
+        testCase: 'ignoreError',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--phantomjs-instances', '1', '--ignore-errors', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js']
     });
 
 });

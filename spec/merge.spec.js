@@ -17,39 +17,39 @@ describe('merge', function () {
     merge = require('../lib/merge.js');
     it('should merge objects correctly', function () {
         var a = {
-            a : 1,
-            c : {
-                e : 1,
-                d : 1
+            a: 1,
+            c: {
+                e: 1,
+                d: 1
             },
-            k : ['a', 'b']
+            k: ['a', 'b']
         };
         var b = {
-            b : 1,
-            c : {
-                f : 1,
-                g : 1
+            b: 1,
+            c: {
+                f: 1,
+                g: 1
             },
-            k : ['e', 'f'],
-            l : {
-                m : 1,
-                n : 1
+            k: ['e', 'f'],
+            l: {
+                m: 1,
+                n: 1
             }
         };
         merge(a, b);
         expect(a).toEqual({
-            a : 1,
-            b : 1,
-            c : {
-                e : 1,
-                d : 1,
-                f : 1,
-                g : 1
+            a: 1,
+            b: 1,
+            c: {
+                e: 1,
+                d: 1,
+                f: 1,
+                g: 1
             },
-            k : ['a', 'b', 'e', 'f'],
-            l : {
-                m : 1,
-                n : 1
+            k: ['a', 'b', 'e', 'f'],
+            l: {
+                m: 1,
+                n: 1
             }
         });
     });

@@ -1,34 +1,34 @@
 {
-    "author" : "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
-    "name" : "attester",
-    "description" : "Command line tool to run Javascript tests in several web browsers.",
-    "version" : "1.0.2-SNAPSHOT",
-    "homepage" : "http://github.com/ariatemplates/attester",
-    "repository" : {
-        "type" : "git",
-        "url" : "git://github.com/ariatemplates/attester.git"
+    "author": "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
+    "name": "attester",
+    "description": "Command line tool to run Javascript tests in several web browsers.",
+    "version": "1.0.2-SNAPSHOT",
+    "homepage": "http://github.com/ariatemplates/attester",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ariatemplates/attester.git"
     },
-    "bin" : {
-        "attester" : "bin/attester.js"
+    "bin": {
+        "attester": "bin/attester.js"
     },
-    "dependencies" : {
-        "js-yaml" : "1.0.1",
-        "socket.io" : "0.9.10",
-        "optimist" : "0.3.4",
-        "connect" : "2.4.3",
-        "minimatch" : "0.2.5",
-        "colors" : "0.6.0-1",
-        "send" : "0.0.3",
-        "node-coverage" : "1.0.0"
+    "dependencies": {
+        "js-yaml": "1.0.1",
+        "socket.io": "0.9.10",
+        "optimist": "0.3.4",
+        "connect": "2.4.3",
+        "minimatch": "0.2.5",
+        "colors": "0.6.0-1",
+        "send": "0.0.3",
+        "node-coverage": "1.0.0"
     },
-    "devDependencies" : {
-        "jasmine-node" : "1.0.26",
-        "ariatemplates" : "1.2.6",
-        "grunt" : "0.3.17",
-        "grunt-jasmine-node" : "0.0.2",
-        "grunt-beautify" : "0.1.1"
+    "devDependencies": {
+        "jasmine-node": "1.0.26",
+        "ariatemplates": "1.2.6",
+        "grunt": "0.3.17",
+        "grunt-jasmine-node": "0.0.2",
+        "grunt-beautify": "0.1.1"
     },
-    "scripts" : {
-        "test" : "node node_modules/grunt/bin/grunt test"
+    "scripts": {
+        "test": "node node_modules/grunt/bin/grunt test"
     }
 }

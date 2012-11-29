@@ -30,34 +30,33 @@ describe('ATFileReader', function () {
     };
 
     itShouldInterpret('SimpleTestSuite.js', {
-        classpath : 'test.myCompany.MyTestSuite',
-        testSuite : true,
-        subTests : ['test.myCompany.firstModule.FirstModuleTestSuite', 'test.myCompany.secondModule.SearchTestCase',
-                'test.myCompany.secondModule.RetrieveTestCase']
+        classpath: 'test.myCompany.MyTestSuite',
+        testSuite: true,
+        subTests: ['test.myCompany.firstModule.FirstModuleTestSuite', 'test.myCompany.secondModule.SearchTestCase', 'test.myCompany.secondModule.RetrieveTestCase']
     });
 
     itShouldInterpret('TestSuiteUsingPackage.js', {
-        classpath : 'test.myCompany.MyTestSuite',
-        testSuite : true,
-        subTests : ['test.myCompany.MyTest1', 'test.myCompany.MyTest2', 'test.myCompany.MyTest3']
+        classpath: 'test.myCompany.MyTestSuite',
+        testSuite: true,
+        subTests: ['test.myCompany.MyTest1', 'test.myCompany.MyTest2', 'test.myCompany.MyTest3']
     });
 
     itShouldInterpret('MainTestSuite.js', {
-        classpath : 'MainTestSuite',
-        testSuite : true,
-        subTests : ['MainTestSuiteTest1', 'Test2', 'MainTestSuiteTest3']
+        classpath: 'MainTestSuite',
+        testSuite: true,
+        subTests: ['MainTestSuiteTest1', 'Test2', 'MainTestSuiteTest3']
     });
 
     itShouldInterpret('SimpleTestCase.js', {
-        classpath : 'test.myCompany.MyTestCase',
-        testSuite : false
+        classpath: 'test.myCompany.MyTestCase',
+        testSuite: false
     });
 
     itShouldInterpret('SyntaxError.js', {
-        error : {
-            message : 'An exception occurred in %s: %s',
-            args : ['SyntaxError.js', 'SyntaxError: Unexpected identifier'],
-            object : {}
+        error: {
+            message: 'An exception occurred in %s: %s',
+            args: ['SyntaxError.js', 'SyntaxError: Unexpected identifier'],
+            object: {}
         }
     });
 });

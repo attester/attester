@@ -33,10 +33,10 @@ describe('Resources', function () {
 
     beforeEach(function () {
         resourcesInstance = new Resources({
-            baseDirectory : __dirname,
-            contexts : {
-                '/' : ['root1', 'root2'],
-                '/subFolder' : ['subFolder3']
+            baseDirectory: __dirname,
+            contexts: {
+                '/': ['root1', 'root2'],
+                '/subFolder': ['subFolder3']
             }
         });
     });
