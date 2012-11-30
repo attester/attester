@@ -19,7 +19,8 @@
         "minimatch": "0.2.5",
         "colors": "0.6.0-1",
         "send": "0.0.3",
-        "node-coverage": "1.0.0"
+        "node-coverage": "1.0.0",
+        "ua-parser": "0.2.4"
     },
     "devDependencies": {
         "jasmine-node": "1.0.26",
