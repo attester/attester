@@ -35,6 +35,13 @@ html,body {
 	color: white;
 }
 
+#pause_resume {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    color: white;
+}
+
 #content {
 	position: absolute;
 	top: 32px;
@@ -42,7 +49,7 @@ html,body {
 }
 </style>
 <body>
-	<div id="status_bar">Loading Attester...</div>
+	<div id="status_bar"><span id="status_text">Loading Attester...</span><a href="#" id="pause_resume"></a></div>
 	<div id="content">
 		<iframe frameborder="0" id="iframe" src="empty.html"></iframe>
 	</div>
