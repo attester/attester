@@ -76,12 +76,12 @@ coverage:
   includes:
    - '**/*.js'
 test-reports: # Path for each test report type:
-  json-file: report.json
-  xml-file: report.xml
-  xml-directory: reports
+  json-file: 'report.json'
+  xml-file: 'report.xml'
+  xml-directory: 'reports'
 coverage-reports: # Path for each coverage test report type:
-  json-file: coverage.json
-  lcov-file: coverage.lcov
+  json-file: 'coverage.json'
+  lcov-file: 'coverage.lcov'
 browsers:
   # If the browsers section is not present, attester will not make any difference between browsers
   # and run each test only once (in whatever browser is connected)

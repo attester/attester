@@ -1,0 +1,27 @@
+resources:
+ '/here':
+  - 'there'
+  - 'nowhere'
+tests:
+ aria-templates:
+  classpaths:
+   includes:
+    - MainTestSuite
+   excludes:
+    - test.sample.MyUnfinishedTest
+  rootFolderPath : '/'
+  debug : true
+  memCheckMode : true
+coverage:
+ files:
+  rootDirectory: 'js'
+  includes:
+   - '**/*'
+test-reports:
+  json-file: 'report.json'
+coverage-reports:
+  json-file: 'coverage.json'
+browsers:
+ - browserName: 'PhantomJS'
+ - browserName: 'IE'
+   majorVersion: 9
