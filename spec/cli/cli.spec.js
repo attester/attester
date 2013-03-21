@@ -134,4 +134,124 @@ describe('cli', function () {
             skipped : 0
         }
     });
+
+    itRuns({
+        testCase: 'mocha succeeds',
+        exitCode: 0,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*.js', '--config.tests.mocha.files.excludes', '**/syntaxError*', '--config.tests.mocha.files.excludes', '**/*.txt', '--phantomjs-instances', '1'],
+        results : {
+            run : 2,
+            failures : 0,
+            errors : 0,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha in bdd with expect.js',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/bdd.js', '--phantomjs-instances', '1'],
+        results : {
+            run : 1,
+            failures : 0,
+            errors : 2,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha in qunit with expect.js',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/qunit.js', '--config.tests.mocha.ui', 'qunit', '--phantomjs-instances', '1'],
+        results : {
+            run : 1,
+            failures : 0,
+            errors : 2,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha in tdd with expect.js',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/tdd.js', '--config.tests.mocha.ui', 'tdd', '--phantomjs-instances', '1'],
+        results : {
+            run : 1,
+            failures : 0,
+            errors : 2,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha in bdd with chai.js',
+        exitCode: 0,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/chai/bdd.js', '--config.tests.mocha.assertion', 'chai', '--phantomjs-instances', '1'],
+        results : {
+            run : 2,
+            failures : 0,
+            errors : 0,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha detect global leaks',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--phantomjs-instances', '1'],
+        results : {
+            run : 1,
+            failures : 0,
+            errors : 1,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha ignore all global leaks',
+        exitCode: 0,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--config.tests.mocha.ignoreLeaks', '--phantomjs-instances', '1'],
+        results : {
+            run : 1,
+            failures : 0,
+            errors : 0,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha ignore some global leaks',
+        exitCode: 0,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--config.tests.mocha.globals', 'globalOne', '--config.tests.mocha.globals', 'globalTwo', '--phantomjs-instances', '1'],
+        results : {
+            run : 1,
+            failures : 0,
+            errors : 0,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha errors in fixtures',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/fixtures.js', '--phantomjs-instances', '1'],
+        results : {
+            run : 0,  // because failure in the hook stop the test execution
+            failures : 0,
+            errors : 1,
+            skipped : 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha global errors',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globalErrors.js', '--phantomjs-instances', '1'],
+        results : {
+            run : 0,
+            failures : 0,
+            errors : 1,
+            skipped : 0
+        }
+    });
 });
