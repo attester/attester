@@ -1,12 +1,12 @@
 Attester
 ========
 
-*attester* is a command line tool allowing to run Javascript tests in several web browsers.
+*attester* is a command line tool allowing to run JavaScript tests in several web browsers.
 
 It starts an internal web server, then starts a set of web browsers, makes them execute the
 tests, and finally writes test reports.
 
-It is written in Javascript, to be run with [node.js](http://nodejs.org/).
+It is written in JavaScript, to be run with [node.js](http://nodejs.org/).
 
 Features
 --------
@@ -22,7 +22,7 @@ Features
 * Code coverage output formats:
    * [node-coverage](https://github.com/piuccio/node-coverage) json file
    * [lcov](http://ltp.sourceforge.net/coverage/lcov/geninfo.1.php) file, accepted by [Sonar](http://www.sonarsource.org/) *(currently only for line coverage)*
-* Supports [Aria Templates](http://ariatemplates.com/) unit tests.
+* Supports [Aria Templates](http://ariatemplates.com/) unit tests and [Mocha](http://visionmedia.github.com/mocha/) with either [Chai](http://chaijs.com/) or [Expect.js](https://github.com/LearnBoost/expect.js/).
 * Adding support for other test frameworks is as simple as adding an adapter for that test framework.
 * [![Build Status](https://secure.travis-ci.org/ariatemplates/attester.png)](http://travis-ci.org/ariatemplates/attester)
 
@@ -70,6 +70,17 @@ tests:
   rootFolderPath : '/' # Root folder path (Aria.rootFolderPath variable) This is the default value.
   debug : true # Enables or disables Aria Templates debug mode (Aria.debug variable). This is the default value.
   memCheckMode : true # Enables or disables memory check mode (Aria.memCheckMode variable). This is the default value.
+ mocha:
+  files:
+   includes:
+    - 'test/example/*.js'
+   excludes:
+    - 'test/example/*.conf.js'
+  ui: 'bdd' # User-interface (bdd|tdd|exports). Defaults to bdd
+  ignoreLeaks: false # Optional to ignore global variable leaks
+  globals: # Optional, allow the given list of global [names]
+   - 'myGlobal'
+  assertion: 'expect' # Assertion library to be included. It could be either expect or chai or any external url
 coverage:
  files: # Specifies which files will be instrumented for code coverage
   rootDirectory: 'src/main/js'
