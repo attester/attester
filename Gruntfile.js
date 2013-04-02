@@ -15,23 +15,22 @@
 
 module.exports = function (grunt) {
     grunt.initConfig({
-        lint: {
-            sources: ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js']
-        },
         jshint: {
+            all : ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js'],
             options: {
-                eqnull: true
+                eqnull: true,
+                sub : true
             }
         },
         watch: {
-            files: ['<config:lint.sources>'],
+            files: ['<%= jshint.all %>'],
             tasks: ['dev']
         },
         jasmine_node: {
             forceExit: true
         },
         beautify: {
-            all: ['<config:lint.sources>']
+            all: ['<%= jshint.all %>']
         },
         beautifier: {
             options: {
@@ -42,10 +41,11 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-jasmine-node");
-    grunt.loadNpmTasks('grunt-beautify');
-    grunt.registerTask('test', 'lint jasmine_node');
-    grunt.registerTask('dev', 'beautify lint');
-    grunt.registerTask('default', 'test');
+    grunt.loadNpmTasks("grunt-beautify");
+    grunt.registerTask("test", ["jshint", "jasmine_node"]);
+    grunt.registerTask("dev", ["beautify", "jshint"]);
+    grunt.registerTask("default", ["test"]);
 
 };
