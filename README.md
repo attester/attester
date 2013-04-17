@@ -114,6 +114,46 @@ browsers:
   # The 'name' property allows to change the display name of the browser in the reports.
 ```
 
+**Environment Variables**
+It is possible to build a special portion of the configuration object from an external file using `--env` option.
+
+````
+attester --env package.json
+````
+
+This puts the content of `package.json` inside the `env` section of attester configuration. It is then possible to reference such values with simple templates.
+
+`<%= prop.subprop %>` Expands to the value of `prop.subprop` in the config. Such templates can only be used inside string values, either in arrays or objects
+
+````json
+{
+  "resources": {
+    "/": "src"
+  },
+  "tests": {
+    "mocha": {
+      "files": {
+        "includes": ["spec/**/*"]
+      }
+    }
+  },
+  "coverage": {
+    "files": {
+      "rootDirectory": "src",
+      "includes": ["**/*.js"]
+    }
+  },
+  "coverage-reports": {
+    "json-file": "/reports/coverage-<%= env.version %>.json"
+  }
+}
+````
+
+The configuration above generates a coverage report file called `coverage-x.y.z.json` where `x.y.z` is the value taken from `package.json` or any other file passed referenced by `--env`.
+
+Template options can be used both in `yaml` and `json` file and the environment file can be of any of the two format.
+
+
 **Usual options:**
 
 `--phantomjs-path <path>` Path to the [PhantomJS](http://phantomjs.org/) executable (default: `phantomjs`).
@@ -127,6 +167,8 @@ Otherwise, you'll get runtime errors.*
 `--browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
 browsers or multiple instances of the same browser. Each browser is started with one parameter: the URL to open to start tests.
 At the end of the tests, all started processes are killed.
+
+`--env <path>` Path to a `yaml` or `json` file containing environment options. See section above.
 
 `--ignore-errors` When enabled, test errors (not including failures) will not cause this process to return a non-zero value.
 
@@ -147,10 +189,10 @@ run tests manually.
 
 **Advanced options**
 
-`--json-console` When enabled, JSON objects will be sent to stdout to provide information about tests.
+`--json-console` When enabled, JSON objects will be sent to `stdout` to provide information about tests.
 This is used by the [junit bridge](https://github.com/ariatemplates/attester-junit).
 
-`--heartbeats` Delay (in ms) for heartbeats messages sent when --json-console is enabled. Use 0 to disable them.
+`--heartbeats` Delay (in ms) for heartbeats messages sent when `--json-console` is enabled. Use `0` to disable them.
 
 **Configuration file options**
 

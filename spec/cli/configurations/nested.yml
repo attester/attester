@@ -1,0 +1,6 @@
+one: 'a<%= two %>'
+two: 'b<%= three %>'
+three: 'c<%= another %>'
+four: 'd'
+another: '<%= four %>e'
+full: '<%= one %>'

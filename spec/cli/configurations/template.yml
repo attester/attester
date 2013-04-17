@@ -1,0 +1,16 @@
+resources:
+ '/':
+  - '<%= rootPath %>'
+  - '<%= paths.root.path %>'
+tests:
+ aria-templates:
+  bootstrap: '/aria/aria-templates-<%= env.version %>.js'
+  classpaths:
+   includes:
+    - MainTestSuite
+  rootFolderPath : '/'
+rootPath: 'here'
+paths:
+ root:
+  path: 'there'
+ notReplacing: '<%= missing %>'

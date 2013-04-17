@@ -1,3 +1,4 @@
+/* globals expect, describe, it */
 /*
  * Copyright 2012 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +16,7 @@
 
 var config = require("../../lib/config");
 var path = require("path");
+var fs = require("fs");
 
 var expectedObject = {
     resources: {
@@ -95,5 +97,61 @@ describe("read configuration files", function () {
         });
 
         expect(read).toEqual(expectedObject);
+    });
+
+    it("should read yml files with templates", function () {
+        var configPath = path.join(__dirname, "configurations/template.yml");
+        var envPath = path.join(__dirname, "configurations/env.yml");
+        var read = config.readConfig(configPath, null, envPath);
+
+        var packageJson = fs.readFileSync("package.json");
+
+        expect(read.resources["/"]).toEqual(["here", "there"]);
+        expect(read.tests["aria-templates"].bootstrap).toEqual('/aria/aria-templates-1.2.3.js');
+
+        expect(read.env).toEqual({
+            version: "1.2.3",
+            name: "attester"
+        });
+
+        // test also missing properties
+        expect(read.paths.notReplacing).toEqual("<%= missing %>");
+    });
+
+    it("should read json files with templates", function () {
+        var configPath = path.join(__dirname, "configurations/template.json");
+        var envPath = path.join(__dirname, "../../package.json");
+        var read = config.readConfig(configPath, null, envPath);
+
+        var packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, "../../package.json")));
+
+        expect(read.resources["/"]).toEqual(["here", "there"]);
+        expect(read.tests["aria-templates"].bootstrap).toEqual('/aria/aria-templates-' + packageJson.version + '.js');
+
+        expect(read.env).toEqual(packageJson);
+
+        // test also missing properties
+        expect(read.paths.notReplacing).toEqual("<%= missing %>");
+    });
+
+    it("should read files with nested references", function () {
+        var configPath = path.join(__dirname, "configurations/nested.yml");
+        var read = config.readConfig(configPath);
+
+        expect(read.one).toEqual("abcde");
+        expect(read.two).toEqual("bcde");
+        expect(read.three).toEqual("cde");
+        expect(read.four).toEqual("d");
+        expect(read.another).toEqual("de");
+        expect(read.full).toEqual("abcde");
+    });
+
+    it("should fail nicely with circular references", function () {
+        var configPath = path.join(__dirname, "configurations/circular.yml");
+        var read = config.readConfig(configPath);
+
+        expect(read.first).toEqual("<%= second %>");
+        expect(read.second).toEqual("<%= third %>");
+        expect(read.third).toEqual("<%= first %>");
     });
 });
