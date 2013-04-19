@@ -1,3 +1,4 @@
+/*globals describe, it, runs, waitsFor, expect*/
 /*
  * Copyright 2012 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -256,6 +257,18 @@ describe('cli', function () {
             run: 0,
             failures: 0,
             errors: 1,
+            skipped: 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mocha with external scripts',
+        exitCode: 0,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/actualTest.js', '--config.resources./', 'spec/test-type/mocha/extraScripts', '--config.tests.mocha.extraScripts', '/require_one.js', '--config.tests.mocha.extraScripts', '/require_two.js', '--phantomjs-instances', '1'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
             skipped: 0
         }
     });
