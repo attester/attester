@@ -2,3 +2,4 @@ node_modules
 target
 .settings
 .project
+npm-debug.log
