@@ -16,7 +16,7 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         jshint: {
-            all : ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js'],
+            all : ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js', '!lib/**/html5shiv.js'],
             options: {
                 eqnull: true,
                 sub : true
