@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Refresh" content="15" />
+    <title>Attester status</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="font/font-awesome.min.css">
+    <!--[if lt IE 9]>
+    <script src="font/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="font/font-awesome-ie7.min.css">
+    <![endif]-->
+</head>
+<body>
+    <header role="banner">
+        <hgroup>
+            <h1 id="site-title">
+                <span class="title"><span class="initials">at</span>tester</span>
+            </h1>
+            <nav id="menu-primary" role="navigation">
+                <div class="menu">
+                    <ul>
+                        <li class="menu-item" id="slave">
+                            <i class="icon-double-angle-right"></i><a href="slave.html">Add this browser as a slave</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </hgroup>
+    </header>
+    <div id="main" role="main" class="wide">
+        <div id="configuration">
+            <article>
+                <h2><span>Connected Browsers</span></h2>
+
+                <div class="text">
+                    <% if (slaves.length > 0) { %>
+                        <table class="slaves">
+                            <thead>
+                                <tr>
+                                    <th class="browser">Browser</th>
+                                    <th class="userAgent">User agent</th>
+                                    <th class="address">Address</th>
+                                    <th class="status">Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% _.forEach(slaves, function (slave) { %>
+                                    <tr>
+                                        <td class="browser"><%= slave.displayName %></td>
+                                        <td class="userAgent" data-text="<%= slave.userAgent %>"><%= slave.userAgent %></td>
+                                        <td class="address"><% print((slave.addressName || slave.address) + ':' + slave.port) %></td>
+                                        <td class="status"><% print(slave.getStatus()) %></td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <i class='icon-remove'></i>There is no connected browser.
+                    <% } %>
+                </div>
+            </article>
+
+            <% _.forEach(campaigns, function (campaign) { %>
+            <article>
+                <h2><span>Campaign <%= campaign.id %></span></h2>
+                <div class="text">
+                    <h3>Total tasks</h3>
+                    <%= campaign.tasks.length %>
+
+                    <h3>Remaining tasks</h3>
+                    <%= campaign.remainingTasks %>
+
+                    <ul>
+                        <% _.forEach(campaign.browsers, function (browser) { %>
+                            <li><%= browser.tasksQueue.length %> on <%= browser.name %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </article>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

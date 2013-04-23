@@ -1,17 +1,118 @@
 <!doctype html>
 <html>
 <head>
-<title>Attester</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Attester</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="stylesheet.css">
+	<link rel="stylesheet" href="font/font-awesome.min.css">
+	<!--[if lt IE 9]>
+	<script src="font/html5shiv.js"></script>
+	<![endif]-->
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="font/font-awesome-ie7.min.css">
+	<![endif]-->
 </head>
 <body>
-	<h1>Attester</h1>
-	<ul>
-		<li><a href="status.html">Current status</a></li>
-		<li><a href="slave.html">Add this browser as slave</a></li>
-		<li><a href="coverage/display">Display coverage results</a> (if
-			the current campaign is configured with coverage)</li>
-		<li><a href="aria-templates/interactive.html">Aria Templates Tester</a> (if
-			the current campaign is configured with Aria Templates tests)</li>
-	</ul>
+	<header role="banner">
+		<hgroup>
+			<h1 id="site-title">
+				<span class="title"><span class="initials">at</span>tester</span>
+			</h1>
+			<nav id="menu-primary" role="navigation">
+				<div class="menu">
+					<ul>
+						<li class="menu-item" id="slave">
+							<i class="icon-double-angle-right"></i><a href="slave.html">Add this browser as a slave</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</hgroup>
+	</header>
+	<div id="main" role="main">
+		<div id="links" class="column-grid">
+			<div class="column column-span column-first status">
+				<a href="status.html">
+					<i class="icon-lightbulb"></i>
+				</a>
+				<span>Current Status</span>
+			</div>
+			<div class="column column-span ariatester">
+				<a href="aria-templates/interactive.html">
+					<i class="icon-fire"></i>
+				</a>
+				<span>Aria Tester</span>
+			</div>
+			<div class="column column-span column-last coverage">
+				<a href="coverage/display">
+					<i class="icon-bar-chart"></i>
+				</a>
+				<span>Code Coverage</span>
+			</div>
+		</div>
+
+		<div id="configuration">
+			<% _.forEach(campaigns, function (campaign) { %>
+			<article>
+				<h2><span>Campaign <%= campaign.id %></span></h2>
+				<div class="text">
+					<h3>Resources</h3>
+					Serving the following resources
+					<ul>
+						<% _.forOwn(campaign.config.resources, function (resources, name) { %>
+							<% if (resources.length === 0) { %>
+								<li><code><%= name %></code></li>
+							<% } else { %>
+								<li>
+									<code><%= name %></code> redirects to:
+									<ul>
+										<% _.forEach(resources, function (resource) { %>
+											<li><code><%= resource %></code></li>
+										<% }); %>
+									</ul>
+								</li>
+							<% } %>
+						<% }); %>
+					</ul>
+
+
+					<h3>Tasks</h3>
+					<%= campaign.tasks.length %> tasks in <%= campaign.browsers.length %> browsers.
+					<ul>
+						<% _(campaign.tasks).uniq(function (task) { return task.test.name; }).forEach(function (task) { %>
+							<li><code><%= task.test.name %></code></li>
+						<% }); %>
+					</ul>
+
+
+					<h3>Browsers</h3>
+					<% if (campaign.browsers[0].name) { %>
+						<ul>
+							<% _.forEach(campaign.browsers, function (browser) { %>
+								<li><code><%= browser.name %></code></li>
+							<% }); %>
+						</ul>
+					<% } else { %>
+						<span class="browsers">
+							<i class='icon-remove'></i>No browser configured
+						</span>
+					<% } %>
+
+
+					<h3>Coverage</h3>
+					<span class="coverage">
+						<% if (campaign.config.coverage) { %>
+							<i class='icon-ok'></i>Coverage enabled
+						<% } else { %>
+							<i class='icon-remove'></i>Coverage disabled
+						<% } %>
+					</span>
+				</div>
+			</article>
+			<% }); %>
+		</div>
+	</div>
 </body>
 </html>
