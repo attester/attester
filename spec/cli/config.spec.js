@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-var config = require("../../lib/config");
 var path = require("path");
 var fs = require("fs");
+
+var config = require("../../lib/config");
 
 var expectedObject = {
     resources: {
