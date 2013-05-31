@@ -52,7 +52,7 @@ describe('cli', function () {
                 });
                 childProcess.stdout.on('data', function (data) {
                     // data is a buffer
-                    data = data.toString();
+                    data = data.toString().replace(/\033\[[0-9]*m/ig, ""); // strip ANSI color codes
                     var result = data.match(/tests run\s?\:\s?(\d+)\s?,\s?failures\s?\:\s?(\d+)\s?,\s?errors\s?\:\s?(\d+)\s?,\s?skipped\s?\:\s?(\d+)\s?/i);
                     if (result) {
                         testExecution = {
