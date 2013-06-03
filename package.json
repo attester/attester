@@ -22,7 +22,7 @@
         "portfinder": "0.2.1",
         "send": "0.1.0",
         "socket.io": "0.9.14",
-        "ua-parser": "0.3.2"
+        "ua-parser": "0.3.3"
     },
     "devDependencies": {
         "ariatemplates": "1.3.7",

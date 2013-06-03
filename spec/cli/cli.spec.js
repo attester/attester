@@ -22,6 +22,18 @@ describe('cli', function () {
     var atTestsRoot = path.join(__dirname, 'at-root');
     var execPath = path.join(__dirname, '../../bin/attester.js');
 
+    var findErrorMessage = function (needle, haystack) {
+        // Some errors logged can be verbose and env-dependent, hence we check if there's
+        // an error starting with particular string rather than being equal to it.
+        for (var idx = 0; idx < haystack.length; idx++) {
+            var item = haystack[idx];
+            if (item.indexOf(needle) === 0) { // item.startsWith(needle)
+                return idx;
+            }
+        }
+        return -1;
+    };
+
     var itRuns = function (options) {
         it(options.testCase, function () {
             var exitCode = -1;
@@ -64,7 +76,7 @@ describe('cli', function () {
                             skipped: parseInt(result[4], 10)
                         };
                     }
-                    var errors = data.match(/Error( in .*)?:(.*)/);
+                    var errors = data.match(/Error( in .*?)?:(.*)/); // non-greedy match in case error has more :
                     if (errors) {
                         errorMessages.push(errors[2].trim());
                     }
@@ -84,7 +96,7 @@ describe('cli', function () {
                 }
                 if (options.hasErrors) {
                     for (var i = 0; i < options.hasErrors.length; i += 1) {
-                        var indexOfError = errorMessages.indexOf(options.hasErrors[i]);
+                        var indexOfError = findErrorMessage(options.hasErrors[i], errorMessages);
                         if (indexOfError === -1) {
                             throw new Error("Error " + options.hasErrors[i] + " was not found in logs.");
                         } else {
@@ -328,7 +340,7 @@ describe('cli', function () {
             errors: 1,
             skipped: 0
         },
-        hasErrors: ["Browser was disconnected."]
+        hasErrors: ["Browser was disconnected"]
     });
 
     // There are 3 tests lasting ~500ms, with a timeout of 1000ms everything should be fine
