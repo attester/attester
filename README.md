@@ -163,6 +163,7 @@ pass `--phantomjs-path` argument, or add the folder containing `phantomjs.exe` t
 Otherwise, you'll get runtime errors.*
 
 `--phantomjs-instances <number>` Number of instances of [PhantomJS](http://phantomjs.org/) to start (default: `0`).
+Additionally, a string `auto` can be passed to let the program use the optimal number of instances for best performance (max. 1 per CPU thread).
 
 `--browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
 browsers or multiple instances of the same browser. Each browser is started with one parameter: the URL to open to start tests.
