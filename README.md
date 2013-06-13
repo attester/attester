@@ -26,6 +26,39 @@ Features
 * Adding support for other test frameworks is as simple as adding an adapter for that test framework.
 * [![Build Status](https://secure.travis-ci.org/ariatemplates/attester.png)](http://travis-ci.org/ariatemplates/attester)
 
+License
+-------
+
+[Apache License 2.0](https://github.com/ariatemplates/attester/blob/master/LICENSE)
+
+Dependencies & installation
+---------------------------
+
+You'll need [node.js](http://nodejs.org/download/). Attester is available in [npm repository](https://npmjs.org/package/attester); you can use `npm install attester` in your console, or clone this repository and then issue `npm install`.
+
+If you want to make us of PhantomJS headless testing, you'll additionally need to [install PhantomJS](http://phantomjs.org/download.html) and make sure it's in your `PATH`.
+
+### Installing PhantomJS on Windows
+
+1. Download [phantomjs-1.9.1-windows.zip](https://phantomjs.googlecode.com/files/phantomjs-1.9.1-windows.zip) and extract it.
+2. Move the contents of `phantomjs-1.9.1-windows` to `C:\bin\phantomjs`
+3. Add `C:\bin\phantomjs` to `PATH`
+4. Check that it works by issuing `phantomjs --version` in `cmd`
+
+### Installing PhantomJS on Ubuntu
+
+Quick setup on 64bit Ubuntu:
+
+    cd /usr/local/share/
+    sudo wget http://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-x86_64.tar.bz2
+    sudo tar jxvf phantomjs-1.9.1-linux-x86_64.tar.bz2
+    sudo ln -s /usr/local/share/phantomjs-1.9.1-linux-x86_64/ /usr/local/share/phantomjs
+    sudo ln -s /usr/local/share/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+
+If you have 32bit version, replace `x86_64` with `i686` in the commands above.
+
+Check that it works by issuing `phantomjs --version` in console.
+
 Usage
 -----
 
