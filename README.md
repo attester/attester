@@ -228,6 +228,8 @@ This is used by the [junit bridge](https://github.com/ariatemplates/attester-jun
 
 `--heartbeats` Delay (in ms) for heartbeats messages sent when `--json-console` is enabled. Use `0` to disable them.
 
+`--task-timeout` Maximum duration (in ms) for a test task.
+
 **Configuration file options**
 
 Any option configurable through the configuration file can also be specified from the command line with the `--config` prefix.
