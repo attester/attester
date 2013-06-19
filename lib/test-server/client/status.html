@@ -38,7 +38,7 @@
                 <h2><span>Connected Browsers</span></h2>
 
                 <div class="text">
-                    <% if (slaves.length > 0) { %>
+                    <% if (data.slaves.length > 0) { %>
                         <table class="slaves">
                             <thead>
                                 <tr>
@@ -50,12 +50,12 @@
                             </thead>
 
                             <tbody>
-                                <% _.forEach(slaves, function (slave) { %>
+                                <% _.forEach(data.slaves, function (slave) { %>
                                     <tr>
-                                        <td class="browser"><%= slave.displayName %></td>
-                                        <td class="userAgent" data-text="<%= slave.userAgent %>"><%= slave.userAgent %></td>
-                                        <td class="address"><% print((slave.addressName || slave.address) + ':' + slave.port) %></td>
-                                        <td class="status"><% print(slave.getStatus()) %></td>
+                                        <td class="browser" data-is="Browser"><%= slave.displayName %></td>
+                                        <td class="userAgent ellipsis" data-is="User agent" data-text="<%= slave.userAgent %>"><%= slave.userAgent %></td>
+                                        <td class="address ellipsis" data-is="Address" data-text="<% print((slave.addressName || slave.address) + ':' + slave.port) %>"><% print((slave.addressName || slave.address) + ':' + slave.port) %></td>
+                                        <td class="status" data-is="Status"><% print(slave.getStatus()) %></td>
                                     </tr>
                                 <% }); %>
                             </tbody>
@@ -66,7 +66,7 @@
                 </div>
             </article>
 
-            <% _.forEach(campaigns, function (campaign) { %>
+            <% _.forEach(data.campaigns, function (campaign) { %>
             <article>
                 <h2><span>Campaign <%= campaign.id %></span></h2>
                 <div class="text">
