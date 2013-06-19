@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Aria Templates tester</title>
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript">var Aria=<%= data.ariaConfig %>;</script>
+    <script type="text/javascript" src="<%= encodeURI(data.config.bootstrap) %>"></script>
+    <% _.forEach(data.config.extraScripts, function (script) { %>
+        <script type="text/javascript" src="<%= encodeURI(script) %>"></script>
+    <% }); %>
+    <style>
+        html{overflow:hidden;}
+        body{margin:0px;background-color:#FAFAFA;font-family:tahoma,arial,helvetica,sans-serif;font-size:11px;}
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript">
+        (function () {
+            var width={min:180}, height={min:342};
+            aria.core.DownloadMgr.updateRootMap({
+                "MainTestSuite": "./"
+            });
+            aria.core.DownloadMgr.updateUrlMap({
+                "MainTestSuite": "MainTestSuite.js"
+            });
+            Aria.loadTemplate({
+                rootDim: {width:width,height:height},
+                classpath: "aria.tester.runner.view.main.Main",
+                div: "root",
+                width: width,
+                height: height,
+                moduleCtrl: {
+                    classpath: "aria.tester.runner.ModuleController"
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

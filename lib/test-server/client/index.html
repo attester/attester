@@ -31,21 +31,15 @@
 			</nav>
 		</hgroup>
 	</header>
-	<div id="main" role="main">
+	<div id="main" role="main" class="">
 		<div id="links" class="column-grid">
-			<div class="column column-span column-first status">
+			<div class="column column-first status">
 				<a href="status.html">
 					<i class="icon-lightbulb"></i>
 				</a>
 				<span>Current Status</span>
 			</div>
-			<div class="column column-span ariatester">
-				<a href="aria-templates/interactive.html">
-					<i class="icon-fire"></i>
-				</a>
-				<span>Aria Tester</span>
-			</div>
-			<div class="column column-span column-last coverage">
+			<div class="column column-last coverage">
 				<a href="coverage/display">
 					<i class="icon-bar-chart"></i>
 				</a>
@@ -54,10 +48,19 @@
 		</div>
 
 		<div id="configuration">
-			<% _.forEach(campaigns, function (campaign) { %>
+			<% _.forEach(data.campaigns, function (campaign) { %>
 			<article>
 				<h2><span>Campaign <%= campaign.id %></span></h2>
 				<div class="text">
+					<% if (campaign.tests.debugUrls.length > 0) { %>
+						<h3>Debug this campaign</h3>
+						<% _.forEach(campaign.tests.debugUrls, function (debug) { %>
+							<a href="<%= debug.url %>"><%= debug.name %></a><br/>
+						<% }); %>
+					<% } %>
+
+
+
 					<h3>Resources</h3>
 					Serving the following resources
 					<ul>
