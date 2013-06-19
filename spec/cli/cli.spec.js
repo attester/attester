@@ -28,11 +28,13 @@ describe('cli', function () {
             var finished = false;
             var timedout = false;
             var testExecution = null;
+            var errorMessages = [];
             runs(function () {
                 console.log('\n---------------------------------------');
                 console.log('Starting test: ' + options.testCase);
                 console.log('---------------------------------------');
                 var args = [execPath].concat(options.args || []);
+                args.push("--phantomjs-instances", "1");
                 var spawnOpts = options.spawnOpts || {};
                 var timeout = null;
                 spawnOpts.stdio = ['ignore', 'pipe', 'pipe'];
@@ -62,6 +64,10 @@ describe('cli', function () {
                             skipped: parseInt(result[4], 10)
                         };
                     }
+                    var errors = data.match(/Error( in .*)?:(.*)/);
+                    if (errors) {
+                        errorMessages.push(errors[2].trim());
+                    }
                 });
                 timeout = setTimeout(function () {
                     timedout = true;
@@ -76,6 +82,20 @@ describe('cli', function () {
                 if (options.results) {
                     expect(testExecution).toEqual(options.results);
                 }
+                if (options.hasErrors) {
+                    for (var i = 0; i < options.hasErrors.length; i += 1) {
+                        var indexOfError = errorMessages.indexOf(options.hasErrors[i]);
+                        if (indexOfError === -1) {
+                            throw new Error("Error " + options.hasErrors[i] + " was not found in logs.");
+                        } else {
+                            // error found, remove it
+                            errorMessages.splice(indexOfError, 1);
+                        }
+                    }
+                    if (errorMessages.length > 0) {
+                        throw new Error("Unexpected error message " + errorMessages[0]);
+                    }
+                }
             });
         });
     };
@@ -83,7 +103,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'succeeds',
         exitCode: 0,
-        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
         results: {
             run: 1,
             failures: 0,
@@ -95,7 +115,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'hasFailure',
         exitCode: 1,
-        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
         results: {
             run: 1,
             failures: 1,
@@ -107,7 +127,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'ignoreFailure',
         exitCode: 0,
-        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--phantomjs-instances', '1', '--ignore-failures', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--ignore-failures', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
         results: {
             run: 1,
             failures: 1,
@@ -119,7 +139,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'hasError',
         exitCode: 1,
-        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
         results: {
             run: 1,
             failures: 0,
@@ -143,7 +163,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'ignoreError',
         exitCode: 0,
-        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--phantomjs-instances', '1', '--ignore-errors', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--ignore-errors', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
         results: {
             run: 1,
             failures: 0,
@@ -155,7 +175,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha succeeds',
         exitCode: 0,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*.js', '--config.tests.mocha.files.excludes', '**/syntaxError*', '--config.tests.mocha.files.excludes', '**/*.txt', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*.js', '--config.tests.mocha.files.excludes', '**/syntaxError*', '--config.tests.mocha.files.excludes', '**/*.txt'],
         results: {
             run: 2,
             failures: 0,
@@ -167,7 +187,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha in bdd with expect.js',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/bdd.js', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/bdd.js'],
         results: {
             run: 1,
             failures: 0,
@@ -179,7 +199,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha in qunit with expect.js',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/qunit.js', '--config.tests.mocha.ui', 'qunit', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/qunit.js', '--config.tests.mocha.ui', 'qunit'],
         results: {
             run: 1,
             failures: 0,
@@ -191,7 +211,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha in tdd with expect.js',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/tdd.js', '--config.tests.mocha.ui', 'tdd', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/tdd.js', '--config.tests.mocha.ui', 'tdd'],
         results: {
             run: 1,
             failures: 0,
@@ -203,7 +223,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha in bdd with chai.js',
         exitCode: 0,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/chai/bdd.js', '--config.tests.mocha.assertion', 'chai', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/chai/bdd.js', '--config.tests.mocha.assertion', 'chai'],
         results: {
             run: 2,
             failures: 0,
@@ -215,7 +235,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha detect global leaks',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js'],
         results: {
             run: 1,
             failures: 0,
@@ -227,7 +247,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha ignore all global leaks',
         exitCode: 0,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--config.tests.mocha.ignoreLeaks', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--config.tests.mocha.ignoreLeaks'],
         results: {
             run: 1,
             failures: 0,
@@ -239,7 +259,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha ignore some global leaks',
         exitCode: 0,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--config.tests.mocha.globals', 'globalOne', '--config.tests.mocha.globals', 'globalTwo', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globals.js', '--config.tests.mocha.globals', 'globalOne', '--config.tests.mocha.globals', 'globalTwo'],
         results: {
             run: 1,
             failures: 0,
@@ -251,7 +271,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha errors in fixtures',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/fixtures.js', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/fixtures.js'],
         results: {
             run: 0,
             // because failure in the hook stop the test execution
@@ -264,7 +284,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha global errors',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globalErrors.js', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/expect/globalErrors.js'],
         results: {
             run: 0,
             failures: 0,
@@ -276,12 +296,66 @@ describe('cli', function () {
     itRuns({
         testCase: 'mocha with external scripts',
         exitCode: 0,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/actualTest.js', '--config.resources./', 'spec/test-type/mocha/extraScripts', '--config.tests.mocha.extraScripts', '/require_one.js', '--config.tests.mocha.extraScripts', '/require_two.js', '--phantomjs-instances', '1'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/actualTest.js', '--config.resources./', 'spec/test-type/mocha/extraScripts', '--config.tests.mocha.extraScripts', '/require_one.js', '--config.tests.mocha.extraScripts', '/require_two.js'],
         results: {
             run: 1,
             failures: 0,
             errors: 0,
             skipped: 0
         }
+    });
+
+    itRuns({
+        testCase: 'test timeout',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/timeout.js', '--task-timeout', '200'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        },
+        hasErrors: ["Task timeout."]
+    });
+
+    itRuns({
+        testCase: 'browser disconnected',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        },
+        hasErrors: ["Browser was disconnected."]
+    });
+
+    // There are 3 tests lasting ~500ms, with a timeout of 1000ms everything should be fine
+    itRuns({
+        testCase: 'clear timeout',
+        exitCode: 0,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/slowTests/*.js', '--task-timeout', '1000'],
+        results: {
+            run: 3,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        }
+    });
+
+    // There are 3 tests lasting ~500ms, with a timeout of 200ms all of them should fail
+    itRuns({
+        testCase: 'timeout more tests',
+        exitCode: 1,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/slowTests/*.js', '--task-timeout', '200'],
+        results: {
+            run: 3,
+            failures: 0,
+            errors: 3,
+            skipped: 0
+        },
+        // Expecting 3 errors
+        hasErrors: ["Task timeout.", "Task timeout.", "Task timeout."]
     });
 });
