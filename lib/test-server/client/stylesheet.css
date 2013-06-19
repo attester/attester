@@ -40,6 +40,7 @@ body {
     font-style: normal;
     color: #333;
     background-color: #f3f3f3;
+    margin: 0;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
@@ -149,32 +150,21 @@ a:hover {
 }
 
 #links {
-    margin-bottom: 280px;
+    margin-bottom: 2em;
+    margin-top: 1em;
 }
 
 .column-grid {
     clear: both;
-}
-
-.column-grid .column-span {
-    width: 25%;
-}
-
-.column-grid .column-first {
-    margin-left: 0;
-}
-
-.column-grid .column-last {
-    margin-right: 0;
-    margin-left: 0;
+    text-align: center;
 }
 
 .column-grid .column {
-    float: left;
-    margin-right: 5%;
-    margin-left: 0;
-    margin-bottom: 18px;
+    display: inline-block;
+    text-align: left;
+    width: 30%;
 }
+
 
 #links a {
     display: block;
@@ -190,17 +180,27 @@ a:hover {
     border-radius: 200px;
     width: 160px;
     height: 160px;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
-    border: 1px solid #fff;
+    -webkit-transition: all 0.2s ease, box-shadow 0.2s;
+    -moz-transition: all 0.2s ease, box-shadow 0.2s;
+    -o-transition: all 0.2s ease, box-shadow 0.2s;
+    transition: all 0.2s ease, box-shadow 0.2s;
+    border: 1px solid #a7a9ac;
 }
 
-#links .ariatester a {
+#links a:hover {
+    box-shadow: 0 0 0 10px rgba(243,243,243,0.4);
+}
+#links a:hover:after {
+    -webkit-transform: scale(0.85);
+    -moz-transform: scale(0.85);
+    -ms-transform: scale(0.85);
+    transform: scale(0.85);
+}
+
+#links .debug a {
     color: #be4b3c;
 }
-#links .ariatester a:hover {
+#links .debug a:hover {
     color: #8C3125;
 }
 
@@ -275,6 +275,7 @@ a:hover {
     -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25);
     box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25);
     border-top: 1px solid #dfdfdf;
+    position: relative;
 }
 
 #configuration .text {
@@ -287,6 +288,22 @@ a:hover {
     line-height: 1.2;
     padding: 5px 0;
     font-weight: bold;
+    margin-top: 1em;
+}
+
+#configuration .text h3:before {
+    content: "\f105";
+    position: absolute;
+    left: 4px;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+}
+
+#configuration .text h3:first-of-type {
+    margin-top: 0;
 }
 
 code {
@@ -373,12 +390,17 @@ code {
 }
 .slaves .userAgent {
     width: 300px;
+}
+.slaves .address {
+    width: 300px;
+}
+.ellipsis {
     max-width: 300px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-.slaves td.userAgent:hover::before {
+.ellipsis:hover::before {
     white-space: nowrap;
     overflow: visible;
     background-color: #fff;
@@ -386,9 +408,67 @@ code {
     position: absolute;
     border: 1px solid #ccc;
 }
-.slaves .address {
-    width: 150px;
-    max-width: 150px;
-}
 .slaves .status {
+}
+
+@media screen and (max-width: 680px) {
+    .column-grid .column {
+        width: 45%;
+    }
+    #site-title, h1#site-title, #menu-primary {
+        top : 0;
+    }
+    #main {
+        width: 100%;
+        padding: 0;
+    }
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        text-align: left;
+        width: 100%;
+        padding-left: 35%;
+    }
+    td:before {
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-is);
+    }
+    tr {
+        border: 1px solid #ccc;
+    }
+    .ellipsis {
+        max-width: 680px;
+        text-overflow: visible;
+        white-space: wrap;
+    }
+    .ellipsis:hover::before {
+        white-space: nowrap;
+        overflow: visible;
+        background-color: transparent;
+        content : attr(data-is);
+        border: 0;
+    }
+    .slaves .browser, .slaves .userAgent, .slaves .address {
+        width: auto;
+        max-width: 680px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .column-grid .column {
+        width: 100%;
+    }
 }
