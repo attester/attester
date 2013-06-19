@@ -129,6 +129,18 @@ describe('cli', function () {
     });
 
     itRuns({
+        testCase: 'hasErrorInConstructor',
+        exitCode: 1,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseErrorInConstructor', '--phantomjs-instances', '1', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        results: {
+            run: 0,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        }
+    });
+
+    itRuns({
         testCase: 'ignoreError',
         exitCode: 0,
         args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldRaiseError', '--phantomjs-instances', '1', '--ignore-errors', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
