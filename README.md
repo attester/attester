@@ -133,7 +133,13 @@ browsers:
   # (and browsers not listed here will have nothing to do if they are connected)
   - browserName: 'PhantomJS'
   - browserName: 'Chrome'
+  # It's possible to distinguish browsers by operating systems, read more below
   - browserName: 'Firefox'
+    os: 'Windows 7'
+  - browserName: 'Firefox'
+    os: 'Desktop Linux'
+  - browserName: 'Firefox'
+    os: 'Android'
   - browserName: 'Opera'
   - browserName: 'Safari'
   # It is also possible to distinguish several versions of the same browser:
@@ -143,9 +149,37 @@ browsers:
     majorVersion: 8
   - browserName: 'IE'
     majorVersion: 9
+  - browserName: 'IE'
+    majorVersion: 10
   # Note that 'minorVersion' and 'revision' are also available
   # The 'name' property allows to change the display name of the browser in the reports.
 ```
+
+#### Regarding browser detection by operating system:
+Attester uses [ua-parser](https://github.com/tobie/ua-parser/) for that and supports operating system families as returned by ua-parser, e.g.:
+
+- 'Windows XP'
+- 'Windows Vista'
+- 'Windows 7'
+- 'Windows 8'
+- 'Mac OS X'
+- 'Ubuntu'
+- 'Debian'
+- 'Fedora'
+- 'Chrome OS'
+- 'iOS'
+- 'Android'
+- 'Windows Phone'
+- 'Firefox OS'
+- 'BlackBerry OS'
+
+For convenience, two additional values are accepted by Attester:
+
+- 'Desktop Linux' (Linux, but not Android or webOS)
+- 'Desktop Windows' (Windows, but not Windows Phone)
+
+For a bigger (though not complete) list of options, you can have a look at the test resources in ua-parser: [resource 1](https://raw.github.com/tobie/ua-parser/master/test_resources/test_user_agent_parser_os.yaml) and [resource 2](https://raw.github.com/tobie/ua-parser/master/test_resources/additional_os_tests.yaml).
+
 
 **Environment Variables**
 It is possible to build a special portion of the configuration object from an external file using `--env` option.
