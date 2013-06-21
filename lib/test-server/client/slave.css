@@ -1,0 +1,166 @@
+@font-face {
+    font-family: 'MuliRegular';
+    src: url('font/Muli-Regular-webfont.eot');
+    src: url('font/Muli-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/Muli-Regular-webfont.woff') format('woff'),
+         url('font/Muli-Regular-webfont.ttf') format('truetype'),
+         url('font/Muli-Regular-webfont.svg#MuliRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html,body,iframe {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	background-color: #f3f3f3;
+}
+
+iframe {
+	position: absolute;
+}
+
+html,body {
+	overflow: hidden;
+}
+
+#status_bar {
+	top: 0px;
+	height: 31px;
+	line-height: 32px;
+	vertical-align: center;
+	border-bottom: 1px solid #dfdfdf;
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
+	background-color: #FFF;
+	color: #000;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	padding: 0 10px;
+}
+
+#status_bar, #content, #status_logs {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+}
+
+.title {
+    text-rendering: optimizeLegibility;
+    font-family: "MuliRegular";
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-right: 2em;
+}
+.title .initials {
+    font-family: "MuliRegular";
+    text-transform: lowercase;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: -1px;
+    margin-right: 6px;
+}
+
+
+#pause_resume {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: #000;
+}
+
+#content {
+	position: absolute;
+	top: 32px;
+	bottom: 10em;
+}
+
+#content:after {
+	content: "attester";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 200px;
+	line-height: 100px;
+	margin: -50px 0 0 -350px;
+	color: #ccc;
+	color: rgba(0,0,0,0.15);
+	font-family: "MuliRegular";
+}
+
+#status_logs {
+	position: absolute;
+	bottom: 0px;
+	height: 10em;
+	vertical-align: baseline;
+	border-top: 1px solid #dfdfdf;
+	box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
+	background-color: #FFF;
+	color: #000;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	overflow: auto;
+}
+
+#status_logs p {
+	padding-left: 10px;
+	margin: 0.4em 0;
+	vertical-align: middle;
+}
+
+#status_logs .timestamp {
+	font-size: 85%;
+	color: #8a8a8a;
+	width: 6em;
+	text-align: right;
+	display: inline-block;
+	margin-right: 1em;
+}
+
+#status_logs i {
+	font-style: normal;
+	color: #8a8a8a;
+	font-family: monospace;
+	font-size: 120%;
+}
+
+#status_logs i.event {
+	min-width: 9em;
+	display: inline-block;
+	text-align: center;
+}
+
+#status_logs i.error {
+	color: #cc7768;
+}
+
+@media screen and (max-width: 900px) {
+	#content:after {
+		content: "attester";
+		font-size: 100px;
+		line-height: 50px;
+		margin: -30px 0 0 -200px;
+	}
+	#status_bar {
+		height: 62px;
+	}
+	#content {
+		top: 63px;
+		bottom: 6em;
+	}
+	#status_logs {
+		height: 6em;
+	}
+	#status_text {
+		position: absolute;
+		top: 32px;
+		left: 10px;
+	}
+}
+
+@media screen and (max-width: 430px) {
+	#content:after {
+		content: "attester";
+		font-size: 50px;
+		margin: -30px 0 0 -100px;
+	}
+}
