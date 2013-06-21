@@ -36,7 +36,7 @@ Dependencies & installation
 
 You'll need [node.js](http://nodejs.org/download/). Attester is available in [npm repository](https://npmjs.org/package/attester); you can use `npm install attester` in your console, or clone this repository and then issue `npm install`.
 
-If you want to make us of PhantomJS headless testing, you'll additionally need to [install PhantomJS](http://phantomjs.org/download.html) and make sure it's in your `PATH`.
+If you want to make use of PhantomJS headless testing, you'll additionally need to [install PhantomJS](http://phantomjs.org/download.html) and make sure it's in your `PATH`.
 
 ### Installing PhantomJS on Windows
 
