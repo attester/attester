@@ -1,57 +1,25 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>Attester</title>
-<style type="text/css">
-html,body,iframe {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-}
-
-iframe {
-	position: absolute;
-}
-
-html,body {
-	overflow: hidden;
-}
-
-#status_bar,#content {
-	position: absolute;
-	left: 0px;
-	right: 0px;
-}
-
-#status_bar {
-	top: 0px;
-	height: 31px;
-	line-height: 32px;
-	vertical-align: center;
-	text-align: center;
-	border-bottom: 1px solid #275B9B;
-	background-color: #457FA4;
-	color: white;
-}
-
-#pause_resume {
-    position: absolute;
-    top: 0px;
-    right: 5px;
-    color: white;
-}
-
-#content {
-	position: absolute;
-	top: 32px;
-	bottom: 0px;
-}
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Attester - slave</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="slave.css">
+</head>
 <body>
-	<div id="status_bar"><span id="status_text">Loading Attester...</span><a href="#" id="pause_resume"></a></div>
-	<div id="content">
+	<div id="status_bar">
+		<span class="title"><span class="initials">at</span>tester</span></span>
+		<span id="status_text">Loading ...</span>
+		<span id="status_info"><span id="_info_loading"></span></span>
+		<a href="#" id="pause_resume"></a>
 	</div>
+	<div id="content"></div>
+	<div id="status_logs">
+		<p>Logs are available only when the search parameter <i>log</i> is set to <i>true</i>.</p>
+		<p>To enable logs add <i>?log=true</i> in the URL.</p>
+	</div>
+
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="slave.js"></script>
 	<script src="stacktrace.js"></script>
