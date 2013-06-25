@@ -18,7 +18,14 @@ html,body,iframe {
 }
 
 iframe {
-	position: absolute;
+	position: fixed;
+	top: 32px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: auto;
+	z-index: 1;
+	background-color: transparent;
 }
 
 html,body {
