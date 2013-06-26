@@ -29,7 +29,7 @@
         "chai": "1.5.0",
         "expect.js": "0.2.0",
         "grunt": "0.4.1",
-        "grunt-beautify": "git+https://github.com/ariatemplates/grunt-beautify.git#grunt4",
+        "grunt-beautify": "git+https://github.com/jakub-g/grunt-beautify.git#v0.1.1+at1",
         "grunt-cli": "0.1.7",
         "grunt-contrib-jshint": "0.3.0",
         "grunt-contrib-watch": "0.3.1",
