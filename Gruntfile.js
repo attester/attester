@@ -36,7 +36,8 @@ module.exports = function (grunt) {
             options: {
                 indentSize: 4,
                 indentChar: ' ',
-                endOfLineNormalization: true
+                endOfLineNormalization: true,
+                forceTrailingNewline: true
             }
         }
     });
