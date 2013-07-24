@@ -14,6 +14,64 @@
  * limitations under the License.
  */
 
-var cli = require('../lib/cli.js');
+var optimist = require('optimist');
 
-cli();
+var exitProcess = require('../lib/exit-process.js');
+var attester = require('../lib/attester.js');
+var merge = require('../lib/merge.js');
+
+var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean(['flash-policy-server', 'json-console', 'help', 'server-only', 'version', 'colors', 'ignore-errors', 'ignore-failures']).string(['phantomjs-path']).describe({
+    'browser': 'Path to any browser executable to execute the tests. Can be repeated multiple times.',
+    'colors': 'Uses colors (disable with --no-colors).',
+    'env': 'Environment configuration file. This file is available in the configuration object under env.',
+    'flash-policy-port': 'Port used for the built-in Flash policy server (needs --flash-policy-server). Can be 0 for a random port.',
+    'flash-policy-server': 'Whether to enable the built-in Flash policy server.',
+    'heartbeats': 'Delay (in ms) for heartbeats messages sent when --json-console is enabled. Use 0 to disable them.',
+    'help': 'Displays this help message and exits.',
+    'ignore-errors': 'When enabled, test errors (not including failures) will not cause this process to return a non-zero value.',
+    'ignore-failures': 'When enabled, test failures (anticipated errors) will not cause this process to return a non-zero value.',
+    'json-console': 'When enabled, JSON objects will be sent to stdout to provide information about tests.',
+    'log-level': 'Level of logging: integer from 0 (no logging) to 4 (debug).',
+    'phantomjs-instances': 'Number of instances of PhantomJS to start.',
+    'phantomjs-path': 'Path to PhantomJS executable.',
+    'port': 'Port used for the web server. If set to 0, an available port is automatically selected.',
+    'server-only': 'Only starts the web server, and configure it for the test campaign but do not start the campaign.',
+    'slow-test-threshold': 'Threshold (in milliseconds) to mark long-running tests in the console report. Use 0 to disable.',
+    'task-timeout': 'Timeout of a task execution in milliseconds.',
+    'version': 'Displays the version number and exits.'
+}).alias({
+    'j': 'json-console',
+    'p': 'port'
+})['default'](attester.config.getDefaults());
+
+var argv = opt.argv;
+if (argv.help) {
+    opt.showHelp();
+    exitProcess(0);
+    return;
+}
+if (argv.version) {
+    console.log(attester.package.version);
+    exitProcess(0);
+    return;
+}
+
+// Global configuration for attester
+var filtered = {};
+// Don't really care about these options because they are alias or handled differently
+merge(filtered, argv, ["j", "p", "version", "help", "_", "env", "config", "$0"]);
+attester.config.set(filtered);
+if (argv.env) {
+    attester.config.set("env", attester.config.readFile(argv.env));
+}
+
+if (argv._.length === 0) {
+    // Didn't specify a file, run a campaign with values from the config
+    attester.campaign.create({}, argv.config);
+} else {
+    argv._.forEach(function (campaign) {
+        attester.campaign.create(attester.config.readFile(campaign), argv.config);
+    });
+}
+
+attester.start();
