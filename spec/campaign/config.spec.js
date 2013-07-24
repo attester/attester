@@ -1,4 +1,4 @@
-/* globals expect, describe, it */
+/* globals expect, describe, it, beforeEach, afterEach */
 /*
  * Copyright 2012 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +15,10 @@
  */
 
 var path = require("path");
-var fs = require("fs");
 
-var config = require("../../lib/config");
+var attester = require("../../lib/attester");
+var campaign = attester.campaign;
+var config = attester.config;
 
 var expectedObject = {
     resources: {
@@ -67,9 +68,19 @@ var expectedObject = {
     }]
 };
 
-describe("read configuration files", function () {
+describe("read configuration files for campaign", function () {
+    var emit = attester.event.emit;
+    beforeEach(function () {
+        // Prevent event to be raised
+        attester.event.emit = function () {};
+    });
+
+    afterEach(function () {
+        attester.event.emit = emit;
+    });
+
     it("should read yml files", function () {
-        var read = config.readConfig(path.join(__dirname, "configurations/yaml.yml"), {
+        var read = campaign.create(config.readFile(path.join(__dirname, "configurations/yaml.yml")), {
             tests: {
                 mocha: {
                     files: {
@@ -84,7 +95,7 @@ describe("read configuration files", function () {
     });
 
     it("should read json files", function () {
-        var read = config.readConfig(path.join(__dirname, "configurations/json.json"), {
+        var read = campaign.create(config.readFile(path.join(__dirname, "configurations/json.json")), {
             "coverage-reports": {
                 "json-file": ["coverage.json"]
             },
@@ -100,20 +111,27 @@ describe("read configuration files", function () {
         expect(read).toEqual(expectedObject);
     });
 
+    it("should handle resource overrides", function () {
+        // Because resources might as well be strings
+        var read = campaign.create(config.readFile(path.join(__dirname, "configurations/noresources.json")), {
+            "resources": {
+                // while in principle this should be an array
+                "/here": "nowhere"
+            }
+        });
+
+        expect(read).toEqual(expectedObject);
+    });
+
     it("should read yml files with templates", function () {
         var configPath = path.join(__dirname, "configurations/template.yml");
         var envPath = path.join(__dirname, "configurations/env.yml");
-        var read = config.readConfig(configPath, null, envPath);
 
-        var packageJson = fs.readFileSync("package.json");
+        config.set("env", config.readFile(envPath));
+        var read = campaign.create(config.readFile(configPath), null);
 
         expect(read.resources["/"]).toEqual(["here", "there"]);
-        expect(read.tests["aria-templates"].bootstrap).toEqual('/aria/aria-templates-1.2.3.js');
-
-        expect(read.env).toEqual({
-            version: "1.2.3",
-            name: "attester"
-        });
+        expect(read.tests["aria-templates"].bootstrap).toEqual("/aria/aria-templates-1.2.3.js");
 
         // test also missing properties
         expect(read.paths.notReplacing).toEqual("<%= missing %>");
@@ -122,14 +140,12 @@ describe("read configuration files", function () {
     it("should read json files with templates", function () {
         var configPath = path.join(__dirname, "configurations/template.json");
         var envPath = path.join(__dirname, "../../package.json");
-        var read = config.readConfig(configPath, null, envPath);
 
-        var packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, "../../package.json")));
+        config.set("env", config.readFile(envPath));
+        var read = campaign.create(config.readFile(configPath), null);
 
         expect(read.resources["/"]).toEqual(["here", "there"]);
-        expect(read.tests["aria-templates"].bootstrap).toEqual('/aria/aria-templates-' + packageJson.version + '.js');
-
-        expect(read.env).toEqual(packageJson);
+        expect(read.tests["aria-templates"].bootstrap).toEqual("/aria/aria-templates-" + attester.package.version + ".js");
 
         // test also missing properties
         expect(read.paths.notReplacing).toEqual("<%= missing %>");
@@ -137,7 +153,7 @@ describe("read configuration files", function () {
 
     it("should read files with nested references", function () {
         var configPath = path.join(__dirname, "configurations/nested.yml");
-        var read = config.readConfig(configPath);
+        var read = campaign.create(config.readFile(configPath));
 
         expect(read.one).toEqual("abcde");
         expect(read.two).toEqual("bcde");
@@ -149,7 +165,7 @@ describe("read configuration files", function () {
 
     it("should fail nicely with circular references", function () {
         var configPath = path.join(__dirname, "configurations/circular.yml");
-        var read = config.readConfig(configPath);
+        var read = campaign.create(config.readFile(configPath));
 
         expect(read.first).toEqual("<%= second %>");
         expect(read.second).toEqual("<%= third %>");
