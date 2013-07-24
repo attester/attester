@@ -22,7 +22,8 @@
         "portfinder": "0.2.1",
         "send": "0.1.0",
         "socket.io": "0.9.16",
-        "ua-parser": "0.3.3"
+        "ua-parser": "0.3.3",
+        "eventemitter2": "git+https://github.com/piuccio/EventEmitter2.git#wildcard_listeners"
     },
     "devDependencies": {
         "ariatemplates": "1.4.6",

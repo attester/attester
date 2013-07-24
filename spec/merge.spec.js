@@ -53,4 +53,27 @@ describe('merge', function () {
             }
         });
     });
+
+    it('should exclude some properties', function () {
+        var a = {
+            one: 1,
+            two: "second"
+        };
+
+        var b = {
+            two: 2,
+            three: 3,
+            four: {
+                deep: "kind of"
+            },
+            five: []
+        };
+
+        merge(a, b, ["four", "five"]);
+        expect(a).toEqual({
+            one: 1,
+            two: 2,
+            three: 3
+        });
+    });
 });
