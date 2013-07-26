@@ -1,0 +1,21 @@
+{
+    "head": [
+        {
+            "tagName": "script",
+            "content": "var Aria=<% print(JSON.stringify(data.ariaConfig)) %>;"
+        },
+        {
+            "tagName": "script",
+            "src": "<%= encodeURI(data.config.bootstrap) %>"
+        },
+        {
+            "tagName": "script",
+            "content": "var __testClasspath=\"<%= query.testClasspath %>\";"
+        },
+        {
+            "tagName": "script",
+            "src": "<%= data.type %>/run.js"
+        }
+    ],
+    "body" : []
+}

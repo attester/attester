@@ -1,3 +1,4 @@
+/* globals expect, describe, it, Numbers */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,10 +14,8 @@
  * limitations under the License.
  */
 
-describe("a test that take some time to end", function () {
-    // Disable mocha timeout
-    this.timeout(0);
-    it("waits for about 2 seconds", function (callback) {
-        setTimeout(callback, 1000);
+describe("numbers", function () {
+    it("is one", function () {
+        expect(Numbers.one).to.be(1);
     });
 });

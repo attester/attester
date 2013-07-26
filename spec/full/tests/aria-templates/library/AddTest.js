@@ -1,3 +1,4 @@
+/* globals Aria, Compute, LibraryOne, Numbers */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,10 +14,13 @@
  * limitations under the License.
  */
 
-describe("a test that take some time to end", function () {
-    // Disable mocha timeout
-    this.timeout(0);
-    it("waits for about 2 seconds", function (callback) {
-        setTimeout(callback, 1000);
-    });
+Aria.classDefinition({
+    $classpath: "ariatest.library.AddTest",
+    $extends: "aria.jsunit.TestCase",
+    $prototype: {
+        testSum: function () {
+            Compute.setLibrary(LibraryOne);
+            this.assertEquals(Compute.add(Numbers.two), 3);
+        }
+    }
 });
