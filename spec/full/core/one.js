@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 
-describe("a test that take some time to end", function () {
-    // Disable mocha timeout
-    this.timeout(0);
-    it("waits for about 2 seconds", function (callback) {
-        setTimeout(callback, 1000);
-    });
-});
+(function () {
+    'use strict';
+    var scope = this;
+
+    scope.Numbers = {
+        one: 1,
+        two: 2,
+        three: 2
+    };
+})();

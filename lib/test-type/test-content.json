@@ -1,0 +1,7 @@
+{
+	"head": [
+		"<title><%= data.name %></title>",
+		"<% _.forEach(data.config.extraScripts, function (script) { %><script type=\"text/javascript\" src=\"<%= script %>\"></script><% }); %>"
+	],
+	"body": []
+}

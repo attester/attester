@@ -1,0 +1,25 @@
+{
+	"head": [
+		{
+			"tagName": "link",
+			"href": "<%= data.type %>/lib/mocha.css"
+		},
+		{
+			"tagName": "script",
+			"src": "<%= data.type %>/lib/mocha.js"
+		},
+		{
+			"tagName": "script",
+			"content": "mocha.setup(<%= data.config.mochaSetup %>);"
+		},
+		{
+			"tagName": "script",
+			"src": "<%= data.type %>/client/launcher.js",
+			"id": "script_launcher",
+			"content": "<% print(_.map(data.testsTrees, function (script) { return data.baseURL + '/' + data.type + '/tests/' + encodeURI(script.name); }).join('|')) %>"
+		}
+	],
+	"body": [
+		"<div id='mocha'></div>"
+	]
+}

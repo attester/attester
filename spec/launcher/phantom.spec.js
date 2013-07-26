@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-var spawn = require("child_process").spawn;
 var pathUtil = require("path");
 var http = require("http");
+
+var test_utils = require("../test-utils");
 
 /**
  * Test the main script that drives phantom.
@@ -34,22 +35,16 @@ function startPhantom(requestListener, callback, wait) {
     server.on("listening", function () {
         var page = "http://localhost:" + server.address().port;
         var args = [pathUtil.join(__dirname, '../../lib/browsers/phantomjs.js'), "--auto-exit", "--auto-exit-polling=400", page];
-        var phantomProcess = spawn("phantomjs", args, {
-            stdio: "pipe"
-        });
-        // Pipe to standard out only if you want to have verbose tests
-        //phantomProcess.stdout.pipe(process.stdout);
+
         var messages = [];
-        phantomProcess.stdout.on("data", function (data) {
-            messages.push(data.toString().trim());
-        });
-        phantomProcess.on("exit", function (code) {
-            server.close(function () {
-                if (!wait) {
-                    callback(code, messages);
-                }
-            });
-        });
+        var onData = function (text) {
+            messages.push(text);
+        };
+        var onExit = wait ?
+        function () {} : function (code) {
+            callback(code, messages);
+        };
+        var phantomProcess = test_utils.startPhantom(args, onData, onExit);
         if (wait) {
             setTimeout(function () {
                 phantomProcess.kill();
@@ -126,7 +121,7 @@ describe("Phantom control script", function () {
             expect(hasMessage("opening URL", messages)).toEqual(true);
             expect(messages.length).toEqual(1);
             done();
-        }, 1000);
+        }, 2000);
     });
 
     it("reports an error", function (done) {
@@ -151,6 +146,6 @@ describe("Phantom control script", function () {
             expect(hasMessage("Induced exception (uncaught error received by PhantomJS)", messages)).toEqual(true);
             expect(messages.length).toEqual(2);
             done();
-        }, 1000);
+        }, 2000);
     });
 });
