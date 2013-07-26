@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+var utils = require("../test-utils");
+
 describe('cli', function () {
     var defaultTimeout = 10000;
     var path = require('path');
@@ -36,79 +38,35 @@ describe('cli', function () {
 
     var itRuns = function (options) {
         it(options.testCase, function () {
-            var exitCode = -1;
             var finished = false;
-            var timedout = false;
-            var testExecution = null;
-            var errorMessages = [];
+
             runs(function () {
-                console.log('\n---------------------------------------');
-                console.log('Starting test: ' + options.testCase);
-                console.log('---------------------------------------');
-                var args = [execPath].concat(options.args || []);
-                args.push("--phantomjs-instances", "1");
-                var spawnOpts = options.spawnOpts || {};
-                var timeout = null;
-                spawnOpts.stdio = ['ignore', 'pipe', 'pipe'];
-                var childProcess = child_process.spawn('node', args, spawnOpts);
-                childProcess.on('exit', function (code) {
-                    if (!timedout) {
-                        finished = true;
-                        exitCode = code;
-                        clearTimeout(timeout);
+                utils.runFromCommandLine(options, function (code, testExecution, errorMessages) {
+                    expect(code).toEqual(options.exitCode);
+                    if (options.results) {
+                        expect(testExecution).toEqual(options.results);
                     }
-                });
-                childProcess.stdout.pipe(process.stdout, {
-                    end: false
-                });
-                childProcess.stderr.pipe(process.stderr, {
-                    end: false
-                });
-                childProcess.stdout.on('data', function (data) {
-                    // data is a buffer
-                    data = data.toString().replace(/\033\[[0-9]*m/ig, ""); // strip ANSI color codes
-                    var result = data.match(/tests run\s?\:\s?(\d+)\s?,\s?failures\s?\:\s?(\d+)\s?,\s?errors\s?\:\s?(\d+)\s?,\s?skipped\s?\:\s?(\d+)\s?/i);
-                    if (result) {
-                        testExecution = {
-                            run: parseInt(result[1], 10),
-                            failures: parseInt(result[2], 10),
-                            errors: parseInt(result[3], 10),
-                            skipped: parseInt(result[4], 10)
-                        };
+                    if (options.hasErrors) {
+                        for (var i = 0; i < options.hasErrors.length; i += 1) {
+                            var indexOfError = findErrorMessage(options.hasErrors[i], errorMessages);
+                            if (indexOfError === -1) {
+                                throw new Error("Error " + options.hasErrors[i] + " was not found in logs.");
+                            } else {
+                                // error found, remove it
+                                errorMessages.splice(indexOfError, 1);
+                            }
+                        }
+                        if (errorMessages.length > 0) {
+                            throw new Error("Unexpected error message " + errorMessages[0]);
+                        }
                     }
-                    var errors = data.match(/Error( in .*?)?:(.*)/); // non-greedy match in case error has more :
-                    if (errors) {
-                        errorMessages.push(errors[2].trim());
-                    }
+
+                    finished = true;
                 });
-                timeout = setTimeout(function () {
-                    timedout = true;
-                    child_process.closeAll();
-                }, options.timeout || defaultTimeout);
             });
             waitsFor(function () {
                 return finished;
             }, (options.timeout || defaultTimeout) + 100, 'attester to complete');
-            runs(function () {
-                expect(exitCode).toEqual(options.exitCode);
-                if (options.results) {
-                    expect(testExecution).toEqual(options.results);
-                }
-                if (options.hasErrors) {
-                    for (var i = 0; i < options.hasErrors.length; i += 1) {
-                        var indexOfError = findErrorMessage(options.hasErrors[i], errorMessages);
-                        if (indexOfError === -1) {
-                            throw new Error("Error " + options.hasErrors[i] + " was not found in logs.");
-                        } else {
-                            // error found, remove it
-                            errorMessages.splice(indexOfError, 1);
-                        }
-                    }
-                    if (errorMessages.length > 0) {
-                        throw new Error("Unexpected error message " + errorMessages[0]);
-                    }
-                }
-            });
         });
     };
 
@@ -320,7 +278,7 @@ describe('cli', function () {
     itRuns({
         testCase: 'test timeout',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/timeout.js', '--task-timeout', '200'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/timeout.js', '--task-timeout', '1000'],
         results: {
             run: 1,
             failures: 0,
@@ -343,11 +301,11 @@ describe('cli', function () {
         hasErrors: ["Browser was disconnected"]
     });
 
-    // There are 3 tests lasting ~500ms, with a timeout of 1000ms everything should be fine
+    // There are 3 tests lasting ~1s, with a timeout of 2s everything should be fine
     itRuns({
         testCase: 'clear timeout',
         exitCode: 0,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/slowTests/*.js', '--task-timeout', '1000'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/slowTests/*.js', '--task-timeout', '2000'],
         results: {
             run: 3,
             failures: 0,
@@ -356,11 +314,11 @@ describe('cli', function () {
         }
     });
 
-    // There are 3 tests lasting ~500ms, with a timeout of 200ms all of them should fail
+    // There are 3 tests lasting ~1s, with a timeout of <1s all of them should fail
     itRuns({
         testCase: 'timeout more tests',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/slowTests/*.js', '--task-timeout', '200'],
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/slowTests/*.js', '--task-timeout', '900'],
         results: {
             run: 3,
             failures: 0,

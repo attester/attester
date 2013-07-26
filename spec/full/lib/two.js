@@ -13,10 +13,21 @@
  * limitations under the License.
  */
 
-describe("a test that take some time to end", function () {
-    // Disable mocha timeout
-    this.timeout(0);
-    it("waits for about 2 seconds", function (callback) {
-        setTimeout(callback, 1000);
-    });
-});
+(function () {
+    'use strict';
+    var scope = this;
+
+    var Constructor = function (value) {
+        this.value = value;
+    };
+    Constructor.prototype.toNumber = function () {
+        return scope.Numbers[this.value] || NaN;
+    };
+    Constructor.prototype.dontCallIt = function () {
+        // This lines are intentionally useless, just to have a coverage !== 100
+        var one = 1;
+        var two = 2;
+        return one + two === false;
+    };
+    scope.LibraryOne = new Constructor('one');
+})();

@@ -1,0 +1,55 @@
+resources:
+  '/':
+    - src
+    - core
+  '/lib':
+    - lib
+  '/aria':
+    - '../../node_modules/ariatemplates/src/aria'
+  '/ariatest':
+    - 'tests/aria-templates'
+tests:
+  aria-templates:
+    files:
+      rootDirectory: 'tests'
+      includes:
+        - "aria-templates/**/*Test.js"
+      excludes:
+        - "**/*Invalid*"
+    bootstrap: '/aria/bootstrap.js'
+    debug: true
+    memCheckMode: true
+    extraScripts:
+      - /one.js
+      - /lib/two.js
+      - three.js
+  mocha:
+    files:
+      rootDirectory: 'tests'
+      includes:
+        - "mocha/**/*.js"
+    ui: bdd
+    ignoreLeaks: true
+    assertion: expect
+    extraScripts:
+      - /one.js
+      - /lib/two.js
+      - three.js
+coverage:
+  files:
+    includes:
+      - src/**/*.js
+      - core/**/*.js
+      - lib/**/*.js
+test-reports:
+  json-file: 'out/report.json'
+  xml-file: 'out/report.xml'
+  xml-directory: 'out/xml'
+coverage-reports:
+  json-file: 'out/coverage.json'
+  lcov-file: 'out/coverage.lcov'
+
+## Uncomment only if you want to try in your browser
+# browsers:
+#   - browserName: Chrome
+#   - browserName: IE

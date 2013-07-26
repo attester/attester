@@ -1,0 +1,29 @@
+{
+	"head": [
+		{
+			"tagName": "link",
+			"href": "<%= data.type %>/lib/mocha.css"
+		},
+		{
+			"tagName": "script",
+			"src": "<%= data.type %>/lib/mocha.js"
+		},
+		{
+			"tagName": "script",
+			"src": "<%= data.type %>/client/launcher.js",
+			"id": "script_launcher",
+			"content": "<%= data.baseURL %>/<%= data.type %>/tests/<%= query.name %>"
+		},
+		{
+			"tagName": "script",
+			"src": "<%= data.type %>/client/connector.js"
+		},
+		{
+			"tagName": "script",
+			"content": "mocha.setup(<%= data.config.mochaSetup %>);"
+		}
+	],
+	"body": [
+		"<div id='mocha'></div>"
+	]
+}

@@ -14,7 +14,9 @@
  */
 
 describe("a test that take some time to end", function () {
-	it("waits for about half second", function (callback) {
-		setTimeout(callback, 500);
-	})
+	// Disable mocha timeout
+	this.timeout(0);
+	it("waits for about 2 seconds", function (callback) {
+		setTimeout(callback, 1000);
+	});
 });
