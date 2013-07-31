@@ -60,10 +60,10 @@ if (argv.version) {
 var filtered = {};
 // Don't really care about these options because they are alias or handled differently
 merge(filtered, argv, ["j", "p", "version", "help", "_", "env", "config", "$0"]);
-attester.config.set(filtered);
 if (argv.env) {
-    attester.config.set("env", attester.config.readFile(argv.env));
+    filtered.env = attester.config.readFile(argv.env);
 }
+attester.config.set(filtered);
 
 if (argv._.length === 0) {
     // Didn't specify a file, run a campaign with values from the config
