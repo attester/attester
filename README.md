@@ -24,12 +24,12 @@ Features
    * [lcov](http://ltp.sourceforge.net/coverage/lcov/geninfo.1.php) file, accepted by [Sonar](http://www.sonarsource.org/) *(currently only for line coverage)*
 * Supports [Aria Templates](http://ariatemplates.com/) unit tests and [Mocha](http://visionmedia.github.com/mocha/) with either [Chai](http://chaijs.com/) or [Expect.js](https://github.com/LearnBoost/expect.js/).
 * Adding support for other test frameworks is as simple as adding an adapter for that test framework.
-* [![Build Status](https://secure.travis-ci.org/ariatemplates/attester.png)](http://travis-ci.org/ariatemplates/attester)
+* [![Build Status](https://secure.travis-ci.org/attester/attester.png)](http://travis-ci.org/attester/attester)
 
 License
 -------
 
-[Apache License 2.0](https://github.com/ariatemplates/attester/blob/master/LICENSE)
+[Apache License 2.0](https://github.com/attester/attester/blob/master/LICENSE)
 
 Dependencies & installation
 ---------------------------
@@ -258,7 +258,7 @@ run tests manually.
 **Advanced options**
 
 `--json-console` When enabled, JSON objects will be sent to `stdout` to provide information about tests.
-This is used by the [junit bridge](https://github.com/ariatemplates/attester-junit).
+This is used by the [junit bridge](https://github.com/attester/attester-junit).
 
 `--heartbeats` Delay (in ms) for heartbeats messages sent when `--json-console` is enabled. Use `0` to disable them.
 
