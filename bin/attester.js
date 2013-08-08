@@ -58,6 +58,35 @@ if (argv.version) {
     return;
 }
 
+/**
+ * When attester is called from the command line we should also exit the proces when
+ * everything is done
+ */
+attester.event.once("attester.core.idle", finish);
+attester.event.once("attester.core.fail", fail);
+
+function finish() {
+    checkConfigAndEndProcess(0);
+}
+
+function fail() {
+    checkConfigAndEndProcess(1);
+}
+
+function checkConfigAndEndProcess(code) {
+    if (attester.config["shutdown-on-campaign-end"]) {
+        endProcess(code);
+    } else {
+        attester.logger.logInfo("Idle; press CTRL-C to end the process.");
+    }
+}
+
+function endProcess(code) {
+    attester.dispose(function () {
+        exitProcess(code);
+    });
+}
+
 // Global configuration for attester
 var filtered = {};
 // Don't really care about these options because they are alias or handled differently
