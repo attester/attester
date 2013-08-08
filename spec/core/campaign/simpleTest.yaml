@@ -1,0 +1,11 @@
+resources:
+  /:
+    - spec/core/campaign
+tests:
+  mocha:
+    extraScripts:
+      - /say.js
+    files:
+      rootDirectory: spec/core/campaign
+      includes:
+        - test*.js
