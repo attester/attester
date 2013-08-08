@@ -1,0 +1,12 @@
+resources:
+  /:
+    - spec/plugins/campaign/lib
+tests:
+  mocha:
+    files:
+      rootDirectory: spec/plugins/campaign
+      includes:
+        - test/*.js
+    assert: expect
+    extraScripts:
+      - /library.js

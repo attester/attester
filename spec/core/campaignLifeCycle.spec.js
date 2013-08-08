@@ -57,23 +57,22 @@ describe("campaign life-cycle", function () {
         events["core.fail"] = 0;
         events["core.idle"] = 0;
         attester.event.on("attester.*.*", rememberEvents);
-        // Disconnect also the command line that would close the process
-        attester.cli.__reset__();
         writeReportsCalled = 0;
         campaigns = [];
         attester.event.on("attester.campaign.created", storeCampaign);
     });
 
-    afterEach(function () {
+    afterEach(function (done) {
         attester.server.create = originalStart;
-        attester.server.__init__();
         attester.reports.writeReports = originalWrite;
-        attester.cli.__init__();
         attester.event.off("attester.*.*", rememberEvents);
         attester.event.off("attester.campaign.created", storeCampaign);
+        attester.__reset__(done);
     });
 
     it("should end properly", function () {
+        console.log("test #core/campaignLifeCycle end properly");
+
         // The command line might create campaigns before we call start
         attester.campaign.create({
             "/": "one"
@@ -122,6 +121,8 @@ describe("campaign life-cycle", function () {
     });
 
     it("should end with errors", function () {
+        console.log("test #core/campaignLifeCycle end in error");
+
         attester.campaign.create({
             "/": "error"
         });
