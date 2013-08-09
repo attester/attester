@@ -11,6 +11,7 @@
     "bin": {
         "attester": "bin/attester.js"
     },
+    "main": "./lib/attester.js",
     "dependencies": {
         "colors": "0.6.1",
         "connect": "2.7.8",
