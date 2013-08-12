@@ -56,6 +56,27 @@ if (argv.version) {
     return;
 }
 
+/**
+ * When attester is called from the command line we should also exit the proces when
+ * everything is done
+ */
+attester.event.once("attester.core.idle", finish);
+attester.event.once("attester.core.fail", fail);
+
+function finish() {
+    endProcess(0);
+}
+
+function fail() {
+    endProcess(1);
+}
+
+function endProcess(code) {
+    attester.dispose(function () {
+        exitProcess(code);
+    });
+}
+
 // Global configuration for attester
 var filtered = {};
 // Don't really care about these options because they are alias or handled differently
