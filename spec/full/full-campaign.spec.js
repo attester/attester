@@ -17,7 +17,7 @@
 var path = require("path");
 var fs = require("fs");
 
-var xml2json = require("xml2json");
+var xml2js = require("xml2js");
 var rimraf = require("rimraf");
 
 var utils = require("../test-utils");
@@ -64,7 +64,10 @@ describe("Complete test suite", function () {
             expect(lcov.indexOf("DA:30,0")).not.toBe(-1);
 
             // xml report
-            var xml = JSON.parse(xml2json.toJson(fs.readFileSync(path.join(__dirname, "out/report.xml"))));
+            var xml;
+            xml2js.parseString(fs.readFileSync(path.join(__dirname, "out/report.xml")), function (err, res) {
+                xml = res;
+            });
             expect( !! xml.testsuite).toBe(true);
 
             // xml folder
