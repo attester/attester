@@ -264,6 +264,9 @@ This is used by the [junit bridge](https://github.com/attester/attester-junit).
 
 `--task-timeout` Maximum duration (in ms) for a test task.
 
+`--shutdown-on-campaign-end <boolean>` When set to false, will not shut the server down nor exit the process upon finishing the campaign.
+Might be useful for debugging.
+
 **Configuration file options**
 
 Any option configurable through the configuration file can also be specified from the command line with the `--config` prefix.
