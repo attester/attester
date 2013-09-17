@@ -267,6 +267,8 @@ This is used by the [junit bridge](https://github.com/attester/attester-junit).
 `--shutdown-on-campaign-end <boolean>` When set to false, will not shut the server down nor exit the process upon finishing the campaign.
 Might be useful for debugging.
 
+`--predictable-urls <boolean>` If true, resources served by the campaign have predictable URLs (campaign1, campaign2...). Otherwise, the campaign part in the URL is campaign ID.
+
 **Configuration file options**
 
 Any option configurable through the configuration file can also be specified from the command line with the `--config` prefix.

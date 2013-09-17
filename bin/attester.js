@@ -20,7 +20,7 @@ var exitProcess = require('../lib/exit-process.js');
 var attester = require('../lib/attester.js');
 var merge = require('../lib/merge.js');
 
-var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean(['flash-policy-server', 'json-console', 'help', 'server-only', 'version', 'colors', 'ignore-errors', 'ignore-failures', 'shutdown-on-campaign-end']).string(['phantomjs-path']).describe({
+var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean(['flash-policy-server', 'json-console', 'help', 'server-only', 'version', 'colors', 'ignore-errors', 'ignore-failures', 'shutdown-on-campaign-end', 'predictable-urls']).string(['phantomjs-path']).describe({
     'browser': 'Path to any browser executable to execute the tests. Can be repeated multiple times.',
     'colors': 'Uses colors (disable with --no-colors).',
     'env': 'Environment configuration file. This file is available in the configuration object under env.',
@@ -35,6 +35,7 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'phantomjs-instances': 'Number of instances of PhantomJS to start.',
     'phantomjs-path': 'Path to PhantomJS executable.',
     'port': 'Port used for the web server. If set to 0, an available port is automatically selected.',
+    'predictable-urls': 'If true, resources served by the campaign have predictable URLs (campaign1, campaign2...). Otherwise, the campaign part in the URL is campaign ID. Useful for debugging.',
     'server-only': 'Only starts the web server, and configure it for the test campaign but do not start the campaign.',
     'shutdown-on-campaign-end': 'Once the campaign is finished, shut down the server and exit the process. Set this to false to facilitate debugging.',
     'slow-test-threshold': 'Threshold (in milliseconds) to mark long-running tests in the console report. Use 0 to disable.',
@@ -66,12 +67,13 @@ if (argv.env) {
 }
 attester.config.set(filtered);
 
+// argv._ is an array of file names to read campaign information from
 if (argv._.length === 0) {
     // Didn't specify a file, run a campaign with values from the config
-    attester.campaign.create({}, argv.config);
+    attester.campaign.create({}, argv.config, 1);
 } else {
-    argv._.forEach(function (campaign) {
-        attester.campaign.create(attester.config.readFile(campaign), argv.config);
+    argv._.forEach(function (campaign, n) {
+        attester.campaign.create(attester.config.readFile(campaign), argv.config, n+1);
     });
 }
 
