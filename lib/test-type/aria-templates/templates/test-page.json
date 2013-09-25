@@ -14,7 +14,7 @@
         },
         {
             "tagName": "script",
-            "src": "<%= data.type %>/run.js"
+            "src": "<%= data.getBaseURL() %>/run.js"
         }
     ],
     "body" : []

@@ -24,7 +24,9 @@ var BaseTestType = require("../../../lib/test-type/base-test-type");
 describe("base test type", function () {
     it("uses the correct middlewares", function (done) {
         var Type = function () {
-            BaseTestType.call(this, {}, {});
+            BaseTestType.call(this, {
+                baseURL: "/"
+            }, {});
 
             // Absolute path
             this.use("/client", function (req, res, next) {
@@ -49,19 +51,18 @@ describe("base test type", function () {
         Type.prototype.type = "";
 
         var testType = new Type();
-        testType.setBaseURL("/");
 
         test_utils.createServer(testType, "/there/might/be/stuff/", function (baseUrl, closeCallback) {
             assertRequests(baseUrl, [{
-                url: "client/lib.js",
+                url: "__attester__/client/lib.js",
                 body: "client said /lib.js"
             },
             {
-                url: "rooms/empty",
+                url: "__attester__/rooms/empty",
                 body: "joining room /empty"
             },
             {
-                url: "another/path",
+                url: "__attester__/another/path",
                 body: "in general /another/path"
             }], function () {
                 closeCallback(done);
@@ -72,7 +73,9 @@ describe("base test type", function () {
     it("uses the correct test page", function (done) {
         var Type = function () {
             // This time use some configuration
-            BaseTestType.call(this, {}, {
+            BaseTestType.call(this, {
+                baseURL: "/"
+            }, {
                 version: "1.0",
                 name: "attester"
             });
@@ -96,15 +99,14 @@ describe("base test type", function () {
         Type.prototype.type = "";
 
         var testType = new Type();
-        testType.setBaseURL("/");
 
         test_utils.createServer(testType, "/there/might/be/stuff/", function (baseUrl, closeCallback) {
             assertRequests(baseUrl, [{
-                url: "test.html?test=a.b.c",
+                url: "__attester__/test.html?test=a.b.c",
                 body: "a.b.c on version 1.0"
             },
             {
-                url: "interactive.html",
+                url: "__attester__/interactive.html",
                 body: "<h1>attester</h1><script type=\"loader\">{}</script>"
             }], function () {
                 closeCallback(done);
