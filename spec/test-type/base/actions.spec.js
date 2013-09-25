@@ -31,7 +31,7 @@ describe("start actions", function () {
         });
         var initDone = false;
         test_utils.createServer(testType, "/", function (baseUrl, closeCallback) {
-            var args = [pathUtil.join(__dirname, "phantomjs.js"), "--exit-when", "phantom_exit", baseUrl + "test.html"];
+            var args = [pathUtil.join(__dirname, "phantomjs.js"), "--exit-when", "phantom_exit", baseUrl + "__attester__/test.html"];
             test_utils.startPhantom(args, function (text) {
                 if (text.indexOf("TEST CONTENT: init done") !== -1) {
                     initDone = true;
@@ -54,7 +54,7 @@ describe("start actions", function () {
         }]);
         var initDone = false;
         test_utils.createServer(testType, "/", function (baseUrl, closeCallback) {
-            var args = [pathUtil.join(__dirname, "phantomjs.js"), "--exit-when", "phantom_exit", baseUrl + "test.html"];
+            var args = [pathUtil.join(__dirname, "phantomjs.js"), "--exit-when", "phantom_exit", baseUrl + "__attester__/test.html"];
             test_utils.startPhantom(args, function (text) {
                 if (text.indexOf("TEST CONTENT: two") !== -1) {
                     initDone = true;
@@ -115,7 +115,7 @@ describe("start actions", function () {
         }]);
         var initDone = false;
         test_utils.createServer(testType, "/", function (baseUrl, closeCallback) {
-            var args = [pathUtil.join(__dirname, "phantomjs.js"), "--exit-when", "phantom_exit", baseUrl + "test.html"];
+            var args = [pathUtil.join(__dirname, "phantomjs.js"), "--exit-when", "phantom_exit", baseUrl + "__attester__/test.html"];
             test_utils.startPhantom(args, function (text) {
                 if (text.indexOf("TEST CONTENT: one_two_three_four_five_seven_six_eight") !== -1) {
                     initDone = true;
@@ -131,7 +131,9 @@ describe("start actions", function () {
 function createType(headContent) {
     var Type = function () {
         // This time use some configuration
-        BaseTestType.call(this, {}, {});
+        BaseTestType.call(this, {
+            baseURL: "/"
+        }, {});
 
         // The base test logs the content of a test variable, we can then assert on it
         this.baseTestContent = {
@@ -154,7 +156,7 @@ function createType(headContent) {
         });
 
         this.use(staticFile.bind({
-            page: "/__attester__/iframe.js",
+            page: "iframe.js",
             path: pathUtil.join(__dirname, "../../../lib/test-server/client/iframe.js")
         }));
     };
@@ -163,7 +165,6 @@ function createType(headContent) {
     Type.prototype.type = "";
 
     var testType = new Type();
-    testType.setBaseURL("/");
 
     return testType;
 }

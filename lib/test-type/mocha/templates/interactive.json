@@ -2,11 +2,11 @@
 	"head": [
 		{
 			"tagName": "link",
-			"href": "<%= data.type %>/lib/mocha.css"
+			"href": "<%= data.getBaseURL() %>/lib/mocha.css"
 		},
 		{
 			"tagName": "script",
-			"src": "<%= data.type %>/lib/mocha.js"
+			"src": "<%= data.getBaseURL() %>/lib/mocha.js"
 		},
 		{
 			"tagName": "script",
@@ -14,9 +14,9 @@
 		},
 		{
 			"tagName": "script",
-			"src": "<%= data.type %>/client/launcher.js",
+			"src": "<%= data.getBaseURL() %>/client/launcher.js",
 			"id": "script_launcher",
-			"content": "<% print(_.map(data.testsTrees, function (script) { return data.baseURL + '/' + data.type + '/tests/' + encodeURI(script.name); }).join('|')) %>"
+			"content": "<% print(_.map(data.testsTrees, function (script) { return data.getBaseURL(true) + '/tests/' + encodeURI(script.name); }).join('|')) %>"
 		}
 	],
 	"body": [
