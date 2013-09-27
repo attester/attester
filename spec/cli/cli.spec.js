@@ -95,6 +95,42 @@ describe('cli', function () {
     });
 
     itRuns({
+        testCase: 'extraScripts properly inserted (1+1)',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ExtraScriptsTest', '--tests.aria-templates.extraScripts.before', '/test/attester/testFiles/before.js', '--tests.aria-templates.extraScripts.after', '/test/attester/testFiles/after2.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        }
+    });
+
+    itRuns({
+        testCase: 'extraScripts properly inserted (0+2)',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ExtraScriptsTest', '--tests.aria-templates.extraScripts.after', '/test/attester/testFiles/after1.js', '--tests.aria-templates.extraScripts.after', '/test/attester/testFiles/after2.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        }
+    });
+
+    itRuns({
+        testCase: 'extraScripts properly inserted (legacy)',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ExtraScriptsTest', '--tests.aria-templates.extraScripts', '/test/attester/testFiles/after1.js', '--tests.aria-templates.extraScripts', '/test/attester/testFiles/after2.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        }
+    });
+
+    itRuns({
         testCase: 'ignoreFailure',
         exitCode: 0,
         args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--ignore-failures', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
