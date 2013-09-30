@@ -1,7 +1,10 @@
 {
-	"head": [
+	"head-start": [
 		"<title><%= data.name %></title>",
-		"<% _.forEach(data.config.extraScripts, function (script) { %><script type=\"text/javascript\" src=\"<%= script %>\"></script><% }); %>"
+		"<% _.forEach(data.config.extraScripts.before, function (script) { %><script type=\"text/javascript\" src=\"<%= script %>\"></script><% }); %>"
+	],
+	"head-end": [
+		"<% _.forEach(data.config.extraScripts.after, function (script) { %><script type=\"text/javascript\" src=\"<%= script %>\"></script><% }); %>"
 	],
 	"body": []
 }
