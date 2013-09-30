@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 Aria.classDefinition({
     $classpath : 'test.attester.ExtraScriptsTest',
     $extends : 'aria.jsunit.TestCase',
@@ -25,6 +24,9 @@ Aria.classDefinition({
 
             // make sure that "after" and "legacy" files were inserted after `aria` was already defined
             this.assertEquals(ariaAfter2, aria);
+
+            // make sure that "before" files were inserted before `aria` was defined
+            this.assertEquals(ariaBefore, undefined);
         }
     }
 });
