@@ -35,6 +35,12 @@ describe('ATFileReader', function () {
         subTests: ['test.myCompany.firstModule.FirstModuleTestSuite', 'test.myCompany.secondModule.SearchTestCase', 'test.myCompany.secondModule.RetrieveTestCase']
     });
 
+    itShouldInterpret('OtherSimpleTestSuite.js', {
+        classpath: 'test.myCompany.MyTestSuite',
+        testSuite: true,
+        subTests: ['test.myCompany.firstModule.FirstModuleTestSuite', 'test.myCompany.secondModule.SearchTestCase', 'test.myCompany.secondModule.RetrieveTestCase']
+    });
+
     itShouldInterpret('TestSuiteUsingPackage.js', {
         classpath: 'test.myCompany.MyTestSuite',
         testSuite: true,
