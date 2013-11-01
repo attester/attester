@@ -131,6 +131,18 @@ describe('cli', function () {
     });
 
     itRuns({
+        testCase: 'extraScripts properly inserted (legacy; only one passed)',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ExtraScriptsSingleTest', '--tests.aria-templates.extraScripts', '/test/attester/testFiles/afterSingle.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        }
+    });
+
+    itRuns({
         testCase: 'ignoreFailure',
         exitCode: 0,
         args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFail', '--ignore-failures', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
