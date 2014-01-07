@@ -14,6 +14,12 @@
  */
 
 module.exports = function (grunt) {
+    // One may filter tests to be run; useful for debugging.
+    // Usage (any regexp should do):
+    //   grunt jasmine_node --grep=load_plugin
+    //   grunt jasmine_node --grep="(event.*|config)"
+    var grep = grunt.option('grep') || "";
+
     grunt.initConfig({
         jshint: {
             all : ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js', '!lib/**/html5shiv.js'],
@@ -27,6 +33,7 @@ module.exports = function (grunt) {
             tasks: ['dev']
         },
         jasmine_node: {
+            match : grep + ".", // "." is the default
             forceExit: true
         },
         beautify: {
