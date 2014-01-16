@@ -20,16 +20,14 @@ var attester = require("../../lib/attester");
 
 describe("core", function () {
     afterEach(function (done) {
-        attester.__reset__(done);
+        attester.__reset__().then(done);
     });
 
     it("reset", function (done) {
         // Start a campaign and then reset attester, both should work properly
         startCampaign(function () {
-            attester.__reset__(function () {
-                startCampaign(function () {
-                    done();
-                });
+            attester.__reset__().then(function () {
+                startCampaign(done);
             });
         });
     });

@@ -22,7 +22,7 @@ var utils = require("../test-utils");
 
 describe("plugins", function () {
     beforeEach(function (done) {
-        attester.__reset__(done);
+        attester.__reset__().then(done);
     });
 
     it("loaded before the start", function (done) {

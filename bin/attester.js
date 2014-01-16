@@ -82,7 +82,8 @@ function checkConfigAndEndProcess(code) {
 }
 
 function endProcess(code) {
-    attester.dispose(function () {
+    attester.dispose().then(function () {
+        attester.logger.logDebug("Attester disposed, exiting with code " + code);
         exitProcess(code);
     });
 }

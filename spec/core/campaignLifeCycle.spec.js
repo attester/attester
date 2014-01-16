@@ -67,7 +67,7 @@ describe("campaign life-cycle", function () {
         attester.reports.writeReports = originalWrite;
         attester.event.off("attester.*.*", rememberEvents);
         attester.event.off("attester.campaign.created", storeCampaign);
-        attester.__reset__(done);
+        attester.__reset__().then(done);
     });
 
     it("should end properly", function () {

@@ -76,11 +76,11 @@ describe("plugin configuration", function () {
 
     // As a shortcut, set the configuration also from plugins.require
     describe("plugins.require", function () {
-        beforeEach(function () {
-            attester.plugins.__reset__();
+        beforeEach(function (done) {
+            attester.plugins.__reset__().then(done);
         });
-        afterEach(function () {
-            attester.plugins.__reset__();
+        afterEach(function (done) {
+            attester.plugins.__reset__().then(done);
         });
 
         it("sets the configuration", function () {

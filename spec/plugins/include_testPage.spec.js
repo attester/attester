@@ -17,11 +17,11 @@
 var attester = require("../../lib/attester");
 
 describe("include testPage", function () {
-    beforeEach(function () {
-        attester.testPage.__reset__();
+    beforeEach(function (done) {
+        attester.testPage.__reset__().then(done);
     });
-    afterEach(function () {
-        attester.testPage.__reset__();
+    afterEach(function (done) {
+        attester.testPage.__reset__().then(done);
     });
 
     it("some content", function () {
