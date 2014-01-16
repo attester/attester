@@ -21,11 +21,11 @@ var attester = require("../../lib/attester");
 var config = attester.config;
 
 describe("read configuration files", function () {
-    beforeEach(function () {
-        attester.logger.__reset__();
+    beforeEach(function (done) {
+        attester.logger.__reset__().then(done);
     });
-    afterEach(function () {
-        attester.logger.__reset__();
+    afterEach(function (done) {
+        attester.logger.__reset__().then(done);
     });
 
     it("should read yml files", function () {

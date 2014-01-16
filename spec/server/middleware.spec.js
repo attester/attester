@@ -22,7 +22,7 @@ var attester = require("../../lib/attester");
 
 describe("server", function () {
     beforeEach(function (done) {
-        attester.__reset__(done);
+        attester.__reset__().then(done);
     });
 
     it("middleware before create", function (done) {

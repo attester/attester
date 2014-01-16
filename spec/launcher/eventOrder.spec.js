@@ -30,10 +30,11 @@ describe("order of events", function () {
         event.once("launcher.connect", storeEvent);
     });
 
-    afterEach(function () {
+    afterEach(function (done) {
         // Restore the launcher to the initial state
-        attester.launcher.__reset__();
-        attester.launcher.__init__();
+        attester.launcher.__reset__().then(function () {
+            attester.launcher.__init__();
+        }).then(done);
     });
 
     it("should respect ordered events", function (done) {
