@@ -247,7 +247,7 @@ At the end of the tests, all started processes are killed.
 `--server-only` Only starts the web server, and configure it for the test campaign but do not start the campaign. This is useful to
 run tests manually.
 
-`--log-level <number>` Level of logging: integer from `0` (no logging) to `4` (debug).
+`--log-level <number>` Level of logging: integer from `0` (no logging) to `5` (trace).
 
 `--colors` Uses colors (disable with --no-colors).
 

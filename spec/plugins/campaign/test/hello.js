@@ -1,3 +1,4 @@
+/* globals describe, it, beforeEach, afterEach, expect, sourceLibrary */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +14,8 @@
  * limitations under the License.
  */
 
-/**
- * Disable cache for every request
- */
-module.exports = function (req, res, next) {
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', (new Date(0)).toString());
-    next();
-};
+describe("custom library", function () {
+	it("says something", function () {
+		expect(sourceLibrary("you")).to.be("hello you you");
+	});
+});
