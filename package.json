@@ -23,7 +23,7 @@
         "portfinder": "0.2.1",
         "send": "0.1.0",
         "socket.io": "0.9.16",
-        "ua-parser": "0.3.3",
+        "ua-parser-snapshot": "0.3.201404031741",
         "noder-js": "1.2.0-rc1",
         "uglify-js": "2.4.12",
         "eventemitter2": "git+https://github.com/piuccio/EventEmitter2.git#wildcard_listeners"
