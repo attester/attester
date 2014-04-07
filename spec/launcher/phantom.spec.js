@@ -17,6 +17,7 @@
 var pathUtil = require("path");
 var http = require("http");
 
+var phantomLauncher = require("../../lib/launchers/phantom");
 var test_utils = require("../test-utils");
 
 /**
@@ -28,23 +29,45 @@ var test_utils = require("../test-utils");
  * - auto-exit if the page is not loaded correctly
  */
 
-function startPhantom(requestListener, callback, wait) {
+function startPhantom(requestListener, callback, wait, startCfg) {
+    startCfg = startCfg || {};
     // If wait is specified, it calls the callback 'wait' ms after server.listening
     // Otherwise the callback is called on phantom.exit
     var server = http.createServer(requestListener).listen(0);
     server.on("listening", function () {
-        var page = "http://localhost:" + server.address().port;
-        var args = [pathUtil.join(__dirname, '../../lib/browsers/phantomjs.js'), "--auto-exit", "--auto-exit-polling=400", page];
-
-        var messages = [];
-        var onData = function (text) {
-            messages.push(text);
+        var instanceId = Math.round(Math.random() * 1000) % 1000;
+        var state = {
+            retries: [],
+            erroredPhantomInstances: 0
         };
-        var onExit = wait ?
-        function () {} : function (code) {
+
+        var messages = []; // stores stdout for later inspection in test cases
+        var cfg = {
+            maxRetries: startCfg.maxRetries || 0,
+            phantomPath: "phantomjs",
+            slaveURL: "http://localhost:" + server.address().port,
+            pipeStdOut: false,
+            phantomInstances: 1,
+            args: {
+                autoExitPolling: startCfg.autoExitPolling || 200
+            },
+            onData: function (data) {
+                var text = data.toString().trim();
+                messages.push(text);
+                // console.log(text); // uncomment for debugging
+            },
+            onAllPhantomsDied: startCfg.onAllPhantomsDied
+        };
+        cfg.onExit = wait ? (function () {}) : function (code) {
+            if (cfg.maxRetries > 0) {
+                // add the original onexit callback only if explicitly asked for
+                var originalOnExit = phantomLauncher.createPhantomExitCb(cfg, state, instanceId).bind(phantomLauncher);
+                originalOnExit(code);
+            }
             callback(code, messages);
         };
-        var phantomProcess = test_utils.startPhantom(args, onData, onExit);
+
+        var phantomProcess = phantomLauncher.bootPhantom(cfg, state, instanceId);
         if (wait) {
             setTimeout(function () {
                 phantomProcess.kill();
@@ -91,7 +114,7 @@ describe("Phantom control script", function () {
             // Nothing
         };
         startPhantom(requestListener, function (code, messages) {
-            expect(hasMessage("no reply from server after", messages)).toEqual(true);
+            expect(hasMessage("Timed out after waiting", messages)).toEqual(true);
             done();
         });
     });
@@ -119,9 +142,46 @@ describe("Phantom control script", function () {
         // Wait just a while to let other error raise
         startPhantom(requestListener, function (code, messages) {
             expect(hasMessage("opening URL", messages)).toEqual(true);
-            expect(messages.length).toEqual(1);
+            expect(messages.length).toEqual(3);
             done();
         }, 2000);
+    });
+
+
+    it("tries to reboot itself max. 3 times", function (done) {
+        var requestListener = function (request, response) {
+            response.writeHead(200, {
+                "Content-Type": "text/html"
+            });
+            response.end("<html><head><script>var attester={connected:true};</script></head><body></body></html>");
+        };
+
+        // The idea is to set extremely low autoExitPolling => enforce timeout when loading.
+        // When phantom fails to load on time, it should exit, respawn itself and try again.
+        // This should happen exactly `phantomMaxRetries` times.
+        // After that, `onAllPhantomsDied` callback should be called.
+        console.log('\n---------------------------------------');
+        console.log("PhantomJS auto-reboot test");
+        console.log('---------------------------------------');
+        console.log("Expecting PhantomJS exit errors and reboots when connecting to attester...");
+        var phantomMaxRetries = 3;
+        var timesPhantomExitCbCalled = 0;
+        var onPhantomExit = function (code, messages) {
+            expect(hasMessage("Timed out after waiting", messages)).toEqual(true);
+            timesPhantomExitCbCalled++;
+        };
+        var onAllPhantomsDied = function () {
+            // we want this to be run after the last call to onPhantomExit, hence nextTick
+            process.nextTick(function () {
+                expect(timesPhantomExitCbCalled).toEqual(phantomMaxRetries);
+                done();
+            });
+        };
+        startPhantom(requestListener, onPhantomExit, null, {
+            autoExitPolling: 1,
+            maxRetries: phantomMaxRetries,
+            onAllPhantomsDied: onAllPhantomsDied
+        });
     });
 
     it("reports an error", function (done) {
@@ -144,7 +204,7 @@ describe("Phantom control script", function () {
         };
         startPhantom(requestListener, function (code, messages) {
             expect(hasMessage("Induced exception (uncaught error received by PhantomJS)", messages)).toEqual(true);
-            expect(messages.length).toEqual(2);
+            expect(messages.length).toEqual(4);
             done();
         }, 2000);
     });

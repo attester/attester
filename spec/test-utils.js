@@ -33,6 +33,7 @@ exports.createServer = function (fromType, extraPath, callback) {
     });
 };
 
+// Deprecated, use /attester/lib/launchers/phantom:bootPhantom which is more generic
 exports.startPhantom = function (args, onData, onExit) {
     var phantomProcess = spawn("phantomjs", args, {
         stdio: "pipe"
@@ -47,7 +48,6 @@ exports.startPhantom = function (args, onData, onExit) {
     });
     return phantomProcess;
 };
-
 
 var execPath = path.join(__dirname, '../bin/attester.js');
 exports.runFromCommandLine = function (options, onExit) {
