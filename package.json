@@ -24,21 +24,21 @@
         "send": "0.1.0",
         "socket.io": "0.9.16",
         "ua-parser": "0.3.3",
-        "noder-js": "1.2.0-rc1",
+        "noder-js": "1.2.1",
         "uglify-js": "2.4.12",
-        "eventemitter2": "git+https://github.com/piuccio/EventEmitter2.git#wildcard_listeners"
+        "eventemitter2": "0.4.13"
     },
     "devDependencies": {
-        "ariatemplates": "1.4.6",
+        "ariatemplates": "1.5.1",
         "chai": "1.7.2",
         "expect.js": "0.2.0",
         "grunt": "0.4.1",
         "grunt-beautify": "git+https://github.com/ariatemplates/grunt-beautify.git#grunt4",
         "grunt-cli": "0.1.9",
-        "grunt-contrib-jshint": "0.3.0",
+        "grunt-contrib-jshint": "0.10.0",
         "grunt-contrib-watch": "0.4.4",
         "grunt-jasmine-node": "0.1.0",
-        "jasmine-node": "1.10.1",
+        "jasmine-node": "1.14.3",
         "mocha": "1.8.1",
         "xml2js": "0.2.8",
         "rimraf": "2.2.2"
