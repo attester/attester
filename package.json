@@ -22,6 +22,7 @@
         "node-coverage": "1.0.7",
         "optimist": "0.6.0",
         "portfinder": "0.2.1",
+        "q": "1.0.0",
         "send": "0.1.0",
         "socket.io": "0.9.16",
         "ua-parser-snapshot": "0.3.201404031741",

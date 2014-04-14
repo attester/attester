@@ -18,11 +18,11 @@ var attester = require("../../lib/attester");
 var config = attester.config;
 
 describe("Parse internal configuration values", function () {
-    beforeEach(function () {
-        config.__reset__();
+    beforeEach(function (done) {
+        config.__reset__().then(done);
     });
-    afterEach(function () {
-        config.__reset__();
+    afterEach(function (done) {
+        config.__reset__().then(done);
     });
     it("should parse one level properties", function () {
         var configValue = {
