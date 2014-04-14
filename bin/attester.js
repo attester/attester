@@ -16,7 +16,7 @@
 
 var optimist = require('optimist');
 
-var exitProcess = require('../lib/exit-process.js');
+var exitProcess = require('exit');
 var attester = require('../lib/attester.js');
 var merge = require('../lib/merge.js');
 
