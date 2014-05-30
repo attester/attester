@@ -18,8 +18,6 @@ var path = require("path");
 
 var attester = require("../../lib/attester");
 
-var utils = require("../test-utils");
-
 describe("plugins", function () {
     beforeEach(function (done) {
         attester.__reset__().then(done);
