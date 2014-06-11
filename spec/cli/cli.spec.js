@@ -19,7 +19,7 @@ var utils = require("../test-utils");
 describe('cli', function () {
     var defaultTimeout = 10000;
     var path = require('path');
-    var child_process = require('../../lib/child-processes.js');
+    var child_process = require('../../lib/util/child-processes.js');
     var atFrameworkPath = path.dirname(path.dirname(require.resolve('ariatemplates')));
     var atTestsRoot = path.join(__dirname, 'at-root');
     var execPath = path.join(__dirname, '../../bin/attester.js');

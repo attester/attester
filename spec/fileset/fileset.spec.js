@@ -14,7 +14,7 @@
  */
 
 describe('FileSet', function () {
-    var FileSet = require('../../lib/fileset.js');
+    var FileSet = require('../../lib/util/files/fileset.js');
     var pathUtils = require('path');
     var testIndex = 0;
     var testRoot = pathUtils.join(__dirname, 'root');

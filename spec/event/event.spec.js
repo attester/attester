@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var emitter = require("../lib/attester/event");
+var emitter = require("../../lib/attester/event");
 
 describe("event emitter", function () {
     it("should forward an event", function () {

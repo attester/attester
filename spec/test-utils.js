@@ -18,7 +18,7 @@ var connect = require("connect");
 var path = require("path");
 
 var spawn = require("child_process").spawn;
-var child_process = require("../lib/child-processes");
+var child_process = require("../lib/util/child-processes");
 
 exports.createServer = function (fromType, extraPath, callback) {
     var handler = fromType.getHandler();

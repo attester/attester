@@ -14,7 +14,7 @@
  */
 
 describe('Resources', function () {
-    var Resources = require('../../lib/resources.js');
+    var Resources = require('../../lib/middlewares/resources.js');
     var path = require('path');
     var resourcesInstance = null;
 

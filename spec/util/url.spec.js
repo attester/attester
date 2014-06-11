@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var url = require("../lib/url");
+var url = require("../../lib/util/url");
 
 describe("URL", function () {
     it("normalization", function () {

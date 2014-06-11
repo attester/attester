@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
+var merge = require('../../lib/util/merge.js');
+
 describe('merge', function () {
-    merge = require('../lib/merge.js');
     it('should merge objects correctly', function () {
         var a = {
             a: 1,

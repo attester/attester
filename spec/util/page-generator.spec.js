@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var generator = require("../lib/page-generator");
+var generator = require("../../lib/util/page-generator");
 
 describe("Page generator", function () {
     beforeEach(function () {

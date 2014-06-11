@@ -18,7 +18,7 @@ var optimist = require('optimist');
 
 var exitProcess = require('exit');
 var attester = require('../lib/attester.js');
-var merge = require('../lib/merge.js');
+var merge = require('../lib/util/merge.js');
 
 var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean(['flash-policy-server', 'json-console', 'help', 'server-only', 'version', 'colors', 'ignore-errors', 'ignore-failures', 'shutdown-on-campaign-end', 'predictable-urls']).string(['phantomjs-path']).describe({
     'browser': 'Path to any browser executable to execute the tests. Can be repeated multiple times.',
