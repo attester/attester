@@ -50,7 +50,7 @@ describe('timeout', function () {
             return attesterFinished || okToContinue;
         }, 7000, 'some time');
         runs(function () {
-            utils.startPhantom([path.join(__dirname, '../../lib/browsers/phantomjs.js'), "--auto-exit", "--auto-exit-polling=2000", "http://localhost:7777/__attester__/slave.html"], function () {}, function (code) {
+            utils.startPhantom([path.join(__dirname, '../../lib/browsers/phantomjs-control-script.js'), "--auto-exit", "--auto-exit-polling=2000", "http://localhost:7777/__attester__/slave.html"], function () {}, function (code) {
                 phantomFinished = true;
             });
         });

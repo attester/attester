@@ -17,7 +17,7 @@
 var pathUtil = require("path");
 var http = require("http");
 
-var phantomLauncher = require("../../lib/launchers/phantom");
+var phantomLauncher = require("../../lib/launchers/phantom-launcher");
 var test_utils = require("../test-utils");
 
 /**

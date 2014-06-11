@@ -33,7 +33,7 @@ exports.createServer = function (fromType, extraPath, callback) {
     });
 };
 
-// Deprecated, use /attester/lib/launchers/phantom:bootPhantom which is more generic
+// Deprecated, use /attester/lib/launchers/phantom-launcher:bootPhantom which is more generic
 exports.startPhantom = function (args, onData, onExit) {
     var phantomProcess = spawn("phantomjs", args, {
         stdio: "pipe"
