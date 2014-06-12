@@ -1,4 +1,4 @@
-/*globals describe, it, runs, waitsFor, expect, beforeEach, afterEach */
+/*global window */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-var pathUtil = require("path");
 var http = require("http");
 
 var phantomLauncher = require("../../lib/launchers/phantom-launcher");
-var test_utils = require("../test-utils");
 
 /**
  * Test the main script that drives phantom.

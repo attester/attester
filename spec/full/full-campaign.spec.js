@@ -1,4 +1,3 @@
-/* globals expect, describe, it, beforeEach, afterEach, runs, waitsFor */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");

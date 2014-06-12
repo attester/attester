@@ -15,7 +15,6 @@
  */
 
 var path = require("path");
-var fs = require("fs");
 
 var attester = require("../../lib/attester");
 var config = attester.config;
@@ -61,7 +60,7 @@ describe("read configuration files", function () {
             }
         });
 
-        var read = config.readFile(path.join(__dirname, "files/invalid.yaml"));
+        config.readFile(path.join(__dirname, "files/invalid.yaml"));
         expect(messages.length).toEqual(1);
         expect(messages[0]).toContain("Unable to parse");
     });
@@ -74,7 +73,7 @@ describe("read configuration files", function () {
             }
         });
 
-        var read = config.readFile(path.join(__dirname, "files/invalid.json"));
+        config.readFile(path.join(__dirname, "files/invalid.json"));
         expect(messages.length).toEqual(1);
         expect(messages[0]).toContain("Unable to parse");
     });
@@ -87,7 +86,7 @@ describe("read configuration files", function () {
             }
         });
 
-        var read = config.readFile(path.join(__dirname, "files/missing_file"));
+        config.readFile(path.join(__dirname, "files/missing_file"));
         expect(messages.length).toEqual(1);
         expect(messages[0]).toContain("Error while opening");
     });

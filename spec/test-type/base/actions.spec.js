@@ -1,4 +1,4 @@
-/* globals attester, expect, describe, it, beforeEach, afterEach */
+/* globals window, document, attester */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");

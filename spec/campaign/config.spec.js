@@ -145,7 +145,7 @@ describe("read configuration files for campaign", function () {
         var read = campaign.create(config.readFile(configPath), null);
 
         expect(read.resources["/"]).toEqual(["here", "there"]);
-        expect(read.tests["aria-templates"].bootstrap).toEqual("/aria/aria-templates-" + attester.package.version + ".js");
+        expect(read.tests["aria-templates"].bootstrap).toEqual("/aria/aria-templates-" + attester['package'].version + ".js");
 
         // test also missing properties
         expect(read.paths.notReplacing).toEqual("<%= missing %>");

@@ -22,14 +22,17 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         jshint: {
-            all : ['package.json', 'grunt.js', 'lib/**/*.js', 'spec/**/*.spec.js', '!lib/**/html5shiv.js'],
-            options: {
-                eqnull: true,
-                sub : true
+            lib: ['package.json', 'grunt.js', 'lib/**/*.js', '!lib/**/html5shiv.js'],
+            options : grunt.file.readJSON('.jshintrc'),
+            specs : {
+                options : grunt.file.readJSON('.jshintrc-specs'), // merged on top of default config
+                files : {
+                    src : ['spec/**/*.spec.js']
+                }
             }
         },
         watch: {
-            files: ['<%= jshint.all %>'],
+            files: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>'],
             tasks: ['dev']
         },
         jasmine_node: {
@@ -37,7 +40,7 @@ module.exports = function (grunt) {
             forceExit: true
         },
         beautify: {
-            all: ['<%= jshint.all %>']
+            all: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>']
         },
         beautifier: {
             options: {

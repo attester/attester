@@ -1,4 +1,3 @@
-/* globals expect, describe, it, beforeEach, afterEach */
 /*
  * Copyright 2013 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +15,6 @@
 
 var util = require("util");
 var http = require("http");
-var connect = require("connect");
 
 var test_utils = require("../../test-utils");
 var BaseTestType = require("../../../lib/test-type/base-test-type");
