@@ -32,6 +32,7 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'ignore-failures': 'When enabled, test failures (anticipated errors) will not cause this process to return a non-zero value.',
     'json-console': 'When enabled, JSON objects will be sent to stdout to provide information about tests.',
     'log-level': 'Level of logging: integer from 0 (no logging) to 4 (debug).',
+    'max-task-restarts': 'Maximum number of times a task can be restarted (after being interrupted by a browser disconnection).',
     'phantomjs-instances': 'Number of instances of PhantomJS to start.',
     'phantomjs-path': 'Path to PhantomJS executable.',
     'port': 'Port used for the web server. If set to 0, an available port is automatically selected.',

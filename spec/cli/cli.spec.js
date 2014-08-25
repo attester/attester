@@ -335,9 +335,9 @@ describe('cli', function () {
     });
 
     itRuns({
-        testCase: 'browser disconnected',
+        testCase: 'browser disconnected (no restart)',
         exitCode: 1,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js'],
+        args: ['--max-task-restarts', '0', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js'],
         results: {
             run: 1,
             failures: 0,
@@ -345,6 +345,19 @@ describe('cli', function () {
             skipped: 0
         },
         hasErrors: ["Browser was disconnected"]
+    });
+
+    itRuns({
+        testCase: 'browser disconnected (1 restart)',
+        exitCode: 1,
+        args: ['--max-task-restarts', '1', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        },
+        hasErrors: ["Browser was disconnected", "Browser was disconnected"]
     });
 
     // There are 3 tests lasting ~1s, with a timeout of 2s everything should be fine

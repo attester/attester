@@ -30,7 +30,7 @@ describe('timeout', function () {
             utils.runFromCommandLine({
                 testCase: "timeout after disconnect",
                 timeout: 10000,
-                args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*Test.js', '--task-timeout', '500']
+                args: ['--max-task-restarts', '0', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*Test.js', '--task-timeout', '500']
             }, function (code, testExecution, errorMessages) {
                 attesterFinished = true;
                 expect(errorMessages.length).toEqual(1);
