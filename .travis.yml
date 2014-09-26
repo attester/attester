@@ -2,5 +2,13 @@ language: node_js
 node_js:
  - 0.8
 before_install:
- - ( cd .. && curl -L http://nodejs.org/dist/npm/npm-1.4.6.tgz | tar -zx && cd npm && node cli.js link -f )
+# Changing the /etc/hosts file is needed for the selenium Firefox driver to work correctly
+# (see https://code.google.com/p/selenium/issues/detail?id=3280)
+ - (echo "127.0.0.1 localhost" && cat /etc/hosts) > /tmp/hosts && sudo mv /tmp/hosts /etc/hosts
+ - npm install -g npm@1.4.21
  - npm --version
+ - phantomjs --version
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+addons:
+ firefox: "32.0"

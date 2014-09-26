@@ -37,6 +37,7 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'phantomjs-path': 'Path to PhantomJS executable.',
     'port': 'Port used for the web server. If set to 0, an available port is automatically selected.',
     'predictable-urls': 'If true, resources served by the campaign have predictable URLs (campaign1, campaign2...). Otherwise, the campaign part in the URL is campaign ID. Useful for debugging.',
+    'robot-browser': 'Specifies the browser that should be automatically started by the selenium-java-robot (either Firefox, Chrome, Safari or Internet Explorer).',
     'server-only': 'Only starts the web server, and configure it for the test campaign but do not start the campaign.',
     'shutdown-on-campaign-end': 'Once the campaign is finished, shut down the server and exit the process. Set this to false to facilitate debugging.',
     'slow-test-threshold': 'Threshold (in milliseconds) to mark long-running tests in the console report. Use 0 to disable.',

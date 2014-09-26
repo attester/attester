@@ -55,7 +55,9 @@ exports.runFromCommandLine = function (options, onExit) {
     console.log('Starting test: ' + options.testCase);
     console.log('---------------------------------------');
     var args = [execPath].concat(options.args || []);
-    args.push("--phantomjs-instances", "1");
+    if (options.phantomjs !== false) {
+        args.push("--phantomjs-instances", "1");
+    }
     var spawnOpts = options.spawnOpts || {};
     var timeoutID = null;
     var timedout = false;
