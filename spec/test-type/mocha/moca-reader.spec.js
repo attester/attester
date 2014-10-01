@@ -15,6 +15,7 @@
 
 describe("Mocha test type", function () {
     var mochaTestType = require('../../../lib/test-type/mocha/mocha-test-type.js');
+    mochaTestType = mochaTestType(require("../../../lib/attester"));
 
     it("should build the correct list of tests", function (callback) {
         var config = {
