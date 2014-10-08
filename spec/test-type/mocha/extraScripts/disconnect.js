@@ -14,12 +14,17 @@
  */
 
 describe("a test that disconnects the browser", function () {
-	it("should log an error", function () {
-		// Try to get the socket to close from the top iframe
-		var sockets = window.parent.io.sockets;
-		for (var host in sockets) {
-			// There should be only one
-			sockets[host].disconnect();
-		}
+	it("should log an error", function (callback) {
+		// This is done asynchronously so that the socket.io manager has time to send
+		// what's already prepared to be sent.
+		setTimeout(function () {
+			// Try to get the socket to close from the top iframe
+			var managers = window.parent.io.managers;
+			for (var host in managers) {
+				// There should be only one
+				managers[host].disconnect();
+			}
+			callback();
+		}, 10);
 	});
 });

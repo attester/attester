@@ -24,8 +24,6 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'browser': 'Path to any browser executable to execute the tests. Can be repeated multiple times.',
     'colors': 'Uses colors (disable with --no-colors).',
     'env': 'Environment configuration file. This file is available in the configuration object under env.',
-    'flash-policy-port': 'Port used for the built-in Flash policy server (needs --flash-policy-server). Can be 0 for a random port.',
-    'flash-policy-server': 'Whether to enable the built-in Flash policy server.',
     'heartbeats': 'Delay (in ms) for heartbeats messages sent when --json-console is enabled. Use 0 to disable them.',
     'help': 'Displays this help message and exits.',
     'ignore-errors': 'When enabled, test errors (not including failures) will not cause this process to return a non-zero value.',
