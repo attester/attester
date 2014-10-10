@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var Browser = require("../../lib/test-campaign/Browser.js");
+var Browser = require("../../lib/test-campaign/browser.js");
 
 describe("parse browser config", function () {
 
