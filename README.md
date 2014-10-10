@@ -234,7 +234,7 @@ Additionally, a string `auto` can be passed to let the program use the optimal n
 `--robot-browser "<browser name>"` Name of the browser to automatically start with the [Selenium Java Robot](https://github.com/ariatemplates/selenium-java-robot).
 It can be: `Firefox`, `Chrome`, `Safari` or `Internet Explorer`.
 
-`--browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
+`--run-browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
 browsers or multiple instances of the same browser. Each browser is started with one parameter: the URL to open to start tests.
 At the end of the tests, all started processes are killed.
 
