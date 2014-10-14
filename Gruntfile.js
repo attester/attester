@@ -35,9 +35,12 @@ module.exports = function (grunt) {
             files: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>'],
             tasks: ['dev']
         },
-        jasmine_node: {
-            match : grep + ".", // "." is the default
-            forceExit: true
+        jasmine_node : {
+            options : {
+                match : grep + ".", // "." is the default
+                forceExit : true
+            },
+            all : ['spec/']
         },
         beautify: {
             all: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>']
