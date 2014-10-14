@@ -103,4 +103,20 @@ describe("parse browser config", function () {
         });
     });
 
+    describe("non-standard input tests", function () {
+        it("should return empty object (unrestricted browser) for empty input string", function () {
+            expect(Browser.parseBrowserConfig("")).toEqual({});
+        });
+
+        it("should return empty object (unrestricted browser) for null input string", function () {
+            expect(Browser.parseBrowserConfig(null)).toEqual({});
+        });
+
+        it("should return 'unparsable browser' for no match", function () {
+            expect(Browser.parseBrowserConfig("I have no idea what I'm passing")).toEqual({
+                browserName : "unparsable browser"
+            });
+        });
+    });
+
 });
