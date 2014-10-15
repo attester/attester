@@ -40,6 +40,7 @@
         "portfinder": "0.2.1",
         "q": "1.0.0",
         "selenium-java-robot": "0.0.4",
+        "semver": "2.3.1",
         "send": "0.9.3",
         "socket.io": "1.1.0",
         "ua-parser-snapshot": "0.3.201404031741",

@@ -131,28 +131,27 @@ browsers:
   # and run each test only once (in whatever browser is connected)
   # However, if the browsers section is present, each test will be run once in each browser listed here.
   # (and browsers not listed here will have nothing to do if they are connected)
-  - browserName: 'PhantomJS'
-  - browserName: 'Chrome'
+  - 'PhantomJS'
+  - 'Opera'
   # It's possible to distinguish browsers by operating systems, read more below
-  - browserName: 'Firefox'
-    os: 'Windows 7'
-  - browserName: 'Firefox'
-    os: 'Desktop Linux'
-  - browserName: 'Firefox'
-    os: 'Android'
-  - browserName: 'Opera'
-  - browserName: 'Safari'
+  - 'Safari on Mac OS X'
+  - 'Chrome on Windows 7'
+  - 'Chrome on Desktop Linux'
+  - 'Chrome on Android'
   # It is also possible to distinguish several versions of the same browser:
-  - browserName: 'IE'
-    majorVersion: 7
-  - browserName: 'IE'
-    majorVersion: 8
-  - browserName: 'IE'
-    majorVersion: 9
-  - browserName: 'IE'
-    majorVersion: 10
-  # Note that 'minorVersion' and 'revision' are also available
-  # The 'name' property allows to change the display name of the browser in the reports.
+  - 'IE 7'
+  - 'IE 8'
+  - 'IE 9'
+  - 'IE 10'
+  # Browser version can be also a semver-compliant string; see https://github.com/isaacs/node-semver
+  - 'Firefox 3.6'
+  - 'Firefox >=20'
+  # In the logs, browser will be identified using the name, version and OS as provided. If you want to change that, add an alias at the end using 'as':
+  - 'Chrome 28 as Chrome Stable 28'
+  - 'Chrome 30 as Chrome Canary 30'
+  # You can mix all of that options, and have whitespace as you see fit.
+  - 'Firefox >=25 on Windows 7 as Firefox/Windows'
+  - 'Firefox >=25 on Ubuntu    as Firefox/Ubuntu'
 ```
 
 #### Regarding browser detection by operating system:
@@ -235,7 +234,7 @@ Additionally, a string `auto` can be passed to let the program use the optimal n
 `--robot-browser "<browser name>"` Name of the browser to automatically start with the [Selenium Java Robot](https://github.com/ariatemplates/selenium-java-robot).
 It can be: `Firefox`, `Chrome`, `Safari` or `Internet Explorer`.
 
-`--browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
+`--run-browser <path>` Path to any browser executable to execute the tests. Can be repeated multiple times to start multiple
 browsers or multiple instances of the same browser. Each browser is started with one parameter: the URL to open to start tests.
 At the end of the tests, all started processes are killed.
 
