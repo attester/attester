@@ -244,6 +244,10 @@ At the end of the tests, all started processes are killed.
 
 `--ignore-failures` When enabled, test failures (anticipated errors) will not cause this process to return a non-zero value.
 
+`--live-results` When enabled (which is the default, disable with --no-live-results), it is possible to connect to attester with
+an external program to get live test results. Note that, when enabled, this feature keeps the full log of test results in memory,
+which increases the memory consumption of attester.
+
 `--port <number>` Port used for the internal web server. If set to `0` (default), an available port is automatically selected.
 
 `--server-only` Only starts the web server, and configure it for the test campaign but do not start the campaign. This is useful to
