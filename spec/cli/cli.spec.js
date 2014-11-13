@@ -189,6 +189,19 @@ describe('cli', function () {
     });
 
     itRuns({
+        testCase: 'missingClasspath',
+        exitCode: 1,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'classpath.which.does.not.exist', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js'],
+        results: {
+            run: 0,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        },
+        hasErrors: ["Missing classpath"]
+    });
+
+    itRuns({
         testCase: 'mocha succeeds',
         exitCode: 0,
         args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*.js', '--config.tests.mocha.files.excludes', '**/syntaxError*', '--config.tests.mocha.files.excludes', '**/*.txt'],
