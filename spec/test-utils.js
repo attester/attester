@@ -54,7 +54,7 @@ exports.runFromCommandLine = function (options, onExit) {
     console.log('\n---------------------------------------');
     console.log('Starting test: ' + options.testCase);
     console.log('---------------------------------------');
-    var args = [execPath].concat(options.args || []);
+    var args = [execPath].concat(options.args || []).concat(["--colors"]);
     if (options.phantomjs !== false) {
         args.push("--phantomjs-instances", "1");
     }
