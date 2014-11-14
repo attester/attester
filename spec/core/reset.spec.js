@@ -23,6 +23,9 @@ describe("core", function () {
     });
 
     it("reset", function (done) {
+        console.log("\n---------------------------------------");
+        console.log("Starting #core/campaign/reset");
+        console.log("---------------------------------------");
         // Start a campaign and then reset attester, both should work properly
         startCampaign(function () {
             attester.__reset__().then(function () {
@@ -34,6 +37,7 @@ describe("core", function () {
 
 function startCampaign(callback) {
     attester.config.set({
+        "colors": true,
         "phantomjs-instances": 1
         // enable debug logging
         //, "log-level": 4
