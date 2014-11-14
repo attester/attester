@@ -23,10 +23,13 @@ describe("plugins", function () {
     });
 
     it("loaded before the start", function (done) {
-        console.log("test #plugins/load_plugins before start");
+        console.log("\n---------------------------------------");
+        console.log("Starting #plugins/load_plugins before start");
+        console.log("---------------------------------------");
 
         // This is what the user would do in a module
         attester.config.set({
+            "colors" : true,
             "phantomjs-instances": 1
             // enable debug logging
             //, "log-level": 4
@@ -49,9 +52,12 @@ describe("plugins", function () {
     });
 
     it("loaded after the start", function (done) {
-        console.log("test #plugins/load_plugins after start");
+        console.log("\n---------------------------------------");
+        console.log("Starting #plugins/load_plugins after start");
+        console.log("---------------------------------------");
 
         attester.config.set({
+            "colors" : true,
             "phantomjs-instances": 1
             // enable debug logging
             //, "log-level": 4

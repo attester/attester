@@ -59,6 +59,11 @@ describe("campaign life-cycle", function () {
         writeReportsCalled = 0;
         campaigns = [];
         attester.event.on("attester.campaign.created", storeCampaign);
+
+        // enable colored output
+        attester.config.set({
+            colors : true
+        });
     });
 
     afterEach(function (done) {
@@ -70,7 +75,9 @@ describe("campaign life-cycle", function () {
     });
 
     it("should end properly", function () {
-        console.log("test #core/campaignLifeCycle end properly");
+        console.log("\n---------------------------------------");
+        console.log("Starting #core/campaignLifeCycle: end properly with two campaigns");
+        console.log("---------------------------------------");
 
         // The command line might create campaigns before we call start
         attester.campaign.create({
@@ -120,7 +127,9 @@ describe("campaign life-cycle", function () {
     });
 
     it("should end with errors", function () {
-        console.log("test #core/campaignLifeCycle end in error");
+        console.log("\n---------------------------------------");
+        console.log("Starting #core/campaignLifeCycle: end in error with two campaigns");
+        console.log("---------------------------------------");
 
         attester.campaign.create({
             "/": "error"

@@ -16,6 +16,7 @@
 
 var http = require("http");
 
+var attester = require("../../lib/attester");
 var phantomLauncher = require("../../lib/launchers/phantom-launcher");
 
 /**
@@ -85,6 +86,12 @@ function hasMessage(needle, haystack) {
 }
 
 describe("Phantom control script", function () {
+    beforeEach(function () {
+        attester.config.set({
+            colors : true
+        });
+    });
+
     it("loads a page in error", function (done) {
         var requestListener = function (request, response) {
             response.writeHead(505);
