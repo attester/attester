@@ -29,7 +29,7 @@ describe("plugins", function () {
 
         // This is what the user would do in a module
         attester.config.set({
-            "colors" : true,
+            "colors": true,
             "phantomjs-instances": 1
             // enable debug logging
             //, "log-level": 4
@@ -57,7 +57,7 @@ describe("plugins", function () {
         console.log("---------------------------------------");
 
         attester.config.set({
-            "colors" : true,
+            "colors": true,
             "phantomjs-instances": 1
             // enable debug logging
             //, "log-level": 4

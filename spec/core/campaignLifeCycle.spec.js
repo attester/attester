@@ -62,7 +62,7 @@ describe("campaign life-cycle", function () {
 
         // enable colored output
         attester.config.set({
-            colors : true
+            colors: true
         });
     });
 

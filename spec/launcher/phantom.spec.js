@@ -88,7 +88,7 @@ function hasMessage(needle, haystack) {
 describe("Phantom control script", function () {
     beforeEach(function () {
         attester.config.set({
-            colors : true
+            colors: true
         });
     });
 
