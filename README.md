@@ -253,6 +253,12 @@ which increases the memory consumption of attester.
 `--server-only` Only starts the web server, and configure it for the test campaign but do not start the campaign. This is useful to
 run tests manually.
 
+`--max-task-restarts <number>` Maximum number of times a task can be restarted after being interrupted by a browser disconnection (default: 5).
+
+`--task-restart-on-failure` When enabled, failing tasks are also automatically restarted as if the browser was disconnected.
+This option is especially useful for test campaigns which are not very stable, containing tests which can randomly fail (even if, of course,
+having randomly failing tests in a test suite is not recommended!).
+
 `--log-level <number>` Level of logging: integer from `0` (no logging) to `5` (trace).
 
 `--colors` Uses colors (disable with --no-colors).

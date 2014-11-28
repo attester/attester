@@ -40,6 +40,7 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'server-only': 'Only starts the web server, and configure it for the test campaign but do not start the campaign.',
     'shutdown-on-campaign-end': 'Once the campaign is finished, shut down the server and exit the process. Set this to false to facilitate debugging.',
     'slow-test-threshold': 'Threshold (in milliseconds) to mark long-running tests in the console report. Use 0 to disable.',
+    'task-restart-on-failure': 'When enabled, failing tasks are restarted as if the browser was disconnected.',
     'task-timeout': 'Timeout of a task execution in milliseconds.',
     'version': 'Displays the version number and exits.'
 }).alias({

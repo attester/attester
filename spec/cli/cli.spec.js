@@ -387,6 +387,45 @@ describe('cli', function () {
         hasErrors: ["Browser was disconnected", "Browser was disconnected"]
     });
 
+    itRuns({
+        testCase: 'no restart on failure',
+        exitCode: 1,
+        args: ['--max-task-restarts', '2', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/failsTwice.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        },
+        hasErrors: ["expected false to equal true"]
+    });
+
+    itRuns({
+        testCase: 'restart on failure (2 restarts)',
+        exitCode: 0,
+        args: ['--max-task-restarts', '2', '--task-restart-on-failure', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/failsTwice.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        },
+        hasErrors: ["expected false to equal true", "expected false to equal true"]
+    });
+
+    itRuns({
+        testCase: 'restart on failure (1 restart)',
+        exitCode: 1,
+        args: ['--max-task-restarts', '1', '--task-restart-on-failure', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/failsTwice.js'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        },
+        hasErrors: ["expected false to equal true", "expected false to equal true"]
+    });
+
     // There are 3 tests lasting ~1s, with a timeout of 2s everything should be fine
     itRuns({
         testCase: 'clear timeout',
