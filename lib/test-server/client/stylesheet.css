@@ -212,6 +212,14 @@ a:hover {
     color: #406928;
 }
 
+#links .results a {
+    color: #b05050;
+}
+
+#links .results a:hover {
+    color: #883838;
+}
+
 #links i {
     font-size: 110px;
     text-shadow: -1px -1px 1px rgba(0,0,0,0.5);
@@ -237,6 +245,10 @@ a:hover {
 
 #links .status i {
     left: 48px;
+}
+
+#links .results i {
+    left: 29px;
 }
 
 #configuration:before, #configuration:after {
