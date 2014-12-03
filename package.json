@@ -18,6 +18,7 @@
     },
     "main": "./lib/attester.js",
     "dependencies": {
+        "attester-results-ui": "0.0.1",
         "colors": "0.6.2",
         "connect": "2.26.0",
         "eventemitter2": "0.4.14",
