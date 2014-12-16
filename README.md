@@ -1,7 +1,14 @@
 Attester
 ========
 
-*attester* is a command line tool allowing to run JavaScript tests in several web browsers.
+[![Build Status](https://secure.travis-ci.org/attester/attester.png)](https://travis-ci.org/attester/attester)
+[![Dependencies](https://david-dm.org/attester/attester.svg?style=flat)](https://david-dm.org/attester/attester)
+[![devDependencies](https://david-dm.org/attester/attester/dev-status.svg?style=flat)](https://david-dm.org/attester/attester#info=devDependencies)
+[![Code Climate](https://codeclimate.com/github/attester/attester/badges/gpa.svg)](https://codeclimate.com/github/attester/attester)
+
+[![npm](https://nodei.co/npm/attester.png?compact=true)](https://www.npmjs.com/package/attester)
+
+*attester* is a command line tool allowing to run JavaScript tests in multiple web browsers at once.
 
 It starts an internal web server, then starts a set of web browsers, makes them execute the
 tests, and finally writes test reports.
@@ -24,7 +31,6 @@ Features
    * [lcov](http://ltp.sourceforge.net/coverage/lcov/geninfo.1.php) file, accepted by [Sonar](http://www.sonarsource.org/) *(currently only for line coverage)*
 * Supports [Aria Templates](http://ariatemplates.com/) unit tests and [Mocha](http://visionmedia.github.com/mocha/) with either [Chai](http://chaijs.com/) or [Expect.js](https://github.com/LearnBoost/expect.js/).
 * Adding support for other test frameworks is as simple as adding an adapter for that test framework.
-* [![Build Status](https://secure.travis-ci.org/attester/attester.png)](http://travis-ci.org/attester/attester)
 
 License
 -------
