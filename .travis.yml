@@ -10,4 +10,4 @@ before_install:
  - export DISPLAY=:99.0
  - sh -e /etc/init.d/xvfb start
 addons:
- firefox: "32.0"
+ firefox: "36.0"

@@ -32,7 +32,7 @@
         "optimist": "0.6.1",
         "portfinder": "0.2.1",
         "q": "1.0.1",
-        "selenium-java-robot": "0.0.4",
+        "selenium-java-robot": "0.0.6",
         "semver": "2.3.1",
         "send": "0.9.3",
         "socket.io": "1.1.0",
