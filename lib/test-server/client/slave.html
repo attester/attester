@@ -21,26 +21,6 @@
 		<p>To enable logs add <i>?log=true</i> in the URL.</p>
 	</div>
 	<script src="json3/json3.min.js"></script>
-	<script type="text/javascript">
-		(function () {
-			// addEventListener issue with Firefox < 6
-			// To be removed once https://github.com/Automattic/engine.io-client/pull/354 is integrated
-			var trueAddEventListener = window.addEventListener;
-			if (trueAddEventListener) {
-				window.addEventListener = function (type, listener, useCapture) {
-					// make sure the third argument is always provided (either true or false):
-					return trueAddEventListener.call(this, type, listener, !!useCapture);
-				};
-			}
-			// work-around for a bug of phantomjs with socket.io
-			// To be removed once https://github.com/Automattic/engine.io-parser/pull/34 is integrated
-			if (window.callPhantom) {
-				window.Blob = undefined;
-				window.BlobBuilder = undefined;
-				window.WebKitBlobBuilder = undefined;
-			}
-		})();
-	</script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="slave-client.js"></script>
 	<script src="stacktrace.js"></script>

@@ -35,7 +35,7 @@
         "selenium-java-robot": "0.0.6",
         "semver": "2.3.1",
         "send": "0.9.3",
-        "socket.io": "1.1.0",
+        "socket.io": "1.3.5",
         "ua-parser-snapshot": "0.3.201404031741",
         "uglify-js": "2.4.15"
     },
