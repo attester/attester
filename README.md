@@ -142,7 +142,7 @@ browsers:
   # It's possible to distinguish browsers by operating systems, read more below
   - 'Safari on Mac OS X'
   - 'Chrome on Windows 7'
-  - 'Chrome on Desktop Linux'
+  - 'Chrome on Ubuntu'
   - 'Chrome on Android'
   # It is also possible to distinguish several versions of the same browser:
   - 'IE 7'
@@ -160,31 +160,7 @@ browsers:
   - 'Firefox >=25 on Ubuntu    as Firefox/Ubuntu'
 ```
 
-#### Regarding browser detection by operating system:
-Attester uses [ua-parser](https://github.com/tobie/ua-parser/) for that and supports operating system families as returned by ua-parser, e.g.:
-
-- 'Windows XP'
-- 'Windows Vista'
-- 'Windows 7'
-- 'Windows 8'
-- 'Mac OS X'
-- 'Ubuntu'
-- 'Debian'
-- 'Fedora'
-- 'Chrome OS'
-- 'iOS'
-- 'Android'
-- 'Windows Phone'
-- 'Firefox OS'
-- 'BlackBerry OS'
-
-For convenience, two additional values are accepted by Attester:
-
-- 'Desktop Linux' (Linux, but not Android or webOS)
-- 'Desktop Windows' (Windows, but not Windows Phone)
-
-For a bigger (though not complete) list of options, you can have a look at the test resources in ua-parser: [resource 1](https://raw.github.com/tobie/ua-parser/master/test_resources/test_user_agent_parser_os.yaml) and [resource 2](https://raw.github.com/tobie/ua-parser/master/test_resources/additional_os_tests.yaml).
-
+Attester uses [ua-parser-js](https://github.com/faisalman/ua-parser-js) for browser and operating system detection and supports values as returned by ua-parser-js.
 
 **Environment Variables**
 It is possible to build a special portion of the configuration object from an external file using `--env` option.
