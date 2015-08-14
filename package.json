@@ -30,7 +30,7 @@
         "node-coverage": "1.0.7",
         "noder-js": "1.6.0",
         "optimist": "0.6.1",
-        "portfinder": "0.2.1",
+        "portfinder": "0.4.0",
         "q": "1.0.1",
         "selenium-java-robot": "0.0.6",
         "semver": "2.3.1",
