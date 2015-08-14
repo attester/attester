@@ -12,19 +12,12 @@
             <outputDirectory>/</outputDirectory>
             <useDefaultExcludes>true</useDefaultExcludes>
             <excludes>
-                <exclude>.project</exclude>
-                <exclude>.settings/**</exclude>
-                <exclude>.gitignore</exclude>
-                <exclude>pom.xml</exclude>
+                <exclude>.*</exclude>
                 <exclude>maven/**</exclude>
                 <exclude>hooks/**</exclude>
-
-                <!-- Excluding tests and their dependencies -->
-                <exclude>.travis.yml</exclude>
                 <exclude>spec/**</exclude>
-                <exclude>node_modules/ariatemplates/**</exclude>
-                <exclude>node_modules/jasmine-node/**</exclude>
-                <exclude>node_modules/grunt*/**</exclude>
+                <exclude>grunt-cli.js</exclude>
+                <exclude>Gruntfile.js</exclude>
             </excludes>
         </fileSet>
     </fileSets>

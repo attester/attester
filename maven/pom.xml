@@ -26,22 +26,33 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>exec-maven-plugin</artifactId>
-				<groupId>org.codehaus.mojo</groupId>
-				<version>1.2.1</version>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
 				<executions>
 					<execution>
 						<id>npm</id>
 						<phase>compile</phase>
 						<goals>
-							<goal>exec</goal>
+							<goal>run</goal>
 						</goals>
 						<configuration>
-							<workingDirectory>${rootdir}</workingDirectory>
-							<executable>${npm.executable}</executable>
-							<arguments>
-								<item>install</item>
-							</arguments>
+							<target>
+								<exec dir="${rootdir}" executable="${npm.executable}" failonerror="true" outputproperty="npmVersion">
+									<arg line="--version"/>
+								</exec>
+								<echo>npm version: ${npmVersion}</echo>
+								<fail message="Unexpected npm version. Please use version 3.x to make sure a flat structure is used in node_modules.">
+									<condition>
+										<not>
+											<matches pattern="^3\." string="${npmVersion}"/>
+										</not>
+									</condition>
+								</fail>
+								<exec dir="${rootdir}" executable="${npm.executable}" failonerror="true">
+									<arg line="install"/>
+									<arg line="--production"/>
+								</exec>
+							</target>
 						</configuration>
 					</execution>
 				</executions>
