@@ -78,7 +78,7 @@
 
                     <ul>
                         <% _.forEach(campaign.browsers, function (browser) { %>
-                            <li><%= browser.tasksQueue.length %> on <%= browser.name %></li>
+                            <li><%= browser.pendingTasks %> on <%= browser.name %></li>
                         <% }); %>
                     </ul>
                 </div>
