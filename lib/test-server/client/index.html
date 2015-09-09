@@ -56,7 +56,7 @@
 		<div id="configuration">
 			<% _.forEach(data.campaigns, function (campaign) { %>
 			<article>
-				<h2><span>Campaign <%= campaign.id %></span></h2>
+				<h2 id="campaign<%= campaign.id %>"><span>Campaign <%= campaign.id %></span></h2>
 				<div class="text">
 					<% if (campaign.tests.debugUrls.length > 0) { %>
 						<h3>Debug this campaign</h3>
