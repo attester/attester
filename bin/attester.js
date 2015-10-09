@@ -28,6 +28,7 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'ignore-errors': 'When enabled, test errors (not including failures) will not cause this process to return a non-zero value.',
     'ignore-failures': 'When enabled, test failures (anticipated errors) will not cause this process to return a non-zero value.',
     'json-console': 'When enabled, JSON objects will be sent to stdout to provide information about tests.',
+    'launcher-config': 'attester-launcher configuration file. Browsers configured in this file are automatically started and stopped when needed. Can be repeated multiple times to pass multiple configuration files to attester-launcher.',
     'live-results': 'When enabled (which is the default), it is possible to connect to attester with an external program to get live test results.',
     'log-level': 'Level of logging: integer from 0 (no logging) to 4 (debug).',
     'max-task-restarts': 'Maximum number of times a task can be restarted (after being interrupted by a browser disconnection).',

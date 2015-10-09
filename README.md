@@ -220,6 +220,8 @@ It can be: `Firefox`, `Chrome`, `Safari` or `Internet Explorer`.
 browsers or multiple instances of the same browser. Each browser is started with one parameter: the URL to open to start tests.
 At the end of the tests, all started processes are killed.
 
+`--launcher-config <launcher config>` Path to an [attester-launcher](https://github.com/attester/attester-launcher) configuration file. Browsers configured in this file are automatically started and stopped when needed. Can be repeated multiple times to pass multiple configuration files to attester-launcher.
+
 `--env <path>` Path to a `yaml` or `json` file containing environment options. See section above.
 
 `--ignore-errors` When enabled, test errors (not including failures) will not cause this process to return a non-zero value.

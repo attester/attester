@@ -1,0 +1,63 @@
+# To configure Sauce Labs platforms: https://docs.saucelabs.com/reference/platforms-configurator/
+launchers:
+    SauceLabsConfig:
+        $launcher: '$saucelabs'
+        $connectionRetries: 1
+        capabilities:
+            tunnelIdentifier: <%= env.TRAVIS_JOB_NUMBER %>
+            recordVideo: false
+            recordScreenshots: false
+browsers:
+    Firefox:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'firefox'
+    Firefox 11:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'firefox'
+            version: '11.0'
+    Chrome:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'chrome'
+    Safari:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'safari'
+    IE 7:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'internet explorer'
+            platform: 'Windows XP'
+            version: '7.0'
+    IE 8:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'internet explorer'
+            platform: 'Windows 7'
+            version: '8.0'
+    IE 9:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'internet explorer'
+            platform: 'Windows 7'
+            version: '9.0'
+    IE 10:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'internet explorer'
+            platform: 'Windows 7'
+            version: '10.0'
+    IE 11:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'internet explorer'
+            platform: 'Windows 7'
+            version: '11.0'
+    Edge:
+        $launcher: 'SauceLabsConfig'
+        capabilities:
+            browserName: 'microsoftedge'
+maxInstances:
+    Launcher_SauceLabsConfig: 1
