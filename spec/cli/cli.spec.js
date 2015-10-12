@@ -453,4 +453,16 @@ describe('cli', function () {
         // Expecting 3 errors
         hasErrors: ["Task timeout.", "Task timeout.", "Task timeout."]
     });
+
+    itRuns({
+        testCase: 'single browser specified on the command line',
+        exitCode: 0,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js', '--config.browsers', 'PhantomJS'],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 0
+        }
+    });
 });
