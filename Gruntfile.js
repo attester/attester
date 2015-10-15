@@ -14,12 +14,6 @@
  */
 
 module.exports = function (grunt) {
-    // One may filter tests to be run; useful for debugging.
-    // Usage (any regexp should do):
-    //   grunt jasmine_node --grep=load_plugin
-    //   grunt jasmine_node --grep="(event.*|config)"
-    var grep = grunt.option('grep') || "";
-
     grunt.initConfig({
         jshint: {
             lib: ['package.json', 'grunt.js', 'lib/**/*.js', '!lib/**/html5shiv.js'],
@@ -35,13 +29,6 @@ module.exports = function (grunt) {
             files: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>'],
             tasks: ['dev']
         },
-        jasmine_node : {
-            options : {
-                match : grep + ".", // "." is the default
-                forceExit : true
-            },
-            all : ['spec/']
-        },
         beautify: {
             all: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>']
         },
@@ -55,9 +42,8 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks("grunt-jasmine-node");
     grunt.loadNpmTasks("grunt-beautify");
-    grunt.registerTask("test", ["jshint", "jasmine_node"]);
+    grunt.registerTask("test", ["jshint"]);
     grunt.registerTask("dev", ["beautify", "jshint"]);
     grunt.registerTask("default", ["test"]);
 

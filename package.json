@@ -37,7 +37,7 @@
         "send": "0.9.3",
         "socket.io": "1.3.5",
         "ua-parser-js": "git+https://github.com/ariatemplates/ua-parser-js#latest",
-        "uglify-js": "2.4.15"
+        "uglify-js": "2.5.0"
     },
     "devDependencies": {
         "ariatemplates": "1.6.6",
@@ -48,14 +48,15 @@
         "grunt-cli": "0.1.13",
         "grunt-contrib-jshint": "0.10.0",
         "grunt-contrib-watch": "0.6.1",
-        "grunt-jasmine-node": "0.2.1",
         "jasmine-node": "1.14.5",
         "mocha": "1.8.1",
         "rimraf": "2.2.8",
         "xml2js": "0.4.4"
     },
     "scripts": {
-        "test": "node grunt-cli test"
+        "grunt-test": "node grunt-cli test",
+        "jasmine-test": "jasmine-node --forceexit spec",
+        "test": "npm run grunt-test && npm run jasmine-test"
     },
     "engines": {
         "node": "~0.10.32"
