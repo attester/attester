@@ -59,6 +59,6 @@
         "test": "npm run grunt-test && npm run jasmine-test"
     },
     "engines": {
-        "node": "~0.10.32"
+        "node": ">=0.10.32"
     }
 }
