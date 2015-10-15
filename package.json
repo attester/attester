@@ -35,7 +35,7 @@
         "selenium-java-robot": "0.0.6",
         "semver": "2.3.1",
         "send": "0.9.3",
-        "socket.io": "1.3.5",
+        "socket.io": "1.3.7",
         "ua-parser-js": "git+https://github.com/ariatemplates/ua-parser-js#latest",
         "uglify-js": "2.5.0"
     },
