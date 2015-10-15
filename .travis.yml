@@ -2,10 +2,8 @@ language: node_js
 node_js:
  - 0.10
  - 4.2
+sudo: false
 before_install:
-# Changing the /etc/hosts file is needed for the selenium Firefox driver to work correctly
-# (see https://code.google.com/p/selenium/issues/detail?id=3280)
- - (echo "127.0.0.1 localhost" && cat /etc/hosts) > /tmp/hosts && sudo mv /tmp/hosts /etc/hosts
  - npm install -g npm@3
  - npm --version
  - phantomjs --version
