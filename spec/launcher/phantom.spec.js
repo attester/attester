@@ -19,6 +19,13 @@ var http = require("http");
 var attester = require("../../lib/attester");
 var phantomLauncher = require("../../lib/launchers/phantom-launcher");
 
+var stdOutToMessages = function (stdout) {
+    var result = stdout.trim().split("\n");
+    return result.map(function (line) {
+        return line.trim();
+    });
+};
+
 /**
  * Test the main script that drives phantom.
  * Its responsibilities are:
@@ -40,7 +47,7 @@ function startPhantom(requestListener, callback, wait, startCfg) {
             erroredPhantomInstances: 0
         };
 
-        var messages = []; // stores stdout for later inspection in test cases
+        var stdout = ""; // stores stdout for later inspection in test cases
         var cfg = {
             maxRetries: startCfg.maxRetries || 0,
             phantomPath: "phantomjs",
@@ -51,9 +58,7 @@ function startPhantom(requestListener, callback, wait, startCfg) {
                 autoExitPolling: startCfg.autoExitPolling || 200
             },
             onData: function (data) {
-                var text = data.toString().trim();
-                messages.push(text);
-                // console.log(text); // uncomment for debugging
+                stdout += data.toString();
             },
             onAllPhantomsDied: startCfg.onAllPhantomsDied
         };
@@ -63,14 +68,14 @@ function startPhantom(requestListener, callback, wait, startCfg) {
                 var originalOnExit = phantomLauncher.createPhantomExitCb(cfg, state, instanceId).bind(phantomLauncher);
                 originalOnExit(code);
             }
-            callback(code, messages);
+            callback(code, stdOutToMessages(stdout));
         };
 
         var phantomProcess = phantomLauncher.bootPhantom(cfg, state, instanceId);
         if (wait) {
             setTimeout(function () {
                 phantomProcess.kill();
-                callback(0, messages);
+                callback(0, stdOutToMessages(stdout));
             }, wait);
         }
     });
