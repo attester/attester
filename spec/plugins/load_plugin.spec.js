@@ -31,8 +31,8 @@ describe("plugins", function () {
         attester.config.set({
             "colors": true,
             "phantomjs-instances": 1
-            // enable debug logging
-            //, "log-level": 4
+                // enable debug logging
+                //, "log-level": 4
         });
 
         attester.plugins.require(path.join(__dirname, "mock/plugin.js"), {
@@ -59,8 +59,8 @@ describe("plugins", function () {
         attester.config.set({
             "colors": true,
             "phantomjs-instances": 1
-            // enable debug logging
-            //, "log-level": 4
+                // enable debug logging
+                //, "log-level": 4
         });
 
         attester.event.once("attester.core.idle", function () {

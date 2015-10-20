@@ -54,12 +54,10 @@ describe("base test type", function () {
             assertRequests(baseUrl, [{
                 url: "__attester__/client/lib.js",
                 body: "client said /lib.js"
-            },
-            {
+            }, {
                 url: "__attester__/rooms/empty",
                 body: "joining room /empty"
-            },
-            {
+            }, {
                 url: "__attester__/another/path",
                 body: "in general /another/path"
             }], function () {
@@ -84,8 +82,7 @@ describe("base test type", function () {
 
             this.testPage("/test.html", "<%= query.test %> on version <%= data.config.version %>");
             this.testPage("interactive.html", {
-                body: ["<h1><%= data.config.name %></h1>",
-                {
+                body: ["<h1><%= data.config.name %></h1>", {
                     tagName: "script",
                     type: "loader",
                     content: "{}"
@@ -102,8 +99,7 @@ describe("base test type", function () {
             assertRequests(baseUrl, [{
                 url: "__attester__/test.html?test=a.b.c",
                 body: "a.b.c on version 1.0"
-            },
-            {
+            }, {
                 url: "__attester__/interactive.html",
                 body: "<h1>attester</h1><script type=\"loader\">{}</script>"
             }], function () {

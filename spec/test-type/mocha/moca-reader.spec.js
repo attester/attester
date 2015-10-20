@@ -28,8 +28,7 @@ describe("Mocha test type", function () {
         var expected = [{
             name: "spec/test-type/mocha/sample-tests/asyncTest.js",
             url: "test.html?name=" + encodeURIComponent("spec/test-type/mocha/sample-tests/asyncTest.js")
-        },
-        {
+        }, {
             name: "spec/test-type/mocha/sample-tests/simpleTest.js",
             url: "test.html?name=" + encodeURIComponent("spec/test-type/mocha/sample-tests/simpleTest.js")
         }];

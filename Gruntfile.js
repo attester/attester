@@ -16,12 +16,12 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         jshint: {
-            lib: ['package.json', 'grunt.js', 'lib/**/*.js', '!lib/**/html5shiv.js'],
-            options : grunt.file.readJSON('.jshintrc'),
-            specs : {
-                options : grunt.file.readJSON('.jshintrc-specs'), // merged on top of default config
-                files : {
-                    src : ['spec/**/*.spec.js']
+            lib: ['package.json', 'gruntfile.js', 'lib/**/*.js', '!lib/**/html5shiv.js'],
+            options: grunt.file.readJSON('.jshintrc'),
+            specs: {
+                options: grunt.file.readJSON('.jshintrc-specs'), // merged on top of default config
+                files: {
+                    src: ['spec/**/*.spec.js']
                 }
             }
         },
@@ -29,22 +29,29 @@ module.exports = function (grunt) {
             files: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>'],
             tasks: ['dev']
         },
-        beautify: {
-            all: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>']
-        },
-        beautifier: {
+        jsbeautifier: {
             options: {
-                indentSize: 4,
-                indentChar: ' ',
-                endOfLineNormalization: true
+                js: {
+                    space_after_anon_function: true
+                }
+            },
+            update: {
+                src: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>']
+            },
+            check: {
+                src: ['<%= jshint.lib %>', '<%= jshint.specs.files.src %>'],
+                options: {
+                    mode: "VERIFY_ONLY"
+                }
             }
         }
     });
 
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks("grunt-beautify");
-    grunt.registerTask("test", ["jshint"]);
+    grunt.loadNpmTasks("grunt-jsbeautifier");
+    grunt.registerTask("test", ["jsbeautifier:check", "jshint"]);
     grunt.registerTask("dev", ["beautify", "jshint"]);
+    grunt.registerTask("beautify", ["jsbeautifier:update"]);
     grunt.registerTask("default", ["test"]);
 
 };

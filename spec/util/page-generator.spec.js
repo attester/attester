@@ -158,8 +158,7 @@ describe("Page generator", function () {
             head: {
                 tagName: "link"
             },
-            body: ["page: <%= name %>",
-            {
+            body: ["page: <%= name %>", {
                 tagName: "h1",
                 content: "<%= role %>"
             }]
@@ -210,8 +209,7 @@ describe("Page generator", function () {
             body: [{
                 tagName: "a",
                 href: "somewhere"
-            },
-            {
+            }, {
                 tagName: "b",
                 content: "Hello"
             }]

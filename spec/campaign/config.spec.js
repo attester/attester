@@ -61,8 +61,7 @@ var expectedObject = {
     },
     "browsers": [{
         browserName: "PhantomJS"
-    },
-    {
+    }, {
         browserName: "IE",
         majorVersion: 9
     }]
@@ -101,8 +100,7 @@ describe("read configuration files for campaign", function () {
             },
             "browsers": [{
                 "browserName": "PhantomJS"
-            },
-            {
+            }, {
                 "browserName": "IE",
                 "majorVersion": 9
             }]

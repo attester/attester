@@ -47,8 +47,7 @@ describe("start actions", function () {
         var testType = createType([{
             tagName: "script",
             content: "window._test_content = 'one'"
-        },
-        {
+        }, {
             tagName: "script",
             content: "attester.currentTask.actions.push(function () {window._test_content = 'two';});"
         }]);
@@ -70,12 +69,10 @@ describe("start actions", function () {
         var testType = createType([{
             tagName: "script",
             content: "window._test_content = 'one'"
-        },
-        {
+        }, {
             tagName: "script",
             content: "attester.currentTask.actions.push(function () {window._test_content += '_two';});"
-        },
-        {
+        }, {
             tagName: "script",
             content: inline(function () {
                 // This action is really asynchronous
@@ -87,8 +84,7 @@ describe("start actions", function () {
                     }, 50);
                 });
             })
-        },
-        {
+        }, {
             tagName: "script",
             content: inline(function () {
                 // This action is declared sync, but does stuff anyway
@@ -99,8 +95,7 @@ describe("start actions", function () {
                     }, 50);
                 });
             })
-        },
-        {
+        }, {
             tagName: "script",
             content: inline(function () {
                 // This action should be execute before the previous callback

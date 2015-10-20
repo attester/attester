@@ -67,7 +67,7 @@ describe("Complete test suite", function () {
             xml2js.parseString(fs.readFileSync(path.join(__dirname, "out/report.xml")), function (err, res) {
                 xml = res;
             });
-            expect( !! xml.testsuite).toBe(true);
+            expect(!!xml.testsuite).toBe(true);
 
             // xml folder
             expect(fs.existsSync(path.join(__dirname, "out/xml"))).toBe(true);
