@@ -232,6 +232,8 @@ At the end of the tests, all started processes are killed.
 to get live test results. Note that, when enabled, this feature keeps the full log of test results in memory, which increases
 the memory consumption of attester.
 
+`--host <host>` Host used for the internal web server.
+
 `--port <number>` Port used for the internal web server. If set to `0` (default), an available port is automatically selected.
 
 `--server-only` Only starts the web server, and configure it for the test campaign but do not start the campaign. This is useful to
