@@ -38,7 +38,8 @@
         "send": "0.9.3",
         "socket.io": "1.3.7",
         "ua-parser-js": "git+https://github.com/ariatemplates/ua-parser-js#latest",
-        "uglify-js": "2.5.0"
+        "uglify-js": "2.5.0",
+        "phantomjs": "1.9.8"
     },
     "devDependencies": {
         "ariatemplates": "1.6.6",
