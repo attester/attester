@@ -204,11 +204,9 @@ Template options can be used both in `yaml` and `json` file and the environment 
 
 **Usual options:**
 
-`--phantomjs-path <path>` Path to the [PhantomJS](http://phantomjs.org/) executable (default: `phantomjs`).
+`--phantomjs-path <path>` Path to the [PhantomJS](http://phantomjs.org/) executable. It defaults to the path of phantomJS that is automatically installed locally.
 
-- *Important note: you have to install PhantomJS by yourself if you want to use it. Then, you must either
-pass `--phantomjs-path` argument, or add the folder containing `phantomjs.exe` to your system's `PATH`.
-Otherwise, you'll get runtime errors.*
+- *Important note: you can install PhantomJS by yourself. In that case you must pass `--phantomjs-path` argument. Otherwise, you'll get runtime errors.  However, we discourage you to do so because attester is not compatible with all versions of PhantomJS.*
 
 `--phantomjs-instances <number>` Number of instances of [PhantomJS](http://phantomjs.org/) to start (default: `0`).
 Additionally, a string `auto` can be passed to let the program use the optimal number of instances for best performance (max. 1 per CPU thread).
