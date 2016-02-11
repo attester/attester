@@ -81,6 +81,41 @@ describe("parse browser config", function () {
                 displayAs: "Chrome Canary Linux"
             });
         });
+
+        it("should read name with version and flags", function () {
+            expect(Browser.parseBrowserConfig("IE 11 with JAWS")).toEqual({
+                browserName: "IE",
+                browserVersion: "11",
+                flags: "JAWS"
+            });
+        });
+
+        it("should read name with version, flags and alias", function () {
+            expect(Browser.parseBrowserConfig("IE 11 with JAWS as IEJAWS")).toEqual({
+                browserName: "IE",
+                browserVersion: "11",
+                flags: "JAWS",
+                displayAs: "IEJAWS"
+            });
+        });
+
+        it("should read name with flags and alias", function () {
+            expect(Browser.parseBrowserConfig("IE with JAWS as IEJAWS")).toEqual({
+                browserName: "IE",
+                flags: "JAWS",
+                displayAs: "IEJAWS"
+            });
+        });
+
+        it("should read name with version, os, flags and alias", function () {
+            expect(Browser.parseBrowserConfig("Chrome 30 on Desktop Linux with robot as Chrome Canary Linux")).toEqual({
+                browserName: "Chrome",
+                browserVersion: "30",
+                os: "Desktop Linux",
+                flags: "robot",
+                displayAs: "Chrome Canary Linux"
+            });
+        });
     });
 
     describe("whitespace and special chars tests", function () {
