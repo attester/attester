@@ -158,6 +158,10 @@ browsers:
   # You can mix all of that options, and have whitespace as you see fit.
   - 'Firefox >=25 on Windows 7 as Firefox/Windows'
   - 'Firefox >=25 on Ubuntu    as Firefox/Ubuntu'
+  # You can also add flags with the 'with' keyword to specify an environment which cannot be automatically detected.
+  # Flags have to be explicitly set in the URL when connecting a browser (e.g.: http://localhost:7777/__attester__/slave.html?flags=JAWS).
+  - 'IE 11 on Windows with JAWS as IE-JAWS'
+  - 'IE 11 on Windows with mySpecialFlag'
 ```
 
 Attester uses [ua-parser-js](https://github.com/faisalman/ua-parser-js) for browser and operating system detection and supports values as returned by ua-parser-js.
