@@ -112,3 +112,17 @@ if (argv._.length === 0) {
 }
 
 attester.start();
+
+process.on("SIGINT", function() {
+    endProcess(1);
+});
+
+if (process.platform === "win32") {
+    var readline = require("readline").createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    readline.on("SIGINT", function () {
+        process.emit("SIGINT");
+    });
+}
