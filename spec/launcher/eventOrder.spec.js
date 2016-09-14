@@ -18,25 +18,29 @@ var event = attester.event;
 
 describe("order of events", function () {
     var received;
+
+    var storeEvent = function (data) {
+        received.push([this.event, data.slaveURL || data]);
+    };
+
     beforeEach(function () {
         received = [];
 
-        var storeEvent = function (data) {
-            received.push([this.event, data.slaveURL || data]);
-        };
-
-        event.once("attester.server.attached", storeEvent);
-        event.once("launcher.connect", storeEvent);
+        event.on("attester.server.attached", storeEvent);
+        event.on("launcher.connect", storeEvent);
     });
 
     afterEach(function (done) {
+        event.off("attester.server.attached", storeEvent);
+        event.off("launcher.connect", storeEvent);
+
         // Restore the launcher to the initial state
-        attester.launcher.__reset__().then(function () {
-            attester.launcher.__init__();
-        }).then(done);
+        attester.__reset__().then(done);
     });
 
     it("should respect ordered events", function (done) {
+        attester.config.set({});
+        attester.campaign.create({}, {}, 1);
         event.emit("attester.server.attached", {
             slaveURL: "abc"
         });
@@ -54,6 +58,8 @@ describe("order of events", function () {
     });
 
     it("should invert the events", function (done) {
+        attester.config.set({});
+        attester.campaign.create({}, {}, 1);
         event.emit("attester.campaign.tasksList");
         process.nextTick(function () {
             event.emit("attester.server.attached", {
@@ -62,6 +68,37 @@ describe("order of events", function () {
 
             process.nextTick(function () {
                 expect(received).toEqual([
+                    ["attester.server.attached", "abc"],
+                    ["launcher.connect", "abc"]
+                ]);
+                done();
+            });
+        });
+    });
+
+    it("should wait for all campaigns to be ready", function (done) {
+        attester.config.set({});
+        attester.campaign.create({}, {}, 1);
+        attester.campaign.create({}, {}, 2);
+        attester.campaign.create({}, {}, 3);
+        event.emit("attester.campaign.tasksList");
+        event.emit("attester.server.attached", {
+            slaveURL: "abc"
+        });
+        event.emit("attester.campaign.tasksList");
+        event.emit("attester.server.attached", {
+            slaveURL: "abc"
+        });
+        event.emit("attester.campaign.tasksList");
+        process.nextTick(function () {
+            event.emit("attester.server.attached", {
+                slaveURL: "abc"
+            });
+
+            process.nextTick(function () {
+                expect(received).toEqual([
+                    ["attester.server.attached", "abc"],
+                    ["attester.server.attached", "abc"],
                     ["attester.server.attached", "abc"],
                     ["launcher.connect", "abc"]
                 ]);
