@@ -6,6 +6,7 @@
         "setInterval" : false,
         "clearTimeout" : false,
         "clearInterval" : false,
+        "JSON" : false,
 
         "expect" : false,
         "describe" : false,

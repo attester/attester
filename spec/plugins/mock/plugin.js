@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-var connect = require("connect");
+var serveStatic = require("serve-static");
 var path = require("path");
 
 module.exports = function (attester, config) {
 	// Include a middleware for serving the plugin files
-	attester.server.use("/plugin", connect["static"](path.join(__dirname, "static")));
+	attester.server.use("/plugin", serveStatic(path.join(__dirname, "static")));
 
 	// Include some scripts in the test page
 	attester.testPage.include({

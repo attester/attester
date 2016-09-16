@@ -3,7 +3,7 @@
     "camelcase" : false,
     "curly" : false,
     "eqeqeq" : false,
-    "es3" : true,
+    "esversion" : 3,
     "forin" : false,
     "immed" : false,
     "indent" : false,
@@ -29,7 +29,6 @@
     "boss" : true,
     "debug" : false,
     "eqnull" : true,
-    "es5" : false,
     "esnext" : false,
     "evil" : true,
     "expr" : true,
@@ -76,7 +75,8 @@
         "setTimeout" : false,
         "setInterval" : false,
         "clearTimeout" : false,
-        "clearInterval" : false
+        "clearInterval" : false,
+        "JSON" : false
     },
     "maxerr" : 150,
 
