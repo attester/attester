@@ -5,7 +5,7 @@ cd /tmp/sauce_connect
 
 echo "Downloading Sauce Connect"
 
-SC_NAME=sc-4.3.16-linux
+SC_NAME=sc-4.4.0-linux
 
 wget "https://saucelabs.com/downloads/${SC_NAME}.tar.gz"
 
