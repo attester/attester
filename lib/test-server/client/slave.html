@@ -8,15 +8,15 @@
 	<link rel="stylesheet" href="slave.css">
 </head>
 <body>
-	<div id="status_bar">
+	<div id="status_bar" aria-hidden="true">
 		<span class="title"><span class="initials">at</span>tester</span></span>
 		<span id="status_text">Loading ...</span>
 		<span id="status_info"><span id="_info_loading"></span></span>
-		<a href="#" id="pause_resume"></a>
+		<a href="#" id="pause_resume" tabindex="-1"></a>
 	</div>
 	<div id="content"></div>
-	<div id="background_text"></div>
-	<div id="status_logs">
+	<div id="background_text" aria-hidden="true"></div>
+	<div id="status_logs" aria-hidden="true">
 		<p>Logs are available only when the search parameter <i>log</i> is set to <i>true</i>.</p>
 		<p>To enable logs add <i>?log=true</i> in the URL.</p>
 	</div>
