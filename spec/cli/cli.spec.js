@@ -202,6 +202,76 @@ describe('cli', function () {
     });
 
     itRuns({
+        testCase: 'failsOnPhantomJSNoExclude',
+        phantomjs: false,
+        exitCode: 1,
+        timeout: 20000,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFailOnPhantomJS', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.browsers', 'PhantomJS', '--config.browsers', 'Firefox', '--launcher-config', path.join(__dirname, 'attester-launcher', 'local-browsers.yml')],
+        results: {
+            run: 2,
+            failures: 1,
+            errors: 0,
+            skipped: 0
+        }
+    });
+
+    itRuns({
+        testCase: 'failsOnPhantomJSExcludesClasspath',
+        phantomjs: false,
+        exitCode: 0,
+        timeout: 20000,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFailOnPhantomJS', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.browsers', 'PhantomJS', '--config.browsers', 'Firefox', '--config.tests.aria-templates.classpaths.browserExcludes.PhantomJS', 'test.attester.ShouldFailOnPhantomJS', '--launcher-config', path.join(__dirname, 'attester-launcher', 'local-browsers.yml')],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 1
+        }
+    });
+
+    itRuns({
+        testCase: 'failsOnPhantomJSExcludesPattern',
+        phantomjs: false,
+        exitCode: 0,
+        timeout: 20000,
+        args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.files.rootDirectory', atTestsRoot, '--config.tests.aria-templates.files.includes', 'test/attester/*FailOnPhantomJS.js', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.browsers', 'PhantomJS', '--config.browsers', 'Firefox', '--config.tests.aria-templates.files.browserExcludes.PhantomJS', 'test/attester/Should*OnPhantomJS.js', '--launcher-config', path.join(__dirname, 'attester-launcher', 'local-browsers.yml')],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 1
+        }
+    });
+
+    itRuns({
+        testCase: 'mochaFailsOnPhantomJSNoExclude',
+        phantomjs: false,
+        exitCode: 1,
+        timeout: 20000,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/shouldFailOnPhantomJS.js', '--config.browsers', 'PhantomJS', '--config.browsers', 'Firefox', '--launcher-config', path.join(__dirname, 'attester-launcher', 'local-browsers.yml')],
+        results: {
+            run: 2,
+            failures: 0,
+            errors: 1,
+            skipped: 0
+        }
+    });
+
+    itRuns({
+        testCase: 'mochaFailsOnPhantomJSExcludesPattern',
+        phantomjs: false,
+        exitCode: 0,
+        timeout: 20000,
+        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/shouldFailOnPhantomJS.js', '--config.tests.mocha.files.browserExcludes.PhantomJS', 'spec/test-type/mocha/extraScripts/*OnPhantomJS.js', '--config.browsers', 'PhantomJS', '--config.browsers', 'Firefox', '--launcher-config', path.join(__dirname, 'attester-launcher', 'local-browsers.yml')],
+        results: {
+            run: 1,
+            failures: 0,
+            errors: 0,
+            skipped: 1
+        }
+    });
+
+    itRuns({
         testCase: 'mocha succeeds',
         exitCode: 0,
         args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*.js', '--config.tests.mocha.files.excludes', '**/syntaxError*', '--config.tests.mocha.files.excludes', '**/*.txt'],
