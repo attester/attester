@@ -335,20 +335,6 @@ describe('cli', function () {
     });
 
     itRuns({
-        testCase: 'mocha with selenium-java-robot',
-        exitCode: 0,
-        phantomjs: false,
-        timeout: 30000,
-        args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/seleniumJavaRobot.js', '--robot-browser', 'firefox'],
-        results: {
-            run: 1,
-            failures: 0,
-            errors: 0,
-            skipped: 0
-        }
-    });
-
-    itRuns({
         testCase: 'test timeout',
         exitCode: 1,
         args: ['--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/timeout.js', '--task-timeout', '1000'],

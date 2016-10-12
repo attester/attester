@@ -37,7 +37,6 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'port': 'Port used for the web server. If set to 0, an available port is automatically selected.',
     'host': 'Host used for the web server.',
     'predictable-urls': 'If true, resources served by the campaign have predictable URLs (campaign1, campaign2...). Otherwise, the campaign part in the URL is campaign ID. Useful for debugging.',
-    'robot-browser': 'Specifies the browser that should be automatically started by the selenium-java-robot (either Firefox, Chrome, Safari or Internet Explorer).',
     'run-browser': 'Path to any browser executable to execute the tests. Can be repeated multiple times.',
     'server-only': 'Only starts the web server, and configure it for the test campaign but do not start the campaign.',
     'shutdown-on-campaign-end': 'Once the campaign is finished, shut down the server and exit the process. Set this to false to facilitate debugging.',
