@@ -41,7 +41,6 @@
         "node-coverage": "1.0.7",
         "noder-js": "1.6.2",
         "optimist": "0.6.1",
-        "phantomjs": "1.9.8",
         "portfinder": "1.0.7",
         "q": "1.4.1",
         "selenium-java-robot": "0.0.6",
