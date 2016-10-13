@@ -46,8 +46,8 @@ If you want to make use of PhantomJS headless testing, you'll additionally need 
 
 ### Installing PhantomJS on Windows
 
-1. Download [phantomjs-1.9.1-windows.zip](https://phantomjs.googlecode.com/files/phantomjs-1.9.1-windows.zip) and extract it.
-2. Move the contents of `phantomjs-1.9.1-windows` to `C:\bin\phantomjs`
+1. Download [phantomjs-1.9.8-windows.zip](https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-windows.zip) and extract it.
+2. Move the contents of `phantomjs-1.9.8-windows` to `C:\bin\phantomjs`
 3. Add `C:\bin\phantomjs` to `PATH`
 4. Check that it works by issuing `phantomjs --version` in `cmd`
 
@@ -56,9 +56,9 @@ If you want to make use of PhantomJS headless testing, you'll additionally need 
 Quick setup on 64bit Ubuntu:
 
     cd /usr/local/share/
-    sudo wget http://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-x86_64.tar.bz2
-    sudo tar jxvf phantomjs-1.9.1-linux-x86_64.tar.bz2
-    sudo ln -s /usr/local/share/phantomjs-1.9.1-linux-x86_64/ /usr/local/share/phantomjs
+    sudo wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
+    sudo tar jxvf phantomjs-1.9.8-linux-x86_64.tar.bz2
+    sudo ln -s /usr/local/share/phantomjs-1.9.8-linux-x86_64/ /usr/local/share/phantomjs
     sudo ln -s /usr/local/share/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
 
 If you have 32bit version, replace `x86_64` with `i686` in the commands above.
@@ -217,9 +217,7 @@ Template options can be used both in `yaml` and `json` file and the environment 
 
 **Usual options:**
 
-`--phantomjs-path <path>` Path to the [PhantomJS](http://phantomjs.org/) executable. It defaults to the path of phantomJS that is automatically installed locally.
-
-- *Important note: you can install PhantomJS by yourself. In that case you must pass `--phantomjs-path` argument. Otherwise, you'll get runtime errors.  However, we discourage you to do so because attester is not compatible with all versions of PhantomJS.*
+`--phantomjs-path <path>` Path to the [PhantomJS](http://phantomjs.org/) executable. Attester does not install PhantomJS automatically. The path to the PhantomJS executable can be specified either in the PHANTOMJS_PATH environment variable, or through this command line option. If none are specified, the `phantomjs` binary should be in your `PATH` for Attester to find it.
 
 `--phantomjs-instances <number>` Number of instances of [PhantomJS](http://phantomjs.org/) to start (default: `0`).
 Additionally, a string `auto` can be passed to let the program use the optimal number of instances for best performance (max. 1 per CPU thread).
