@@ -10,6 +10,7 @@ before_install:
  - npm install -g npm@3
  - npm --version
  - phantomjs --version
+ - npm install -g geckodriver
 before_script:
  - chmod 777 ./travis_sauce_connect.sh
  - ./travis_sauce_connect.sh
@@ -22,4 +23,4 @@ env:
   - SAUCE_USERNAME=ariatemplates
   - SAUCE_ACCESS_KEY=620e638e-90d2-48e1-b66c-f9505dcb888b
 addons:
- firefox: "36.0"
+ firefox: "49.0"

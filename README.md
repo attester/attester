@@ -97,12 +97,18 @@ tests:
     - MainTestSuite
    excludes:
     - test.sample.MyUnfinishedTest
+   browserExcludes: # Allows to specify some excluded classpaths specific to each browser
+     PhantomJS: # Each browser listed in browserExcludes must exactly match the name of a browser in the browsers section
+      - test.sample.MyTestFailingInPhantomJS
   files:
    rootDirectory: 'src/tests'
    includes:
     - 'test/example/*TestCase.js'
    excludes:
     - 'test/example/*SpecialTestCase.js'
+   browserExcludes: # Allows to specify some exclusion patterns specific to each browser
+    PhantomJS: # Each browser listed in browserExcludes must exactly match the name of a browser in the browsers section
+     - 'test/example/*NoPhantomTestCase.js'
   bootstrap : '/aria/bootstrap.js' # Path to the bootstrap file of Aria Templates. This is the default value.
   extraScripts: # Path to extra scripts to be inserted in the test page just after the Aria Templates bootstrap file.
    - '/test/testEnvConfig.js'
@@ -115,6 +121,9 @@ tests:
     - 'test/example/*.js'
    excludes:
     - 'test/example/*.conf.js'
+   browserExcludes: # Allows to specify some exclusion patterns specific to each browser
+    PhantomJS: # Each browser listed in browserExcludes must exactly match the name of a browser in the browsers section
+     - 'test/example/notWorkingInPhantomJS/*.js'
   ui: 'bdd' # User-interface (bdd|tdd|exports). Defaults to bdd
   ignoreLeaks: false # Optional to ignore global variable leaks
   globals: # Optional, allow the given list of global [names]

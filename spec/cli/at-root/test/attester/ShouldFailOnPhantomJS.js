@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Amadeus s.a.s.
+ * Copyright 2012 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-/**
- * This is a shortcut module to expose internal classes for extensibility
- */
-
-exports.BaseTestType = require("../test-type/base-test-type");
-exports.FileSet = require("../util/files/fileset");
-exports.BrowserExcludesFileSet = require("../util/files/browserExcludesFileSet");
-exports.Enumerator = require("../util/files/enumerator");
-exports.Logger = require("../logging/logger");
+Aria.classDefinition({
+    $classpath : 'test.attester.ShouldFailOnPhantomJS',
+    $extends : 'aria.jsunit.TestCase',
+    $prototype : {
+        testBrowser : function () {
+            this.assertFalse(/PhantomJS/.test(Aria.$global.navigator.userAgent));
+        }
+    }
+});

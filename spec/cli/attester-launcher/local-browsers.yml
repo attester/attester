@@ -1,0 +1,14 @@
+launchers:
+    localWebdriver:
+        $launcher: $webdriver
+        $maxInstances: 1
+browsers:
+    PhantomJS:
+        $launcher: '$phantomjs'
+        $maxInstances: 1
+    Firefox:
+        $launcher: localWebdriver
+        capabilities:
+            browserName: firefox
+maxInstances:
+    Launcher_localWebdriver: 1
