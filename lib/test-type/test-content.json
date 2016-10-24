@@ -1,6 +1,7 @@
 {
 	"head-start": [
 		"<title><%= data.name %></title>",
+		"<% _(query.plugin || []).castArray().forEach(function (plugin) { %><script type=\"text/javascript\" src=\"<%= encodeURI(plugin) %>\"></script><% }); %>",
 		"<% _.forEach(data.config.extraScripts.before, function (script) { %><script type=\"text/javascript\" data-extrascript=\"before\" src=\"<%= script %>\"></script><% }); %>"
 	],
 	"head-end": [
