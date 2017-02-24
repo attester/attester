@@ -61,6 +61,7 @@
         "grunt-contrib-jshint": "1.0.0",
         "grunt-contrib-watch": "1.0.0",
         "jasmine-node": "1.14.5",
+        "js-beautify": "1.6.4",
         "mocha": "1.8.1",
         "rimraf": "2.5.4",
         "xml2js": "0.4.17"
