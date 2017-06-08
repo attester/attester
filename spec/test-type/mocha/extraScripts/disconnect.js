@@ -15,16 +15,10 @@
 
 describe("a test that disconnects the browser", function () {
 	it("should log an error", function (callback) {
-		// This is done asynchronously so that the socket.io manager has time to send
-		// what's already prepared to be sent.
 		setTimeout(function () {
-			// Try to get the socket to close from the top iframe
-			var managers = window.parent.io.managers;
-			for (var host in managers) {
-				// There should be only one
-				managers[host].disconnect();
-			}
-			callback();
+			// Try to get the socket to close from the top iframe by
+			// navigating to a different website
+			window.parent.location = 'about:blank';
 		}, 10);
 	});
 });

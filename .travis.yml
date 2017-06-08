@@ -1,16 +1,15 @@
 language: node_js
 node_js:
- - 4.2
- - 6
+ - "8.2"
+ - "6.9.1"
 sudo: false
 cache:
  directories:
   - node_modules
 before_install:
- - npm install -g npm@3
  - npm --version
  - phantomjs --version
- - npm install -g geckodriver@1.4
+ - npm install -g geckodriver@1.8
 before_script:
  - chmod 777 ./travis_sauce_connect.sh
  - ./travis_sauce_connect.sh
@@ -23,4 +22,4 @@ env:
   - SAUCE_USERNAME=ariatemplates
   - SAUCE_ACCESS_KEY=620e638e-90d2-48e1-b66c-f9505dcb888b
 addons:
- firefox: "49.0"
+ firefox: "54.0"

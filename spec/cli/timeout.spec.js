@@ -29,7 +29,7 @@ describe('timeout', function () {
         runs(function () {
             utils.runFromCommandLine({
                 testCase: "timeout after disconnect",
-                timeout: 10000,
+                timeout: 20000,
                 args: ['--max-task-restarts', '0', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/sample-tests/**/*Test.js', '--task-timeout', '500']
             }, function (code, testExecution, errorMessages) {
                 attesterFinished = true;
@@ -56,7 +56,7 @@ describe('timeout', function () {
         });
         waitsFor(function () {
             return attesterFinished && phantomFinished;
-        }, 3000, 'attester and phantom to complete');
+        }, 7000, 'attester and phantom to complete');
         runs(function () {
             expect(attesterFinished).toEqual(true);
             expect(phantomFinished).toEqual(true);
