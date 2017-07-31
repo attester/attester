@@ -10,7 +10,7 @@ before_install:
  - npm install -g npm@3
  - npm --version
  - phantomjs --version
- - npm install -g geckodriver
+ - npm install -g geckodriver@1.4
 before_script:
  - chmod 777 ./travis_sauce_connect.sh
  - ./travis_sauce_connect.sh
