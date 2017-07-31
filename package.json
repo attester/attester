@@ -41,7 +41,6 @@
         "node-coverage": "1.0.7",
         "noder-js": "1.6.2",
         "optimist": "0.6.1",
-        "portfinder": "1.0.7",
         "q": "1.4.1",
         "semver": "2.3.1",
         "send": "0.14.1",
