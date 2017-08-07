@@ -41,11 +41,9 @@
 									<arg line="--version"/>
 								</exec>
 								<echo>npm version: ${npmVersion}</echo>
-								<fail message="Unexpected npm version. Please use version 3.x to make sure a flat structure is used in node_modules.">
+								<fail message="Unexpected npm version. It should be version 5 or later.">
 									<condition>
-										<not>
-											<matches pattern="^3\." string="${npmVersion}"/>
-										</not>
+										<matches pattern="^[0-4]\." string="${npmVersion}"/>
 									</condition>
 								</fail>
 								<exec dir="${rootdir}" executable="${npm.executable}" failonerror="true">
