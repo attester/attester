@@ -2,7 +2,7 @@
     "author": "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
     "name": "attester",
     "description": "Command line tool to run Javascript tests in several web browsers.",
-    "version": "2.6.3",
+    "version": "3.0.0",
     "homepage": "http://github.com/ariatemplates/attester",
     "repository": {
         "type": "git",
