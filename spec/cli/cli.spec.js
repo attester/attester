@@ -419,6 +419,7 @@ describe('cli', function () {
 
     itRuns({
         testCase: 'browser disconnected (no restart)',
+        timeout: 20000,
         exitCode: 1,
         args: ['--max-task-restarts', '0', '--config.tests.mocha.files.includes', 'spec/test-type/mocha/extraScripts/disconnect.js'],
         results: {
