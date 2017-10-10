@@ -39,8 +39,8 @@ function startCampaign(callback) {
     attester.config.set({
         "colors": true,
         "phantomjs-instances": 1
-            // enable debug logging
-            //, "log-level": 4
+        // enable debug logging
+        //, "log-level": 4
     });
 
     attester.campaign.create(attester.config.readFile(path.join(__dirname, "campaign/simpleTest.yaml")));
