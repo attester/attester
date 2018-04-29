@@ -29,7 +29,7 @@ Features
 * Code coverage output formats:
    * [node-coverage](https://github.com/piuccio/node-coverage) json file
    * [lcov](http://ltp.sourceforge.net/coverage/lcov/geninfo.1.php) file, accepted by [Sonar](http://www.sonarsource.org/) *(currently only for line coverage)*
-* Supports [Aria Templates](http://ariatemplates.com/) unit tests and [Mocha](http://visionmedia.github.com/mocha/) with either [Chai](http://chaijs.com/) or [Expect.js](https://github.com/LearnBoost/expect.js/).
+* Supports [Aria Templates](http://ariatemplates.com/) unit tests and [Mocha](http://mochajs.org/) with either [Chai](http://chaijs.com/) or [Expect.js](https://github.com/LearnBoost/expect.js/).
 * Adding support for other test frameworks is as simple as adding an adapter for that test framework.
 
 License
