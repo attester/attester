@@ -130,10 +130,15 @@ tests:
    - 'myGlobal'
   assertion: 'expect' # Assertion library to be included. It could be either expect or chai or any external url
 coverage:
- files: # Specifies which files will be instrumented for code coverage
+ files:
+  # If the files section is present, the files specified here will be instrumented by attester for code coverage.
   rootDirectory: 'src/main/js'
   includes:
    - '**/*.js'
+ # Files can be pre-instrumented by node-coverage or the NodeCoverageInstrument visitor of atpackager
+ # In that case, information file(s) produced by the instrumentation tool should be specified in the infoFiles array:
+ infoFiles:
+   - 'coverage-instrumentation.json'
 test-reports: # Path for each test report type:
   json-file: 'report.json'
   xml-file: 'report.xml'
