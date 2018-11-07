@@ -36,6 +36,8 @@ var opt = optimist.usage('Usage: $0 [options] [config.yml|config.json]').boolean
     'phantomjs-path': 'Path to PhantomJS executable.',
     'port': 'Port used for the web server. If set to 0, an available port is automatically selected.',
     'host': 'Host used for the web server.',
+    'public-port': 'Public host of the web server, which, when defined, is used instead of --host to create the URL to be called from browsers.',
+    'public-host': 'Public port of the web server, which, when defined, is used instead of --port to create the URL to be called from browsers.',
     'predictable-urls': 'If true, resources served by the campaign have predictable URLs (campaign1, campaign2...). Otherwise, the campaign part in the URL is campaign ID. Useful for debugging.',
     'run-browser': 'Path to any browser executable to execute the tests. Can be repeated multiple times.',
     'server-only': 'Only starts the web server, and configure it for the test campaign but do not start the campaign.',

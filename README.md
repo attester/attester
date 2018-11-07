@@ -245,7 +245,11 @@ the memory consumption of attester.
 
 `--host <host>` Host used for the internal web server.
 
-`--port <number>` Port used for the internal web server. If set to `0` (default), an available port is automatically selected.
+`--port <number>` Port used for the internal web server. If set to `0`, an available port is automatically selected.
+
+`--public-host <host>` Public host of the internal web server, which, when defined, is used instead of --host to create the URL to be called from browsers.
+
+`--public-port <number>` Public port of the internal web server, which, when defined, is used instead of --port to create the URL to be called from browsers.
 
 `--server-only` Only starts the web server, and configure it for the test campaign but do not start the campaign. This is useful to
 run tests manually.
