@@ -31,12 +31,6 @@ browsers:
             browserName: 'internet explorer'
             platform: 'Windows XP'
             version: '7.0'
-    IE 8:
-        $launcher: 'SauceLabsConfig'
-        capabilities:
-            browserName: 'internet explorer'
-            platform: 'Windows 7'
-            version: '8.0'
     IE 9:
         $launcher: 'SauceLabsConfig'
         capabilities:

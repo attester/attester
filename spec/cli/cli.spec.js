@@ -539,7 +539,7 @@ describe('cli', function () {
 
     if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
         var saucelabsBrowsers = [];
-        ["Firefox >= 41 as Firefox", "Chrome", "Safari", "Edge", "IE 11", "IE 10", "IE 9", "IE 8", "Firefox 11"].forEach(function (browserName) {
+        ["Firefox >= 41 as Firefox", "Chrome", "Safari", "Edge", "IE 11", "IE 10", "IE 9", "Firefox 11"].forEach(function (browserName) {
             saucelabsBrowsers.push("--config.browsers");
             saucelabsBrowsers.push(browserName);
         });
@@ -550,7 +550,7 @@ describe('cli', function () {
             phantomjs: false,
             args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldSucceed', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.coverage.files.includes', '**/*.js', '--launcher-config', path.join(__dirname, 'attester-launcher', 'sauce-labs.yml')].concat(saucelabsBrowsers),
             results: {
-                run: 9,
+                run: 8,
                 failures: 0,
                 errors: 0,
                 skipped: 0
