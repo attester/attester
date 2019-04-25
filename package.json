@@ -27,7 +27,7 @@
     "main": "./lib/attester.js",
     "dependencies": {
         "attester-launcher": "0.1.2",
-        "attester-results-ui": "0.4.0",
+        "attester-results-ui": "0.4.1",
         "colors": "0.6.2",
         "compression": "1.7.1",
         "connect": "3.6.5",
