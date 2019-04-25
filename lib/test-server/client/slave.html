@@ -21,9 +21,9 @@
 		<p>To enable logs add <i>?log=true</i> in the URL.</p>
 	</div>
 	<script src="json3/json3.min.js"></script>
-	<script src="sockjs/sockjs.js"></script>
+	<script src="sockjs/sockjs.min.js"></script>
+	<script src="stacktrace/error-stack-parser.min.js"></script>
 	<% _(query.plugin || []).castArray().forEach(function (plugin) {%><script src="<%= encodeURI(plugin) %>"></script><%}); %>
 	<script src="slave-client.js"></script>
-	<script src="stacktrace.js"></script>
 </body>
 </html>
