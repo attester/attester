@@ -35,7 +35,7 @@
         "exit": "0.1.2",
         "js-yaml": "3.10.0",
         "json3": "3.3.2",
-        "lodash": "4.17.4",
+        "lodash": "4.17.13",
         "minimatch": "3.0.4",
         "node-coverage": "2.0.0",
         "noder-js": "1.6.2",
