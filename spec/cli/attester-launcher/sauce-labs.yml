@@ -4,7 +4,7 @@ launchers:
         $launcher: '$saucelabs'
         $connectionRetries: 1
         capabilities:
-            tunnelIdentifier: <%= env.TRAVIS_JOB_NUMBER %>
+            tunnelIdentifier: <%= env.SAUCE_TUNNEL_ID %>
             recordVideo: false
             recordScreenshots: false
 browsers:
