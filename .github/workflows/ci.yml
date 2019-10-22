@@ -1,0 +1,37 @@
+name: ci
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DISPLAY: ":99.0"
+      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      SAUCE_TUNNEL_ID: attester-ci-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - run: npm ci
+      - run: /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
+      - run: ./sauce_connect.sh
+      - name: npm test (1)
+        run: npm test
+        id: test1
+        continue-on-error: true
+      - name: npm test (2)
+        run: npm test
+        if: steps.test1.outcome == 'failure'
+        id: test2
+        continue-on-error: true
+      - name: npm test (3)
+        run: npm test
+        if: steps.test2.outcome == 'failure'
+      - run: killall sc && sleep 5; cat $HOME/sauce-connect.log
+        if: always()
