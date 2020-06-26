@@ -22,7 +22,7 @@ var rimraf = require("rimraf");
 var utils = require("../test-utils");
 
 describe("Complete test suite", function () {
-    it("runs properly", function () {
+    it("runs properly", function (done) {
         var options = {
             testCase: 'full/campaign.yaml',
             args: [path.join(__dirname, "campaign.yaml")],
@@ -37,21 +37,12 @@ describe("Complete test suite", function () {
                 cwd: __dirname
             }
         };
-        var finished = false;
-        runs(function () {
-            utils.runFromCommandLine(options, function (code, testExecution, errorMessages) {
-                expect(code).toEqual(0);
-                expect(testExecution).toEqual(options.results);
-                expect(errorMessages.length).toEqual(0);
 
-                finished = true;
-            });
-        });
-        waitsFor(function () {
-            return finished;
-        }, options.timeout + 100, 'attester to complete');
+        utils.runFromCommandLine(options, function (code, testExecution, errorMessages) {
+            expect(code).toEqual(0);
+            expect(testExecution).toEqual(options.results);
+            expect(errorMessages.length).toEqual(0);
 
-        runs(function () {
             // Check the output has been written correctly
 
             // node-coverage report
@@ -74,6 +65,8 @@ describe("Complete test suite", function () {
 
             // and now delete the temporary folder
             rimraf.sync(path.join(__dirname, "out"));
+
+            done();
         });
-    });
+    }, 10000);
 });

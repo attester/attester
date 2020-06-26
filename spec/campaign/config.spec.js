@@ -21,6 +21,9 @@ var campaign = attester.campaign;
 var config = attester.config;
 
 var expectedObject = {
+    predictableUrls: undefined,
+    campaignNumber: undefined,
+    liveResults: undefined,
     resources: {
         "/here": ["there", "nowhere"],
         "/": [] // by default

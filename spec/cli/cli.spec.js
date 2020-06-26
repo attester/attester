@@ -1,4 +1,3 @@
-/*globals describe, it, runs, waitsFor, expect*/
 /*
  * Copyright 2012 Amadeus s.a.s.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,37 +34,30 @@ describe('cli', function () {
     };
 
     var itRuns = function (options) {
-        it(options.testCase, function () {
-            var finished = false;
-
-            runs(function () {
-                utils.runFromCommandLine(options, function (code, testExecution, errorMessages) {
-                    expect(code).toEqual(options.exitCode);
-                    if (options.results) {
-                        expect(testExecution).toEqual(options.results);
-                    }
-                    if (options.hasErrors) {
-                        for (var i = 0; i < options.hasErrors.length; i += 1) {
-                            var indexOfError = findErrorMessage(options.hasErrors[i], errorMessages);
-                            if (indexOfError === -1) {
-                                throw new Error("Error " + options.hasErrors[i] + " was not found in logs.");
-                            } else {
-                                // error found, remove it
-                                errorMessages.splice(indexOfError, 1);
-                            }
-                        }
-                        if (errorMessages.length > 0) {
-                            throw new Error("Unexpected error message " + errorMessages[0]);
+        it(options.testCase, function (done) {
+            utils.runFromCommandLine(options, function (code, testExecution, errorMessages) {
+                expect(code).toEqual(options.exitCode);
+                if (options.results) {
+                    expect(testExecution).toEqual(options.results);
+                }
+                if (options.hasErrors) {
+                    for (var i = 0; i < options.hasErrors.length; i += 1) {
+                        var indexOfError = findErrorMessage(options.hasErrors[i], errorMessages);
+                        if (indexOfError === -1) {
+                            throw new Error("Error " + options.hasErrors[i] + " was not found in logs.");
+                        } else {
+                            // error found, remove it
+                            errorMessages.splice(indexOfError, 1);
                         }
                     }
+                    if (errorMessages.length > 0) {
+                        throw new Error("Unexpected error message " + errorMessages[0]);
+                    }
+                }
 
-                    finished = true;
-                });
+                done();
             });
-            waitsFor(function () {
-                return finished;
-            }, (options.timeout || defaultTimeout) + 100, 'attester to complete');
-        });
+        }, options.timeout || defaultTimeout);
     };
 
     itRuns({
@@ -205,7 +197,7 @@ describe('cli', function () {
         testCase: 'failsOnPhantomJSNoExclude',
         phantomjs: false,
         exitCode: 1,
-        timeout: 20000,
+        timeout: 40000,
         args: ['--config.resources./', atTestsRoot, '--config.resources./', atFrameworkPath, '--config.tests.aria-templates.classpaths.includes', 'test.attester.ShouldFailOnPhantomJS', '--config.coverage.files.rootDirectory', atTestsRoot, '--config.browsers', 'PhantomJS', '--config.browsers', 'Firefox', '--launcher-config', path.join(__dirname, 'attester-launcher', 'local-browsers.yml')],
         results: {
             run: 2,
