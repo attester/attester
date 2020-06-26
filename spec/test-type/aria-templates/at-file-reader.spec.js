@@ -79,6 +79,11 @@ describe('ATFileReader', function () {
             message: 'In %s: missing classpath in Aria.classDefinition.',
             args: ['MissingClasspathError.js']
         }
+    }, function (res) {
+        if (res.classpath == null) {
+            delete res.classpath;
+        }
+        return res;
     });
 
     itShouldInterpret('SyntaxError.js', {

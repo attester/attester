@@ -15,7 +15,6 @@
         "beforeEach" : false,
         "after" : false,
         "afterEach" : false,
-        "runs" : false,
-        "waitsFor" : false
+        "jasmine" : false
     }
 }

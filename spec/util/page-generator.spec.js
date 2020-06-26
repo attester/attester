@@ -16,53 +16,60 @@
 var generator = require("../../lib/util/page-generator");
 
 describe("Page generator", function () {
+    function lookLikeTagCompare(actual, expectedTag) {
+        // check the opening tag
+        var opening = expectedTag.match(/^(<[a-z]+ )/)[1];
+        if (actual.indexOf(opening) !== 0) {
+            return false;
+        }
+
+        // check the closing tag
+        var closing = expectedTag.match(/(<\/[a-z]+>)$/)[1];
+        if (actual.indexOf(closing) !== actual.length - closing.length) {
+            return false;
+        }
+
+        // what is left is the attributes and the content
+        var splitActual = actual.substring(opening.length, actual.length - closing.length).split(">");
+        var splitExpected = expectedTag.substring(opening.length, expectedTag.length - closing.length).split(">");
+
+        // check the body tag
+        if (splitActual[1].trim() !== splitExpected[1].trim()) {
+            return false;
+        }
+
+        // check the attributes in any order
+        if (splitActual[0] === splitExpected[0]) {
+            return true;
+        } else {
+            var actual = splitActual[0].split(" ").sort();
+            var expected = splitExpected[0].split(" ").sort();
+
+            if (actual.length !== expected.length) {
+                return false;
+            }
+
+            for (var i = 0; i < expected.length; i += 1) {
+                if (expected[i] !== actual[i]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     beforeEach(function () {
-        this.addMatchers({
-            toLookLikeTag: function (expectedTag) {
-                this.message = function () {
-                    return "Tag " + this.actual + " doesn't look like expected " + expectedTag;
+        jasmine.addMatchers({
+            toLookLikeTag: function () {
+                return {
+                    compare: function (actual, expected) {
+                        var result = {};
+                        result.pass = lookLikeTagCompare(actual, expected);
+                        result.message = result.pass ? "Tag " + actual + " looks like expected " + expected : "Tag " + actual + " doesn't look like expected " + expected;
+                        return result;
+                    }
                 };
-
-                // check the opening tag
-                var opening = expectedTag.match(/^(<[a-z]+ )/)[1];
-                if (this.actual.indexOf(opening) !== 0) {
-                    return false;
-                }
-
-                // check the closing tag
-                var closing = expectedTag.match(/(<\/[a-z]+>)$/)[1];
-                if (this.actual.indexOf(closing) !== this.actual.length - closing.length) {
-                    return false;
-                }
-
-                // what is left is the attributes and the content
-                var splitActual = this.actual.substring(opening.length, this.actual.length - closing.length).split(">");
-                var splitExpected = expectedTag.substring(opening.length, expectedTag.length - closing.length).split(">");
-
-                // check the body tag
-                if (splitActual[1].trim() !== splitExpected[1].trim()) {
-                    return false;
-                }
-
-                // check the attributes in any order
-                if (splitActual[0] === splitExpected[0]) {
-                    return true;
-                } else {
-                    var actual = splitActual[0].split(" ").sort();
-                    var expected = splitExpected[0].split(" ").sort();
-
-                    if (actual.length !== expected.length) {
-                        return false;
-                    }
-
-                    for (var i = 0; i < expected.length; i += 1) {
-                        if (expected[i] !== actual[i]) {
-                            return false;
-                        }
-                    }
-                }
-
-                return true;
             }
         });
     });

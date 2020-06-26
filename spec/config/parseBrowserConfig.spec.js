@@ -24,7 +24,8 @@ describe("parse browser config", function () {
                 browserName: "IE",
                 browserVersion: undefined,
                 os: undefined,
-                displayAs: undefined
+                displayAs: undefined,
+                flags: undefined
             });
         });
 
@@ -33,7 +34,8 @@ describe("parse browser config", function () {
                 browserName: "IE",
                 browserVersion: "10",
                 os: undefined,
-                displayAs: undefined
+                displayAs: undefined,
+                flags: undefined
             });
         });
 
@@ -42,7 +44,8 @@ describe("parse browser config", function () {
                 browserName: "Firefox",
                 browserVersion: ">=22",
                 os: undefined,
-                displayAs: undefined
+                displayAs: undefined,
+                flags: undefined
             });
         });
 
@@ -51,7 +54,8 @@ describe("parse browser config", function () {
                 browserName: "Chrome",
                 browserVersion: undefined,
                 os: "Windows 7",
-                displayAs: undefined
+                displayAs: undefined,
+                flags: undefined
             });
         });
 
@@ -60,7 +64,8 @@ describe("parse browser config", function () {
                 browserName: "Chrome",
                 browserVersion: "30",
                 os: "Windows 7",
-                displayAs: undefined
+                displayAs: undefined,
+                flags: undefined
             });
         });
 
@@ -69,7 +74,8 @@ describe("parse browser config", function () {
                 browserName: "Firefox",
                 browserVersion: "~25",
                 os: undefined,
-                displayAs: "Firefox Nightly"
+                displayAs: "Firefox Nightly",
+                flags: undefined
             });
         });
 
@@ -78,7 +84,8 @@ describe("parse browser config", function () {
                 browserName: "Chrome",
                 browserVersion: "30",
                 os: "Desktop Linux",
-                displayAs: "Chrome Canary Linux"
+                displayAs: "Chrome Canary Linux",
+                flags: undefined
             });
         });
 
@@ -86,7 +93,9 @@ describe("parse browser config", function () {
             expect(Browser.parseBrowserConfig("IE 11 with JAWS")).toEqual({
                 browserName: "IE",
                 browserVersion: "11",
-                flags: "JAWS"
+                flags: "JAWS",
+                os: undefined,
+                displayAs: undefined
             });
         });
 
@@ -95,7 +104,8 @@ describe("parse browser config", function () {
                 browserName: "IE",
                 browserVersion: "11",
                 flags: "JAWS",
-                displayAs: "IEJAWS"
+                displayAs: "IEJAWS",
+                os: undefined
             });
         });
 
@@ -103,7 +113,9 @@ describe("parse browser config", function () {
             expect(Browser.parseBrowserConfig("IE with JAWS as IEJAWS")).toEqual({
                 browserName: "IE",
                 flags: "JAWS",
-                displayAs: "IEJAWS"
+                displayAs: "IEJAWS",
+                os: undefined,
+                browserVersion: undefined
             });
         });
 
@@ -124,7 +136,8 @@ describe("parse browser config", function () {
                 browserName: "Chrome",
                 browserVersion: "30",
                 os: "Desktop Linux",
-                displayAs: "Chrome Canary 30"
+                displayAs: "Chrome Canary 30",
+                flags: undefined
             });
         });
 
@@ -133,7 +146,8 @@ describe("parse browser config", function () {
                 browserName: "Chrome",
                 browserVersion: "30",
                 os: "Desktop Linux",
-                displayAs: "Chrome/Linux"
+                displayAs: "Chrome/Linux",
+                flags: undefined
             });
         });
     });
