@@ -41,7 +41,7 @@
         "noder-js": "1.6.2",
         "optimist": "0.6.1",
         "q": "1.5.1",
-        "semver": "2.3.1",
+        "semver": "4.3.2",
         "send": "0.17.1",
         "serve-favicon": "2.5.0",
         "serve-static": "1.14.1",
