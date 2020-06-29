@@ -1,7 +1,7 @@
 Attester
 ========
 
-[![Build Status](https://secure.travis-ci.org/attester/attester.png)](https://travis-ci.org/attester/attester)
+[![Build status](https://github.com/attester/attester/workflows/ci/badge.svg?branch=master&event=push)](https://github.com/attester/attester/actions?query=branch%3Amaster+event%3Apush)
 [![Dependencies](https://david-dm.org/attester/attester.svg?style=flat)](https://david-dm.org/attester/attester)
 [![devDependencies](https://david-dm.org/attester/attester/dev-status.svg?style=flat)](https://david-dm.org/attester/attester#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/attester/attester/badges/gpa.svg)](https://codeclimate.com/github/attester/attester)
