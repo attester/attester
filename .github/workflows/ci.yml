@@ -36,4 +36,4 @@ jobs:
         run: npm test
         if: steps.test2.outcome == 'failure'
       - run: killall sc && sleep 5; cat $HOME/sauce-connect.log
-        if: always()
+        if: always() && (env.SAUCE_ACCESS_KEY != '')
