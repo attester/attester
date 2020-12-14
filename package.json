@@ -1,5 +1,5 @@
 {
-    "author": "ariatemplates <contact@ariatemplates.com> (http://github.com/ariatemplates)",
+    "author": "ariatemplates <ariatemplates@amadeus.com> (http://github.com/ariatemplates)",
     "name": "attester",
     "description": "Command line tool to run Javascript tests in several web browsers.",
     "version": "4.0.1",
